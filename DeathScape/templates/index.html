@@ -1,79 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Sample</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css')}}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='fonts/font-awesome-4.7.0/css/font-awesome.min.css')}}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='fonts/Linearicons-Free-v1.0.0/icon-font.min.css')}}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/animate/animate.css')}}">
-<!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/css-hamburgers/hamburgers.min.css')}}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/animsition/css/animsition.min.css')}}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/select2/select2.min.css')}}">
-<!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/daterangepicker/daterangepicker.css')}}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/util.css')}}">
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css')}}">
-<!--===============================================================================================-->
+    <title>Death Scape</title>
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css"> -->
+  	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css')}}">
+    <!-- <link rel="stylesheet" type="text/css" href="css/main.css"> -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css')}}">
+    <!-- <script src="bootstrap/js/bootstrap.min.js"></script> -->
+    <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js')}}"></script>
 </head>
 <body>
-	
-	<div class="limiter">
-		<div class="container-login100">
-			<div class="wrap-login100 p-t-50 p-b-90">
-				<form class="login100-form validate-form flex-sb flex-w"  method="post" action="/predict">
-					<span class="login100-form-title p-b-51">
-						Sample
-					</span>
-					
-					<div class="m-b-16" data-validate = "Enter Number">
-						<center><h3>{{number}}</h3></center>
-					</div>
-					
-					<div class="wrap-input100 validate-input m-b-16" data-validate = "Enter Number">
-						<input class="input100" type="number" name="number" placeholder="Enter Number">
-						<span class="focus-input100"></span>
-					</div>
-
-					<div class="container-login100-form-btn m-t-17">
-						<button class="login100-form-btn">
-							Submit
-						</button>
-					</div>
-
-				</form>
-			</div>
-		</div>
-	</div>
-	
-
-	<div id="dropDownSelect1"></div>
-	
-<!--===============================================================================================-->
-	<script src="{{ url_for('static', filename='vendor/jquery/jquery-3.2.1.min.js')}}"></script>
-<!--===============================================================================================-->
-	<script src="{{ url_for('static', filename='vendor/animsition/js/animsition.min.js')}}"></script>
-<!--===============================================================================================-->
-	<script src="{{ url_for('static', filename='vendor/bootstrap/js/popper.js')}}"></script>
-	<script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.min.js')}}"></script>
-<!--===============================================================================================-->
-	<script src="{{ url_for('static', filename='vendor/select2/select2.min.js')}}"></script>
-<!--===============================================================================================-->
-	<script src="{{ url_for('static', filename='vendor/daterangepicker/moment.min.js')}}"></script>
-	<script src="{{ url_for('static', filename='vendor/daterangepicker/daterangepicker.js')}}"></script>
-<!--===============================================================================================-->
-	<script src="{{ url_for('static', filename='vendor/countdowntime/countdowntime.js')}}"></script>
-<!--===============================================================================================-->
-	<script src="{{ url_for('static', filename='js/main.js')}}"></script>
-
+    <div class="full-height container-fluid bg-dark text-white">
+      <div class="full-height row">
+        <div class="full-height col-7">
+          <div class="col-12 centering h-60">
+            <img src="{{ url_for('static', filename='img/default_room.jpg')}}" alt="" style="width:70%">
+          </div>
+          <div class="col-12 centering h-40">
+            <div class="text-center w-75">
+              <h1>Room name</h1>
+              <p >Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                Duis aute irure dolor in reprehenderit in voluptate velit esse 
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, 
+                sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </div>
+          </div>
+        </div>
+        <div class="full-height col-5">
+          <div class="col-12 centering h-30">
+            <div class="w-100 text-center">
+              <div class="col-12 btn btn-light w-75 mt-2 mb-2">
+                ABCD
+              </div>
+              <div class="col-12 btn btn-light w-75 mt-2 mb-2">
+                ABCD
+              </div>
+              <div class="col-12 btn btn-light w-75 mt-2 mb-2">
+                ABCD
+              </div>
+            </div>
+          </div>
+          <div class="col-12 centering h-20">
+            <div class="w-100 text-center">
+              <div class="col-12 btn btn-light w-75 mt-2 mb-2">
+                ABCD
+              </div>
+              <div class="col-12 btn btn-light w-75 mt-2 mb-2">
+                ABCD
+              </div>
+            </div>
+          </div>
+          <div class="col-12 centering h-40">
+            <div class="w-100 text-center h-100">
+              <div class="col-12 centering h-75 border border-light w-100 mt-2 mb-2">
+                <div class="text-center w-100">
+                  NPC:<br>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, 
+                  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                </div>
+              </div>
+              <div class="col-12 centering h-25 w-100 mt-5 mb-2">
+                <div class="row w-100">
+                  <div class="col-6 centering">
+                    <div class="w-100 text-center">
+                      <div class="col-12 btn btn-light w-75 mt-2 mb-2">
+                        ABCD
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-6 centering">
+                    <div class="w-100 text-center">
+                      <div class="col-12 btn btn-light w-75 mt-2 mb-2">
+                        ABCD
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 </body>
 </html>

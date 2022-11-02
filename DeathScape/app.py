@@ -29,9 +29,10 @@ print('Check http://127.0.0.1:5000/')
 @app.route('/', methods=['GET'])
 def index():
     story = Story()
-    story.read_json()
-    print("characters:\n{}".format(story.characters))
-    print("character features:\n{}".format(story.character_features))
+    # story.read_json()
+    # print("characters:\n{}".format(story.characters))
+    # print("character features:\n{}".format(story.character_features))
+    story.showPlayers()
 
     # Main page
     return render_template('index.html')
