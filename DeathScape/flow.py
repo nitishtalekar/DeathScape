@@ -61,6 +61,11 @@ class Story:
         print(self.players)
         print(self.doomsday)
         
+    ''' ----- Set Functions ----- '''
+        
+    def setCurrentLevel(self):
+        self.curr_lvl += 1
+        
     ''' ----- Level Functions ----- '''
                 
     def buttonRoom(self):

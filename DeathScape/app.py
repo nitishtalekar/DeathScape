@@ -32,6 +32,14 @@ chatbot = ChatBot('ChatBot')
 trainer = ChatterBotCorpusTrainer(chatbot)
 trainer.train("chatterbot.corpus.english")
 
+def initGame(player_name):
+    global story,lvl,room_info
+    story = Story(player_name)
+    lvl = story.getCurrentLevel()
+    room_info = story.callLevel(lvl)
+
+app = Flask(__name__)
+
 print('Check http://127.0.0.1:5000/')
 
 @app.route('/', methods=['GET', 'POST'])
@@ -43,15 +51,16 @@ def index():
 
 @app.route('/deathscape', methods=['GET'])
 def deathscape():
+    global story
     player_name = request.args.get('player')
-    story = Story(player_name)
+    if player_name != None:
+        initGame(player_name)
+        return redirect('/deathscape')
+    if request.method == 'POST':
+        print('A')
+        
     story.showPlayers()
     players = story.getPlayerNames()
-    lvl = story.getCurrentLevel()
-    room_info = story.callLevel(lvl)
-    print(room_info['intro'])
-
-    # Main page
     game_data = {"players":players,"room":room_info}
     return render_template('deathscape.html',data = game_data)
 
