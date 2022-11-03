@@ -29,13 +29,15 @@ print('Check http://127.0.0.1:5000/')
 @app.route('/', methods=['GET'])
 def index():
     story = Story()
-    # story.read_json()
-    # print("characters:\n{}".format(story.characters))
-    # print("character features:\n{}".format(story.character_features))
     story.showPlayers()
+    players = story.getPlayerNames()
+    lvl = story.getCurrentLevel()
+    room_info = story.callLevel(lvl)
+    print(room_info['intro'])
 
     # Main page
-    return render_template('index.html')
+    game_data = {"players":players,"room":room_info}
+    return render_template('index.html',data = game_data)
 
 
 @app.route('/predict', methods=['GET', 'POST'])

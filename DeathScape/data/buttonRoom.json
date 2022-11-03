@@ -1,0 +1,5 @@
+{
+  "name" : "The Button Room",
+  "intro": "The room simply has a table with four buttons: red, yellow, green, and blue. There is no context whatsoever, but the way to solve the puzzle is to press the four buttons in the correct order. There are a total of four hints, one to correspond to each button. Each person is handed a hint, but not all of the hints are true. They are all hidden within the room, but not without a catch. Beside the table, there is a box with a few items to assist with solving the puzzle.",
+  "mainClue":"The color of human blood should go first.\n The lucky color of the day should go first.\n The color of plants should go last.\n The color of water should go after the lucky color.\n The color of wealth should go before the color of plants.\n The golden button is a key to one survival."
+}
