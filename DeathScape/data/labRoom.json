@@ -10,13 +10,12 @@
     "clue": {
       "clue1": "Always add acid to water and never water to acid.",
       "clue2": "A sample of distilled water is stored in a cabinet.",
-      "clue3": "",
-      "clue4": "",
-      "clue5": ""
+      "clue3": "The key to the cabinet can be fished out from a sample of sulfuric acid.",
+      "clue4": "Hydrochloric acid is your best friend."
     },
     "kill": {
-      "player": "You get stuck on the spot and realize that you can't move. The door is right in front of you, and everyone else had already gone through, leaving you behind. The door closes, and a block comes from the ceiling and crushes your body from top to bottom, effectively ending your life.",
-      "npc": "NPC tries to walk but is unable to due to being paralyzed on the spot. The door is open, and everyone else is rushing out. The door closes with you looking back, bewildered that someone was left behind. As the door closes, a crushing sound can be heard from behind."
+      "player": "You suddenly feel a pour of unknown liquid splash on you and hear a click. You feel your body burning as you realize that your body has been set on fire.",
+      "npc": "As you are all walking out of the room, you hear a splash from behind and notice that NPC has been doused in an unknown liquid and lit on fire. You and the others watch, horrified, as the body burns away and a stench fills the air."
     },
-    "conclusion": "Everyone is silent in the next room as they processed what happened. Someone had just died, and everyone is now more wary than ever of their future actions."
+    "conclusion": "Unable to watch any further, you all turn away and face forwards, leaving the door behind you to shut on its own as you enter the next room."
   }
