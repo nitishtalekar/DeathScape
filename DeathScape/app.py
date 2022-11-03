@@ -30,7 +30,6 @@ def index():
     if request.method == 'POST':
         player = request.form['player_name']
         return redirect('/deathscape?player='+player)
-    # game_data = {"players":players,"room":room_info}
     return render_template('index.html')
 
 @app.route('/deathscape', methods=['GET'])
