@@ -1,31 +1,7 @@
-.full-height{
-  height:100vh
+.full-height {
+  height: 100vh
 }
-.height-60{
-  height:60vh
+
+.center {
+  text-align: center;
 }
-.height-40{
-  height:40vh
-}
-.height-50{
-  height:50vh
-}
-.h-30{
-  height:30%
-}
-.h-20{
-  height:20%
-}
-.h-40{
-  height:40%
-}
-.h-60{
-  height:60%
-}
-.centering{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-  
-  
