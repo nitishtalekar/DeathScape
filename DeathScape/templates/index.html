@@ -13,74 +13,13 @@
     <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js')}}"></script>
 </head>
 <body>
-    <div class="full-height container-fluid bg-dark text-white">
-      <div class="full-height row">
-        <div class="full-height col-7">
-          <div class="col-12 centering h-60">
-            <img src="{{ url_for('static', filename='img/default_room.jpg')}}" alt="" style="width:70%">
-          </div>
-          <div class="col-12 centering h-40">
-            <div class="text-center w-75">
-              <h1>{{data.room.name}}</h1>
-              <p>{{data.room.intro}}</p><br>
-              <p>{{data.players}}</p>
-            </div>
-          </div>
-        </div>
-        <div class="full-height col-5">
-          <div class="col-12 centering h-30">
-            <div class="w-100 text-center">
-              <div class="col-12 btn btn-light w-75 mt-2 mb-2">
-                ABCD
-              </div>
-              <div class="col-12 btn btn-light w-75 mt-2 mb-2">
-                ABCD
-              </div>
-              <div class="col-12 btn btn-light w-75 mt-2 mb-2">
-                ABCD
-              </div>
-            </div>
-          </div>
-          <div class="col-12 centering h-20">
-            <div class="w-100 text-center">
-              <div class="col-12 btn btn-light w-75 mt-2 mb-2">
-                ABCD
-              </div>
-              <div class="col-12 btn btn-light w-75 mt-2 mb-2">
-                ABCD
-              </div>
-            </div>
-          </div>
-          <div class="col-12 centering h-40">
-            <div class="w-100 text-center h-100">
-              <div class="col-12 centering h-75 border border-light w-100 mt-2 mb-2">
-                <div class="text-center w-100">
-                  NPC:<br>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, 
-                  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                </div>
-              </div>
-              <div class="col-12 centering h-25 w-100 mt-5 mb-2">
-                <div class="row w-100">
-                  <div class="col-6 centering">
-                    <div class="w-100 text-center">
-                      <div class="col-12 btn btn-light w-75 mt-2 mb-2">
-                        ABCD
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-6 centering">
-                    <div class="w-100 text-center">
-                      <div class="col-12 btn btn-light w-75 mt-2 mb-2">
-                        ABCD
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+    <div class="full-height container-fluid centering bg-dark text-white">
+      <div class="text-center">
+        <form class="" action="/" method="post">
+          <label for="player_name">Player Name</label>
+          <input type="text" name="player_name" value="">
+          <button type="submit" name="submit">Play</button>
+        </form>
       </div>
     </div>
 </body>

@@ -25,10 +25,18 @@ app = Flask(__name__)
 
 print('Check http://127.0.0.1:5000/')
 
-
-@app.route('/', methods=['GET'])
+@app.route('/', methods=['GET', 'POST'])
 def index():
-    story = Story()
+    if request.method == 'POST':
+        player = request.form['player_name']
+        return redirect('/deathscape?player='+player)
+    # game_data = {"players":players,"room":room_info}
+    return render_template('index.html')
+
+@app.route('/deathscape', methods=['GET'])
+def deathscape():
+    player_name = request.args.get('player')
+    story = Story(player_name)
     story.showPlayers()
     players = story.getPlayerNames()
     lvl = story.getCurrentLevel()
@@ -37,7 +45,7 @@ def index():
 
     # Main page
     game_data = {"players":players,"room":room_info}
-    return render_template('index.html',data = game_data)
+    return render_template('deathscape.html',data = game_data)
 
 
 @app.route('/predict', methods=['GET', 'POST'])
