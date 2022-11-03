@@ -1,0 +1,22 @@
+{
+    "name" : "The Lab",
+    "intro": "The room mimics a science lab with random samples of unknown liquids stored in vials and beakers littered around the room. There are four rows of lab tables, and cabinets are aligned on all four walls in the room. Typical lab tools such as Bunsen burners, testing tubes, tweezers, etc. are present as well. The room is lit with artificial white light.",
+    "action": {
+      "npc1": "%NPC1% is smiling and excited.",
+      "npc2": "%NPC2% is examining liquids in the room.",
+      "npc3": "%NPC3% is poking at the lock with a glass stick.",
+      "npc4": "%NPC4% is crying in a corner."
+    },
+    "clue": {
+      "clue1": "Always add acid to water and never water to acid.",
+      "clue2": "A sample of distilled water is stored in a cabinet.",
+      "clue3": "",
+      "clue4": "",
+      "clue5": ""
+    },
+    "kill": {
+      "player": "You get stuck on the spot and realize that you can't move. The door is right in front of you, and everyone else had already gone through, leaving you behind. The door closes, and a block comes from the ceiling and crushes your body from top to bottom, effectively ending your life.",
+      "npc": "NPC tries to walk but is unable to due to being paralyzed on the spot. The door is open, and everyone else is rushing out. The door closes with you looking back, bewildered that someone was left behind. As the door closes, a crushing sound can be heard from behind."
+    },
+    "conclusion": "Everyone is silent in the next room as they processed what happened. Someone had just died, and everyone is now more wary than ever of their future actions."
+  }
