@@ -6,8 +6,12 @@ Handles the main flow of the story.
 '''
 
 class Story:
-    def __init__(self):
+    def __init__(self,name):
         self.players,self.doomsday = self.initPlayers()
+        self.players[name] = {'friendship':'0',
+                            'rage' : '0',
+                            'quiteness' : '0'}
+        self.doomsday[name] = self.calcDoomsday(self.players[name])
         self.curr_lvl = 1
         self.lvl_func = {
             1 : self.buttonRoom,
@@ -56,6 +60,11 @@ class Story:
     def showPlayers(self):
         print(self.players)
         print(self.doomsday)
+        
+    ''' ----- Set Functions ----- '''
+        
+    def setCurrentLevel(self):
+        self.curr_lvl += 1
         
     ''' ----- Level Functions ----- '''
                 
