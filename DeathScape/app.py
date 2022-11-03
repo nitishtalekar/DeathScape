@@ -12,6 +12,10 @@ from flask import Flask, redirect, url_for, request, render_template
 from werkzeug.utils import secure_filename
 from gevent.pywsgi import WSGIServer
 
+# ChatBot imports
+from chatterbot import ChatBot
+from chatterbot.trainers import ChatterBotCorpusTrainer
+
 # ------------------------------------------------
 # IMPORT REQUIRED
 # ------------------------------------------------
@@ -22,6 +26,11 @@ from gevent.pywsgi import WSGIServer
 # ------------------------------------------------
 
 app = Flask(__name__)
+
+# Define ChatBot
+chatbot = ChatBot('ChatBot')
+trainer = ChatterBotCorpusTrainer(chatbot)
+trainer.train("chatterbot.corpus.english")
 
 print('Check http://127.0.0.1:5000/')
 
@@ -59,6 +68,11 @@ def upload():
 
         return render_template('index.html',number=num)
     return None
+
+@app.route("/get")
+def get_bot_response():
+    userText = request.args.get('msg')
+    return str(chatbot.get_response(userText))
 
 if __name__ == '__main__':
     # app.run(port=5002, debug=True)
