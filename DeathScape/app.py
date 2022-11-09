@@ -13,8 +13,8 @@ from werkzeug.utils import secure_filename
 from gevent.pywsgi import WSGIServer
 
 # ChatBot imports
-from chatterbot import ChatBot
-from chatterbot.trainers import ChatterBotCorpusTrainer
+# from chatterbot import ChatBot
+# from chatterbot.trainers import ChatterBotCorpusTrainer
 
 # ------------------------------------------------
 # IMPORT REQUIRED
@@ -25,18 +25,11 @@ from chatterbot.trainers import ChatterBotCorpusTrainer
 # PREPROCESSING FUCTION DEFINE
 # ------------------------------------------------
 
-app = Flask(__name__)
-
 # Define ChatBot
-chatbot = ChatBot('ChatBot')
-trainer = ChatterBotCorpusTrainer(chatbot)
-trainer.train("chatterbot.corpus.english")
-
-def initGame(player_name):
-    global story,lvl,room_info
-    story = Story(player_name)
-    lvl = story.getCurrentLevel()
-    room_info = story.callLevel(lvl)
+# chatbot = ChatBot('ChatBot')
+# trainer = ChatterBotCorpusTrainer(chatbot)
+# trainer.train("chatterbot.corpus.english")
+story = ""
 
 app = Flask(__name__)
 
@@ -54,14 +47,21 @@ def deathscape():
     global story
     player_name = request.args.get('player')
     if player_name != None:
-        initGame(player_name)
+        story = Story(player_name)
         return redirect('/deathscape')
     if request.method == 'POST':
         print('A')
         
     story.showPlayers()
     players = story.getPlayerNames()
-    game_data = {"players":players,"room":room_info}
+    game_data = {}
+    story.setCurrentRoom()
+    
+    game_data["npc"] = story.getActiveNPC()
+    game_data["room_name"] = story.getRoomName()
+    plot = game_data["plot"] = story.getPlot("0")
+    game_data["options"] = story.fetchOptions(plot["next"])
+    
     return render_template('deathscape.html',data = game_data)
 
 
@@ -84,8 +84,8 @@ def get_bot_response():
     return str(chatbot.get_response(userText))
 
 if __name__ == '__main__':
-    # app.run(port=5002, debug=True)
+    app.run(port=5000, debug=True)
 
     # Serve the app with gevent
-    http_server = WSGIServer(('0.0.0.0',5000),app)
-    http_server.serve_forever()
+    # http_server = WSGIServer(('0.0.0.0',5000),app)
+    # http_server.serve_forever()

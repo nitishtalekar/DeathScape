@@ -11,28 +11,33 @@
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css')}}">
   <!-- <script src="bootstrap/js/bootstrap.min.js"></script> -->
   <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js')}}"></script>
+  <script src="{{ url_for('static', filename='js/main.js')}}"></script>
 </head>
 
-<body>
-  <div class="container-fluid bg-dark text-white full-height center">
+<body class="bg-dark">
+  <div class="container bg-dark text-white center">
     <div class="room">
       <img src="{{ url_for('static', filename='img/default_room.jpg')}}" alt="" style="width:70%">
-      <h1>{{data.room.name}}</h1>
-      <p>{{data.room.intro}}</p>
+      <h1>{{data.name}}</h1>
+      <p>{{data.plot.text}}</p>
     </div>
-    <div class="options">
+    <div class="options mb-5">
+      {% for opt in data.options %}
       <div class="btn btn-light">
-        Try the puzzle
+        {{opt}}
       </div>
-      <div class="btn btn-light">
-        Talk to an NPC
+      {% endfor %}
+      <div class="btn btn-light" onclick="toggleDisplay()">
+        <b>Talk to an NPC</b>
       </div>
     </div>
-    <div class="npc">
+    <div class="npc d-none mb-5" id="npc">
+      {% for npc in data.npc %}
       <div class="btn btn-light">
-        Talk to NPC 1
+        Talk to {{npc}}
       </div>
-      <div class="btn btn-light">
+      {% endfor %}
+      <!-- <div class="btn btn-light">
         Talk to NPC 2
       </div>
       <div class="btn btn-light">
@@ -43,21 +48,21 @@
       </div>
       <div class="btn btn-light">
         Talk to NPC 5
-      </div>
+      </div> -->
     </div>
-    <div class="chat">
+    <div class="chat d-none mb-5" id="chat">
       <div class="border border-light">
         NPC:<br>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit,
         sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
         exercitation ullamco laboris
       </div>
-      <div class="responses">
+      <div class="responses d-none" id="responses">
         <div class="btn btn-light">
-          Positive response
+          Positive responses
         </div>
         <div class="btn btn-light">
-          Negative response
+          Negative responses
         </div>
       </div>
     </div>

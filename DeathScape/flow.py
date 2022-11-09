@@ -7,6 +7,7 @@ Handles the main flow of the story.
 
 class Story:
     def __init__(self,name):
+        self.main_character = name
         self.players,self.doomsday = self.initPlayers()
         self.players[name] = {'friendship':'0',
                             'rage' : '0',
@@ -50,17 +51,31 @@ class Story:
         return self.lvl_func[lvl]()
             
     ''' ----- Get Functions ----- '''
+    def getPlot(self,id):
+        return self.room["options"][id]
+            
+    def setCurrentRoom(self):
+        lvl = self.getCurrentLevel()
+        self.callLevel(lvl)
+        
+    def fetchOptions(self,options):
+        return [self.room["options"][i]["opt_text"] for i in options ]
     
     def getPlayerNames(self):
         return list(self.players.keys())
         
     def getCurrentLevel(self):
         return self.curr_lvl
+        
+    def getRoomName(self):
+        return self.room["name"]
+        
+    def getActiveNPC(self):
+        return [name for name in list(self.players.keys()) if name != self.main_character]
                 
     def showPlayers(self):
         print(self.players)
         print(self.doomsday)
-        
     ''' ----- Set Functions ----- '''
         
     def setCurrentLevel(self):
@@ -70,28 +85,23 @@ class Story:
                 
     def buttonRoom(self):
         with open("data/buttonRoom.json") as f:
-            buttonRoom = json.load(f)
-        return buttonRoom
+            self.room = json.load(f)
         
     def labRoom(self):
         with open("data/labRoom.json") as f:
-            labRoom = json.load(f)
-        return labRoom
+            self.room = json.load(f)
         
     def justiceRoom(self):
         with open("data/justiceRoom.json") as f:
-            justiceRoom = json.load(f)
-        return justiceRoom
+            self.room = json.load(f)
         
     def trapRoom(self):
         with open("data/trapRoom.json") as f:
-            trapRoom = json.load(f)
-        return trapRoom
+            self.room = json.load(f)
         
     def dilemmaRoom(self):
         with open("data/dilemmaRoom.json") as f:
-            dilemmaRoom = json.load(f)
-        return dilemmaRoom
+            self.room = json.load(f)
 
     def setup(self):
         print("TODO")
