@@ -1,0 +1,16 @@
+{
+    "name" : "The Dilemma Room",
+    "intro": "The room is a gas chamber. There is a timer above the exit door with the remaining time left in the room until the gas releases. Once the gas is released, there will be another countdown for opening the door to the exit.",
+    "action": {
+      "npc1": "%NPC1% is eyeing you carefully."
+    },
+    "clue": {
+      "clue1": "Build trust in each other.",
+      "clue2": "Agree on a mutual option."
+    },
+    "kill": {
+      "player": "Deciding to circumvent the trust system was a mistake on your part. You find yourself in an invisible chokehold and suspended midair, unable to breathe. Gas rapidly flows through the chamber, putting you through a slow and painful death.",
+      "npc": "%NPC1% had circumvented the trust system, having lied to you during the trust process. They are placed in an invisible chokehold and suspended midair, unable to breathe. Gas rapidly flows through the chamber, putting %NPC1% through a slow and painful death."
+    },
+    "conclusion": "You have survived the entire ordeal and made it out alive, even if it meant sacrificing people along the way. Congratulations on the difficult feat, and best of luck on the road ahead."
+  }
