@@ -19,24 +19,31 @@
     <div class="room">
       <img src="{{ url_for('static', filename='img/default_room.jpg')}}" alt="" style="width:70%">
       <h1>{{data.name}}</h1>
-      <p>{{data.plot.text}}</p>
+      {% for text in data.displayText%}
+        <p>{{text}}</p>
+      {% endfor %}
+      
     </div>
     <div class="options mb-5">
+      <form class="" action="/deathscape" method="post">
       {% for opt in data.options %}
-      <div class="btn btn-light">
-        {{opt}}
-      </div>
+      <button type="submit" name="option" class="btn btn-light" value="{{opt.0}}">
+        {{opt.0}} and {{opt.1}}
+      </button>
       {% endfor %}
+      </form>
       <div class="btn btn-light" onclick="toggleDisplay()">
         <b>Talk to an NPC</b>
       </div>
     </div>
     <div class="npc d-none mb-5" id="npc">
+      <form class="" action="/deathscape" method="post">
       {% for npc in data.npc %}
-      <div class="btn btn-light">
+      <button type="submit" name="talk_npc" class="btn btn-light" value="{{npc}}">
         Talk to {{npc}}
-      </div>
+      </button>
       {% endfor %}
+    </form>
       <!-- <div class="btn btn-light">
         Talk to NPC 2
       </div>

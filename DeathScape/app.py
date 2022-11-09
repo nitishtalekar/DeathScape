@@ -42,24 +42,37 @@ def index():
         return redirect('/deathscape?player='+player)
     return render_template('index.html')
 
-@app.route('/deathscape', methods=['GET'])
+@app.route('/deathscape', methods=['GET',"POST"])
 def deathscape():
     global story
     player_name = request.args.get('player')
+    game_data = {}
     if player_name != None:
         story = Story(player_name)
+        story.setCurrentRoom()
         return redirect('/deathscape')
-    if request.method == 'POST':
-        print('A')
         
-    story.showPlayers()
-    players = story.getPlayerNames()
-    game_data = {}
-    story.setCurrentRoom()
     
+    if request.method == 'POST':
+        # print(request.form)
+        if "option" in request.form:
+            game_data["npc"] = story.getActiveNPC()
+            game_data["room_name"] = story.getRoomName()
+            game_data["plot"] = plot = story.getPlot(request.form["option"])
+            story.setDisplayText(plot['text'])
+            game_data["displayText"] = story.displayText
+            game_data["options"] = story.fetchOptions(plot["next"])
+            return render_template('deathscape.html',data = game_data)
+            
+        if "talk_npc" in request.form:
+            print("A talk_npc")
+        
+    # players = story.getPlayerNames()
     game_data["npc"] = story.getActiveNPC()
     game_data["room_name"] = story.getRoomName()
-    plot = game_data["plot"] = story.getPlot("0")
+    game_data["plot"] = plot = story.getPlot("0")
+    story.setDisplayText(plot['text'])
+    game_data["displayText"] = story.displayText
     game_data["options"] = story.fetchOptions(plot["next"])
     
     return render_template('deathscape.html',data = game_data)

@@ -21,6 +21,7 @@ class Story:
             4 : self.trapRoom,
             5 : self.dilemmaRoom
         }
+        self.displayText = []
     
     def initPlayers(self):
         with open("data/character_features.json") as f1:
@@ -53,13 +54,9 @@ class Story:
     ''' ----- Get Functions ----- '''
     def getPlot(self,id):
         return self.room["options"][id]
-            
-    def setCurrentRoom(self):
-        lvl = self.getCurrentLevel()
-        self.callLevel(lvl)
         
     def fetchOptions(self,options):
-        return [self.room["options"][i]["opt_text"] for i in options ]
+        return [[i,self.room["options"][i]["opt_text"]] for i in options ]
     
     def getPlayerNames(self):
         return list(self.players.keys())
@@ -72,14 +69,21 @@ class Story:
         
     def getActiveNPC(self):
         return [name for name in list(self.players.keys()) if name != self.main_character]
+        
                 
     def showPlayers(self):
         print(self.players)
         print(self.doomsday)
     ''' ----- Set Functions ----- '''
+    def setCurrentRoom(self):
+        lvl = self.getCurrentLevel()
+        self.callLevel(lvl)
         
     def setCurrentLevel(self):
         self.curr_lvl += 1
+        
+    def setDisplayText(self,newText):
+        self.displayText.append(newText)
         
     ''' ----- Level Functions ----- '''
                 
