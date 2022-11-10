@@ -5,75 +5,60 @@
   <title>Death Scape</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css"> -->
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css')}}">
-  <!-- <link rel="stylesheet" type="text/css" href="css/main.css"> -->
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css')}}">
-  <!-- <script src="bootstrap/js/bootstrap.min.js"></script> -->
   <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js')}}"></script>
   <script src="{{ url_for('static', filename='js/main.js')}}"></script>
 </head>
 
-<body class="bg-dark">
-  <div class="container bg-dark text-white center">
-    <div class="room">
-      <img src="{{ url_for('static', filename='img/default_room.jpg')}}" alt="" style="width:70%">
-      <h1>{{data.name}}</h1>
-      {% for text in data.displayText%}
+<body>
+  <div class="text-white text-center vertical-center container margins">
+    <div class="mb-5">
+      <h1>Death Scape</h1>
+    </div>
+    <div class="story">
+      <div class="mb-5">
+        <img src="{{ url_for('static', filename='img/default_room.jpg')}}" style="width: 50%">
+      </div>
+      <div class="mb-5">
+        <h2>{{data.room.name}}</h2>
+      </div>
+      {% for text in data.story%}
+      <div class="mb-5">
         <p>{{text}}</p>
+      </div>
       {% endfor %}
-      
     </div>
-    <div class="options mb-5">
-      <form class="" action="/deathscape" method="post">
-      {% for opt in data.options %}
-      <button type="submit" name="option" class="btn btn-light" value="{{opt.0}}">
-        {{opt.0}} and {{opt.1}}
-      </button>
-      {% endfor %}
+    <div class="choices">
+      <form class="" action="/deathscape?player={{data.player.name}}" method="post">
+        {% for choice in data.room.choices %}
+        {% if choice.name == "Talk to a character" %}
+        <div class="mb-2 btn btn-light" onclick="toggleDisplay()">
+          Talk to an NPC
+        </div>
+        {% else %}
+        <div class="mb-2">
+          <button type="submit" name="{{choice.name}}" class="btn btn-light">
+            {{choice.name}}
+          </button>
+        </div>
+        {% endif %}
+        <br />
+        {% endfor %}
       </form>
-      <div class="btn btn-light" onclick="toggleDisplay()">
-        <b>Talk to an NPC</b>
-      </div>
     </div>
-    <div class="npc d-none mb-5" id="npc">
-      <form class="" action="/deathscape" method="post">
-      {% for npc in data.npc %}
-      <button type="submit" name="talk_npc" class="btn btn-light" value="{{npc}}">
-        Talk to {{npc}}
-      </button>
-      {% endfor %}
-    </form>
-      <!-- <div class="btn btn-light">
-        Talk to NPC 2
-      </div>
-      <div class="btn btn-light">
-        Talk to NPC 3
-      </div>
-      <div class="btn btn-light">
-        Talk to NPC 4
-      </div>
-      <div class="btn btn-light">
-        Talk to NPC 5
-      </div> -->
-    </div>
-    <div class="chat d-none mb-5" id="chat">
-      <div class="border border-light">
-        NPC:<br>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-        exercitation ullamco laboris
-      </div>
-      <div class="responses d-none" id="responses">
-        <div class="btn btn-light">
-          Positive responses
+    <div class="d-none characters" id="characters">
+      <form class="" action="/deathscape?player={{data.player.name}}" method="post">
+        {% for character in data.characters %}
+        <div class="mb-2">
+          <button type="submit" name="talk_to_character" class="btn btn-light" value="{{character}}">
+            Talk to {{character}}
+          </button>
         </div>
-        <div class="btn btn-light">
-          Negative responses
-        </div>
-      </div>
+        <br />
+        {% endfor %}
+      </form>
     </div>
-  </div>
 </body>
 
 </html>

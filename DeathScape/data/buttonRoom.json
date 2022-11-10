@@ -1,14 +1,14 @@
 {
-  "name" : "The Button Room",
-  "intro": "The room simply has a table with four buttons: red, yellow, green, and blue. There is no context whatsoever, but the way to solve the puzzle is to press the four buttons in the correct order. There are a total of four hints, one to correspond to each button. Each person is handed a hint, but not all of the hints are true. They are all hidden within the room, but not without a catch. Beside the table, there is a box with a few items to assist with solving the puzzle.",
-  "action": {
+  "name": "The Button Room",
+  "description": "The room simply has a table with four buttons: red, yellow, green, and blue. Beside the table, there is a box with a note on top of it saying 'Everyone take one.' Everyone reaches into the box to grab one piece of paper from inside before going off in their own directions to explore the room.",
+  "actions": {
     "npc1": "%NPC1% is sitting on the ground.",
-    "npc2": "%NPC2% is pacing back and forth the room.",
+    "npc2": "%NPC2% is pacing back and forth across the room.",
     "npc3": "%NPC3% is examining the buttons.",
     "npc4": "%NPC4% is observing the exit door.",
-    "npc5": "%NPC5% is muttering to themselves."
+    "npc5": "%NPC5% is in a corner muttering to themselves."
   },
-  "clue": {
+  "clues": {
     "clue1": "The color of human blood should go first.",
     "clue2": "The lucky color of the day should go first.",
     "clue3": "The color of plants should go last.",
@@ -16,75 +16,69 @@
     "clue5": "The color of wealth should go before the color of plants.",
     "clue6": "The golden button is a key to one survival."
   },
-  "kill": {
+  "deaths": {
     "player": "You get stuck on the spot and realize that you can't move. The door is right in front of you, and everyone else had already gone through, leaving you behind. The door closes, and a block comes from the ceiling and crushes your body from top to bottom, effectively ending your life.",
-    "npc": "NPC tries to walk but is unable to due to being paralyzed on the spot. The door is open, and everyone else is rushing out. The door closes with you looking back, bewildered that someone was left behind. As the door closes, a crushing sound can be heard from behind."
+    "npc": "%NPC% tries to walk but is unable to due to being paralyzed on the spot. The door is open, and everyone else is rushing out. The door closes with you looking back, bewildered that someone was left behind. As the door closes, a crushing sound can be heard from behind."
   },
   "conclusion": "Everyone is silent in the next room as they processed what happened. Someone had just died, and everyone is now more wary than ever of their future actions.",
-  "options": {
-    "0" : {
-      "text": "The room simply has a table with four buttons: red, yellow, green, and blue. There is no context whatsoever, but the way to solve the puzzle is to press the four buttons in the correct order. There are a total of four hints, one to correspond to each button. Each person is handed a hint, but not all of the hints are true. They are all hidden within the room, but not without a catch. Beside the table, there is a box with a few items to assist with solving the puzzle.",
-      "next" : ["1","2","3","4"]
+  "choices": [
+    {
+      "name": "Read your piece of paper and try the puzzle",
+      "text": "It seems like in order to solve the puzzle and hopefully escape the room, you have to press the four buttons in the correct order. The piece of paper in your hand is a hint, but since everyone else also got one, you'll have to talk to everyone to figure out what their hints are.",
+      "next": [
+        {
+          "name": "Press button 1",
+          "text": "You pressed button 1."
+        },
+        {
+          "name": "Press button 2",
+          "text": "You pressed button 2."
+        },
+        {
+          "name": "Press button 3",
+          "text": "You pressed button 3."
+        },
+        {
+          "name": "Press button 4",
+          "text": "You pressed button 4.",
+          "next": [
+            {
+              "name": "Press the last button",
+              "text": "You pressed the last button."
+            },
+            {
+              "name": "Don't press the last button",
+              "text": "%DEAD% pressed the last button"
+            }
+          ]
+        }
+      ]
     },
-    "1": {
-      "opt_text" : "Option 1",
-      "text" : "Option 1 Text Here",
-      "next" : ["1.1","1.2"]
-    },
-    "1.1": {
-      "opt_text" : "Option 1.1",
-      "text" : "Option 1.1 Text Here",
-      "next" : ["1.1.1","1.1.2"]
-    },
-    "1.1.1": {
-      "opt_text" : "Option 1.1.1",
-      "text" : "Option 1.1.1 Text Here",
-      "next" : ["1","2","3","4"]
-    },
-    "1.1.2": {
-      "opt_text" : "Option 1.1.2",
-      "text" : "Option 1.1.2 Text Here",
-      "next" : ["1","2","3","4"]
-    },
-    "1.2": {
-      "opt_text" : "Option 1.2",
-      "text" : "Option 1.2 Text Here",
-      "next" : ["1.2.1","1.2.2"]
-    },
-    "1.2.1": {
-      "opt_text" : "Option 1.2.1",
-      "text" : "Option 1.1.1 Text Here",
-      "next" : ["1.1"]
-    },
-    "1.2.2": {
-      "opt_text" : "Option 1.2.2",
-      "text" : "Option 1.2.2 Text Here",
-      "next" : ["1","2","3","4"]
-    },
-    "2": {
-      "opt_text" : "Option 2",
-      "text" : "Option 2 Text Here",
-      "next" : ["2.1","2.2"]
-    },
-    "2.1": {
-      "opt_text" : "Option 2.1",
-      "text" : "Option 2.1 Text Here",
-      "next" : ["1","2","3","4"]
-    },
-    "2.2": {
-      "opt_text" : "Option 2.2",
-      "text" : "Option 2.2 Text Here",
-      "next" : ["1","2","3","4"]
-    },
-    "3": {
-      "opt_text" : "Option 3",
-      "text" : "Option 3 Text Here",
-      "next" : ["1","2","4"]
-    },
-    "4": {
-      "opt_text" : "Option 4",
-      "text" : "Option 4 Text Here",
-      "next" : ["1","2","3"]
+    {
+      "name": "Talk to a character",
+      "text": "Which character do you want to talk to?",
+      "next": [
+        {
+          "name": "Talk to %NPC1%",
+          "text": "You talked to %NPC1%."
+        },
+        {
+          "name": "Talk to %NPC2%",
+          "text": "You talked to %NPC2%."
+        },
+        {
+          "name": "Talk to %NPC3%",
+          "text": "You talked to %NPC3%."
+        },
+        {
+          "name": "Talk to %NPC4%",
+          "text": "You talked to %NPC4%."
+        },
+        {
+          "name": "Talk to %NPC5%",
+          "text": "You talked to %NPC5%."
+        }
+      ]
     }
-  }
+  ]
 }

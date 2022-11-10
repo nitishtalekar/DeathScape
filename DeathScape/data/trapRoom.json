@@ -1,18 +1,54 @@
 {
-    "name" : "The Trap Room",
-    "intro": "The room is a trap room. Spikes align the walls, and the floor is tiled. Each tile on the floor can be lifted in some way if some condition is fulfilled. One misstep could mean instant death for all, as some tiles can potentially drop at any time. A message says you need to activate three traps to proceed. If you are lucky, you live, and if not, you die.",
-    "action": {
-      "npc1": "%NPC1% is examining the spikes on the wall.",
-      "npc2": "%NPC2% is muttering something incomprehensible while intensely eyeing the tiles on the floor."
+  "name": "The Trap Room",
+  "description": "The room is a trap room. Spikes align the walls, and the floor is tiled. Each tile on the floor can be lifted in some way if some condition is fulfilled. One misstep could mean instant death for all, as some tiles can potentially drop at any time. A message says you need to activate three traps to proceed. If you are lucky, you live, and if not, you die.",
+  "actions": {
+    "npc1": "%NPC1% is examining the spikes on the wall.",
+    "npc2": "%NPC2% is muttering something incomprehensible while intensely eyeing the tiles on the floor."
+  },
+  "clues": {
+    "clue1": "Reveal the path and you shall be free.",
+    "clue2": "A noble sacrifice shall be chosen.",
+    "clue3": "Choose wisely."
+  },
+  "deaths": {
+    "player": "You have been chosen to be the noble sacrifice. The ground beneath you disappears, and you feel yourself fallin grapidly into an endless pit of darkness.",
+    "npc": "%NPC% is seen falling and screaming as they fall through one of the tiles into an endless pit of darkness."
+  },
+  "conclusion": "There is no turning back as only two people remain, including you. The next room will most likely end things once and for all.",
+  "choices": [
+    {
+      "name": "Try the Trap Room puzzle",
+      "text": "Trap Room puzzle description",
+      "next": [
+        {
+          "name": "Do action 1 for the Trap Room puzzle",
+          "text": "You action 1 for the Trap Room puzzle."
+        },
+        {
+          "name": "Do action 2 for the Trap Room puzzle",
+          "text": "You did action 2 for the Trap Room puzzle.",
+          "next": [
+            {
+              "name": "Do something after solving the Trap Room puzzle",
+              "text": "%DEAD% died after solving the Trap Room puzzle."
+            }
+          ]
+        }
+      ]
     },
-    "clue": {
-      "clue1": "Reveal the path and you shall be free.",
-      "clue2": "A noble sacrifice shall be chosen.",
-      "clue3": "Choose wisely."
-    },
-    "kill": {
-      "player": "The noble sacrifice is seen falling and screaming as they fall through one of the tiles into an endless pit of darkness.",
-      "npc": "You have been chosen to be the noble sacrifice. The ground beneath you disappears, and you feel yourself fallingrapidly into an endless pit of darkness."
-    },
-    "conclusion": "There is no turning back as only two people remain, including you. The next room will most likely end things once and for all."
-  }
+    {
+      "name": "Talk to a character",
+      "text": "Which character do you want to talk to?",
+      "next": [
+        {
+          "name": "Talk to %NPC1%",
+          "text": "You talked to %NPC1%."
+        },
+        {
+          "name": "Talk to %NPC2%",
+          "text": "You talked to %NPC2%."
+        }
+      ]
+    }
+  ]
+}
