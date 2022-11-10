@@ -1,16 +1,42 @@
 {
-    "name" : "The Dilemma Room",
-    "intro": "The room is a gas chamber. There is a timer above the exit door with the remaining time left in the room until the gas releases. Once the gas is released, there will be another countdown for opening the door to the exit.",
-    "action": {
-      "npc1": "%NPC1% is eyeing you carefully."
+  "name": "The Dilemma Room",
+  "description": "The room is a gas chamber. There is a timer above the exit door with the remaining time left in the room until the gas releases. Once the gas is released, there will be another countdown for opening the door to the exit.",
+  "actions": {
+    "npc1": "%NPC1% is eyeing you carefully."
+  },
+  "clues": {
+    "clue1": "Build trust in each other.",
+    "clue2": "Agree on a mutual option."
+  },
+  "deaths": {
+    "player": "Deciding to circumvent the trust system was a mistake on your part. You find yourself in an invisible chokehold and suspended midair, unable to breathe. Gas rapidly flows through the chamber, putting you through a slow and painful death.",
+    "npc": "%NPC% had circumvented the trust system, having lied to you during the trust process. They are placed in an invisible chokehold and suspended midair, unable to breathe. Gas rapidly flows through the chamber, putting %NPC% through a slow and painful death."
+  },
+  "conclusion": "You have survived the entire ordeal and made it out alive, even if it meant sacrificing people along the way. Congratulations on the difficult feat, and best of luck on the road ahead.",
+  "choices": [
+    {
+      "name": "Try the Dilemma Room puzzle",
+      "text": "TrDilemmaap Room puzzle description. %CLUE",
+      "next": [
+        {
+          "name": "Do action 1 for the Dilemma Room puzzle",
+          "text": "You action 1 for the Dilemma Room puzzle."
+        },
+        {
+          "name": "Do action 2 for the Dilemma Room puzzle",
+          "text": "You did action 2 for the Dilemma Room puzzle.",
+          "next": [
+            {
+              "name": "Do something after solving the Dilemma Room puzzle",
+              "text": "%DEAD% died after solving the Dilemma Room puzzle."
+            }
+          ]
+        }
+      ]
     },
-    "clue": {
-      "clue1": "Build trust in each other.",
-      "clue2": "Agree on a mutual option."
-    },
-    "kill": {
-      "player": "Deciding to circumvent the trust system was a mistake on your part. You find yourself in an invisible chokehold and suspended midair, unable to breathe. Gas rapidly flows through the chamber, putting you through a slow and painful death.",
-      "npc": "%NPC1% had circumvented the trust system, having lied to you during the trust process. They are placed in an invisible chokehold and suspended midair, unable to breathe. Gas rapidly flows through the chamber, putting %NPC1% through a slow and painful death."
-    },
-    "conclusion": "You have survived the entire ordeal and made it out alive, even if it meant sacrificing people along the way. Congratulations on the difficult feat, and best of luck on the road ahead."
-  }
+    {
+      "name": "Talk to %NPC1%",
+      "text": "You talked to %NPC1%. Their clue says %CLUE1%"
+    }
+  ]
+}

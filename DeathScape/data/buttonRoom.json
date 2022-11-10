@@ -1,90 +1,97 @@
 {
-  "name" : "The Button Room",
-  "intro": "The room simply has a table with four buttons: red, yellow, green, and blue. There is no context whatsoever, but the way to solve the puzzle is to press the four buttons in the correct order. There are a total of four hints, one to correspond to each button. Each person is handed a hint, but not all of the hints are true. They are all hidden within the room, but not without a catch. Beside the table, there is a box with a few items to assist with solving the puzzle.",
-  "action": {
+  "name": "The Button Room",
+  "description": "The room simply has a table with four buttons: red, yellow, green, and blue. Beside the table, there is a box with a note on top of it saying that everyone must take one. Everyone reaches into the box to grab one piece of paper from inside before going off in their own directions to explore the room.",
+  "actions": {
     "npc1": "%NPC1% is sitting on the ground.",
-    "npc2": "%NPC2% is pacing back and forth the room.",
+    "npc2": "%NPC2% is pacing back and forth across the room.",
     "npc3": "%NPC3% is examining the buttons.",
     "npc4": "%NPC4% is observing the exit door.",
-    "npc5": "%NPC5% is muttering to themselves."
+    "npc5": "%NPC5% is in a corner muttering to themselves."
   },
-  "clue": {
+  "clues": {
     "clue1": "The color of human blood should go first.",
     "clue2": "The lucky color of the day should go first.",
     "clue3": "The color of plants should go last.",
     "clue4": "The color of water should go after the lucky color.",
-    "clue5": "The color of wealth should go before the color of plants.",
+    "clue5": "The color of the sunflowers should go before the color of plants.",
     "clue6": "The golden button is a key to one survival."
   },
-  "kill": {
-    "player": "You get stuck on the spot and realize that you can't move. The door is right in front of you, and everyone else had already gone through, leaving you behind. The door closes, and a block comes from the ceiling and crushes your body from top to bottom, effectively ending your life.",
-    "npc": "NPC tries to walk but is unable to due to being paralyzed on the spot. The door is open, and everyone else is rushing out. The door closes with you looking back, bewildered that someone was left behind. As the door closes, a crushing sound can be heard from behind."
+  "deaths": {
+    "player": "You get stuck on the spot and realize that you are unable to move. The door is right in front of you, and everyone else had already gone through, leaving you behind. The door closes, and a block comes from the ceiling and crushes your body from top to bottom, ending your life.",
+    "npc": "%NPC% tries to walk but is unable to due to being paralyzed on the spot. The door is open, and everyone else is rushing out. The door closes with you looking back, bewildered that someone was left behind. As the door closes, a crushing sound can be heard from behind."
   },
   "conclusion": "Everyone is silent in the next room as they processed what happened. Someone had just died, and everyone is now more wary than ever of their future actions.",
-  "options": {
-    "0" : {
-      "text": "The room simply has a table with four buttons: red, yellow, green, and blue. There is no context whatsoever, but the way to solve the puzzle is to press the four buttons in the correct order. There are a total of four hints, one to correspond to each button. Each person is handed a hint, but not all of the hints are true. They are all hidden within the room, but not without a catch. Beside the table, there is a box with a few items to assist with solving the puzzle.",
-      "next" : ["1","2","3","4"]
+  "choices": [
+    {
+      "index": 1,
+      "name": "Read your piece of paper and try the puzzle",
+      "text": "You read your piece of paper and try the puzzle. %CLUE6% It seems like in order to solve the puzzle and hopefully escape the room, you have to press the four buttons in the correct order. The piece of paper in your hand is a hint, but since everyone else also got one, you will have to talk to everyone to figure out what their hints are.",
+      "next": [
+        {
+          "index": 1,
+          "name": "Press the red button",
+          "text": "You pressed the red button."
+        },
+        {
+          "index": 2,
+          "name": "Press the yellow button",
+          "text": "You pressed the yellow button."
+        },
+        {
+          "index": 3,
+          "name": "Press the green button",
+          "text": "You pressed the green button and a hidden compartment on the table pops open to reveal a golden button.",
+          "next": [
+            {
+              "index": 1,
+              "name": "Press the golden button",
+              "text": "You pressed the golden button."
+            },
+            {
+              "index": 2,
+              "name": "Do not press the golden button",
+              "text": "%DEAD% pressed the golden button."
+            }
+          ]
+        },
+        {
+          "index": 4,
+          "name": "Press the blue button",
+          "text": "You pressed the blue button."
+        }
+      ]
     },
-    "1": {
-      "opt_text" : "Inspect the table.",
-      "text" : "You decide to inspect the table. You notice four buttons in a 2-by-2 setup: red, yellow, green, and blue.",
-      "next" : ["1.1","1.2"]
-    },
-    "1.1": {
-      "opt_text" : "Look closer at the table.",
-      "text" : "You decide to take a closer look at the table. There's the four buttons, but there's also a strangely outlined square in the middle.",
-      "next" : ["1.1.1","1.1.2"]
-    },
-    "1.1.1": {
-      "opt_text" : "Attempt the button sequence.",
-      "text" : "Option 1.1.1 Text Here",
-      "next" : ["1","2","3","4"]
-    },
-    "1.1.2": {
-      "opt_text" : "Look around some more.",
-      "text" : "You decide to look around some more before attempting the button sequence.",
-      "next" : ["1","2","3","4"]
-    },
-    "1.2": {
-      "opt_text" : "Check the table's surroundings",
-      "text" : "You check the table's surroundings and notice that it's bolted to the ground.",
-      "next" : ["1.2.1","1.2.2"]
-    },
-    "1.2.1": {
-      "opt_text" : "Attempt to move the table.",
-      "text" : "You try and move the table, but it doesn't budge.",
-      "next" : ["1.1"]
-    },
-    "1.2.2": {
-      "opt_text" : "Look underneath the table.",
-      "text" : "As you look underneath the table, you see an incomprehensible message scrawled on the underside.",
-      "next" : ["1","2","3","4"]
-    },
-    "2": {
-      "opt_text" : "Examine the door.",
-      "text" : "You go to the door to take a closer look.",
-      "next" : ["2.1","2.2"]
-    },
-    "2.1": {
-      "opt_text" : "Turn the doorknob.",
-      "text" : "The doorknob refuses to turn.",
-      "next" : ["1","2","3","4"]
-    },
-    "2.2": {
-      "opt_text" : "Knock on the door.",
-      "text" : "You knock on the door a few times, but all you get is a hollow sounds in return.",
-      "next" : ["1","2","3","4"]
-    },
-    "3": {
-      "opt_text" : "Inspect the paper in your hand.",
-      "text" : "You unfold the piece of paper in your hand and read its contents. 'The color of human blood should go first.'",
-      "next" : ["1","2","4"]
-    },
-    "4": {
-      "opt_text" : "Look around the room.",
-      "text" : "You scan the room, taking in the general atmosphere of the people and the environment. The room is fairly empty, the only thing occupying it being the table with four buttons. Everyone trapped with you is scattered around the room and seem to be preoccupied with their activities.",
-      "next" : ["1","2","3"]
+    {
+      "index": 2,
+      "name": "Talk to a character",
+      "text": "Which character do you want to talk to?",
+      "next": [
+        {
+          "index": 1,
+          "name": "Talk to %NPC1%",
+          "text": "You decide to talk to %NPC1%. \n\"Hey there. It appears that we need to find a way to get out of here, but I can't help but think there's a catch. That's why I haven't showed this to anyone yet. You look like you know what you're doing though, so here.\" %NPC1% holds out their piece of paper in front of you.\n \"%CLUE1%\" you murmur quietly to yourself. \n\"Did that help?\" %NPC1% asked. \n\"Yep, it did. Thanks. I'll update you when I find more clues.\""
+        },
+        {
+          "index": 2,
+          "name": "Talk to %NPC2%",
+          "text": "You decide to talk to %NPC2%. \n\"What?\" %NPC2% stops pacing backing and forth and turns their attention to you, a hint of annoyance on their face. \"I'm not in the mood to talk right now, so if you've got something then say it and leave.\"\n\"Do you mind if we exchange clues?\" you ask. \"I'm trying to find a way to get everyone out of here by connecting all the information we have.\" \n\"Yeah, sure. Here's mine.\" %NPC2% holds out their clue in front of your face, and you read it aloud quietly.\n\"%CLUE2%\"\n\"Thanks,\" you say, holding out your clue to them as well. \"Here's mine.\"\n%NPC2% quickly scans the contents before nodding. You acknowledge the signal as you hurriedly leave, not wanting to disturb %NPC2% any further."
+        },
+        {
+          "index": 3,
+          "name": "Talk to %NPC3%",
+          "text": "You decide to talk to %NPC3%. \n\"Hi, how's it going?\" NPC3 greets you. \"I'm currently seeing if there's any trick to the buttons. You never know, after all.\" \nYou nod. \"Just checking up on everyone.\"\n%NPC3% smiles in response. \"I see. Well, if you have anything to share in regards to this, it'd be really helpful.\"\n\"I do have something to share,\" you say.\n\"Really? I'll share mine in exchange then. On the count of three.\" %NPC3% counts down from three, and you both show each other your clues at the same time. \n\"Here's what I have,\" you say as you read through %NPC3%'s clue. \"%CLUE3%\" \n%NPC3% reads through your clue in the meantime. \"Interesting, I'll keep that in mind. Thank you for your input.\""
+        },
+        {
+          "index": 4,
+          "name": "Talk to %NPC4%",
+          "text": "You decide to talk to %NPC4%. \"What are you doing?\" you ask %NPC4%. \"I'm seeing if there's a way to picklock our way through the door so that we don't have to do this puzzle,\" %NPC4% replies, picking at the different tightly wedged screws on the heavy duty metal door. \"I admit that the clue I got is somewhat useful to a certain extent, but there's a limit to what I can do if I can't figure out the rest of the puzzle with everyone looking suspicious.\"\n\"I can tell you what I know,\" you tell %NPC4%.\n\"You sure?\" %NPC4% asks, wary of underlying intentions, but you shake your head to indicate otherwise.\n\"Alright then,\" %NPC4% says. \"Show me what you have.\" You hand your clue over, and %NPC4% hands you their clue in return. After the both of you are done, you ponder over the possible connections.\n\"%CLUE4%\" \n\"I feel like we're missing something,\" %NPC4% says. \"I think we're on the right track though.\" \nYou nod. \"I agree. I'll take a look around and see if I can find anything else.\""
+        },
+        {
+          "index": 5,
+          "name": "Talk to %NPC5%",
+          "text": "You decide to talk to %NPC5%. \"Hello?\" You wave your hand in front of %NPC5%'s face as they seem to be in their own world. \"What- oh, hi! Sorry, did you need something from me?\" %NPC5% jolts up in surprise, snapping back to reality. \n\"I was wondering if you had anything useful to help us get out of here.\" \n%NPC5 hands you their clue without hesitation. \"It's the most useless clue ever, but here. Take it.\"\nYou show your clue to %NPC5% as thanks for them sharing theirs with you. \"I hope this helps in some way.\" \n%NPC5% peers at your clue and nods when they are finished skimming. \"Somewhat. Thanks for sharing. I need to continue my scenario and calculation simulator now.\"\n\"Okay,\" you respond, not wanting to question why they were doing so. You quickly wave and go back to investigating other things."
+        }
+      ]
     }
-  }
+  ]
 }

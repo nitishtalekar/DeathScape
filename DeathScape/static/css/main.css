@@ -1,7 +1,17 @@
-.full-height {
-  min-height: 100vh
+html,
+body {
+  min-height: 100%;
+  background-color: #0f0e0e;
+  overflow: auto;
 }
 
-.center {
-  text-align: center;
+.margins {
+  margin-top: 5%;
+  margin-bottom: 5%;
 }
+
+.story {}
+
+.choices {}
+
+.characters {}

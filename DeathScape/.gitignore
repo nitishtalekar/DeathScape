@@ -1,4 +1,1 @@
-uploads/*.jpg
-uploads/*.png
-models/*.h5
 __pycache__

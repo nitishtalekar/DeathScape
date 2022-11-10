@@ -5,75 +5,43 @@
   <title>Death Scape</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css"> -->
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css')}}">
-  <!-- <link rel="stylesheet" type="text/css" href="css/main.css"> -->
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css')}}">
-  <!-- <script src="bootstrap/js/bootstrap.min.js"></script> -->
   <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js')}}"></script>
   <script src="{{ url_for('static', filename='js/main.js')}}"></script>
 </head>
 
-<body class="bg-dark">
-  <div class="container bg-dark text-white center">
-    <div class="room">
-      <img src="{{ url_for('static', filename='img/default_room.jpg')}}" alt="" style="width:70%">
-      <h1>{{data.name}}</h1>
-      {% for text in data.displayText%}
-        <p>{{text}}</p>
-      {% endfor %}
-      
+<body
+  onload="preprocess(`{{data.player}}`, `{{data.level}}`, `{{data.room}}`, `{{data.characters}}`, `{{data.story}}`, `{{data.choices}}`)">
+  <div class="text-white text-center vertical-center container margins">
+    <div class="mb-5">
+      <h1>Death Scape</h1>
     </div>
-    <div class="options mb-5">
-      <form class="" action="/deathscape" method="post">
-      {% for opt in data.options %}
-      <button type="submit" name="option" class="btn btn-light" value="{{opt.0}}">
-        {{opt.0}} and {{opt.1}}
-      </button>
+    <div class="mb-5">
+      <img src="{{ url_for('static', filename='img/default_room.jpg')}}" style="width: 50%">
+    </div>
+    <div class="mb-5">
+      <h2>{{data.room.name}}</h2>
+    </div>
+    <div class="mb-5" id="story">
+      {% for story in data.story %}
+      <div class="mb-2">
+        <p>{{story}}</p>
+      </div>
       {% endfor %}
+    </div>
+    <div id="choices">
+      <form action="/deathscape?player={{data.player.name}}" method="post">
+        {% for choice in data.choices %}
+        <div class="mb-2">
+          <button class="btn btn-light" id="button-{{choice.index}}" type="submit" name="choice" value="{{choice.name}}"
+            onsubmit="handle(`button-{{choice.index}}`, `{{choice.name}}`)">
+            {{choice.name}}
+          </button>
+        </div>
+        {% endfor %}
       </form>
-      <div class="btn btn-light" onclick="toggleDisplay()">
-        <b>Talk to an NPC</b>
-      </div>
     </div>
-    <div class="npc d-none mb-5" id="npc">
-      <form class="" action="/deathscape" method="post">
-      {% for npc in data.npc %}
-      <button type="submit" name="talk_npc" class="btn btn-light" value="{{npc}}">
-        Talk to {{npc}}
-      </button>
-      {% endfor %}
-    </form>
-      <!-- <div class="btn btn-light">
-        Talk to NPC 2
-      </div>
-      <div class="btn btn-light">
-        Talk to NPC 3
-      </div>
-      <div class="btn btn-light">
-        Talk to NPC 4
-      </div>
-      <div class="btn btn-light">
-        Talk to NPC 5
-      </div> -->
-    </div>
-    <div class="chat d-none mb-5" id="chat">
-      <div class="border border-light">
-        NPC:<br>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-        exercitation ullamco laboris
-      </div>
-      <div class="responses d-none" id="responses">
-        <div class="btn btn-light">
-          Positive responses
-        </div>
-        <div class="btn btn-light">
-          Negative responses
-        </div>
-      </div>
-    </div>
-  </div>
 </body>
 
 </html>

@@ -1,21 +1,65 @@
 {
-    "name" : "The Lab",
-    "intro": "The room mimics a science lab with random samples of unknown liquids stored in vials and beakers littered around the room. There are four rows of lab tables, and cabinets are aligned on all four walls in the room. Typical lab tools such as Bunsen burners, testing tubes, tweezers, etc. are present as well. The room is lit with artificial white light.",
-    "action": {
-      "npc1": "%NPC1% is smiling and excited.",
-      "npc2": "%NPC2% is examining liquids in the room.",
-      "npc3": "%NPC3% is poking at the lock with a glass stick.",
-      "npc4": "%NPC4% is crying in a corner."
+  "name": "The Lab",
+  "description": "The room mimics a science lab with random samples of unknown liquids stored in vials and beakers littered around the room. There are four rows of lab tables, and cabinets are aligned on all four walls in the room. Typical lab tools such as Bunsen burners, testing tubes, tweezers, etc. are present as well. The room is lit with artificial white light.",
+  "actions": {
+    "npc1": "%NPC1% is smiling and excited.",
+    "npc2": "%NPC2% is examining liquids in the room.",
+    "npc3": "%NPC3% is poking at the lock with a glass stick.",
+    "npc4": "%NPC4% is crying in a corner."
+  },
+  "clues": {
+    "clue1": "Always add acid to water and never water to acid.",
+    "clue2": "A sample of distilled water is stored in a cabinet.",
+    "clue3": "The key to the cabinet can be fished out from a sample of sulfuric acid.",
+    "clue4": "Hydrochloric acid is your best friend."
+  },
+  "deaths": {
+    "player": "You suddenly feel a pour of unknown liquid splash on you and hear a click. You feel your body burning as you realize that your body has been set on fire.",
+    "npc": "As you are all walking out of the room, you hear a splash from behind and notice that %NPC% has been doused in an unknown liquid and lit on fire. You and the others watch, horrified, as the body burns away and a stench fills the air."
+  },
+  "conclusion": "Unable to watch any further, you all turn away and face forwards, leaving the door behind you to shut on its own as you enter the next room.",
+  "choices": [
+    {
+      "name": "Try the Lab Room puzzle",
+      "text": "Lab Room puzzle description",
+      "next": [
+        {
+          "name": "Do action 1 for the Lab Room puzzle",
+          "text": "You action 1 for the Lab Room puzzle."
+        },
+        {
+          "name": "Do action 2 for the Lab Room puzzle",
+          "text": "You did action 2 for the Lab Room puzzle.",
+          "next": [
+            {
+              "name": "Do something after solving the Lab Room puzzle",
+              "text": "%DEAD% died after solving the Lab Room puzzle."
+            }
+          ]
+        }
+      ]
     },
-    "clue": {
-      "clue1": "Always add acid to water and never water to acid.",
-      "clue2": "A sample of distilled water is stored in a cabinet.",
-      "clue3": "The key to the cabinet can be fished out from a sample of sulfuric acid.",
-      "clue4": "Hydrochloric acid is your best friend."
-    },
-    "kill": {
-      "player": "You suddenly feel a pour of unknown liquid splash on you and hear a click. You feel your body burning as you realize that your body has been set on fire.",
-      "npc": "As you are all walking out of the room, you hear a splash from behind and notice that NPC has been doused in an unknown liquid and lit on fire. You and the others watch, horrified, as the body burns away and a stench fills the air."
-    },
-    "conclusion": "Unable to watch any further, you all turn away and face forwards, leaving the door behind you to shut on its own as you enter the next room."
-  }
+    {
+      "name": "Talk to a character",
+      "text": "Which character do you want to talk to?",
+      "next": [
+        {
+          "name": "Talk to %NPC1%",
+          "text": "You talked to %NPC1%. Their clue says %CLUE1%."
+        },
+        {
+          "name": "Talk to %NPC2%",
+          "text": "You talked to %NPC2%. Their clue says %CLUE2%."
+        },
+        {
+          "name": "Talk to %NPC3%",
+          "text": "You talked to %NPC3%. Their clue says %CLUE3%."
+        },
+        {
+          "name": "Talk to %NPC4%",
+          "text": "You talked to %NPC4%. Their clue says %CLUE4%."
+        }
+      ]
+    }
+  ]
+}

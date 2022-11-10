@@ -1,10 +1,10 @@
 {
-    "friendship": {
+    "friendliness": {
         "-1": "unfriendly",
         "0": "polite",
         "1": "overly-friendly"
     },
-    "rage": {
+    "anger": {
         "-1": "easily angered",
         "0": "angered on triggers",
         "1": "not angry"

@@ -1,26 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <title>Death Scape</title>
-    <meta charset="utf-8">
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1">
-    <!-- <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css"> -->
-  	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css')}}">
-    <!-- <link rel="stylesheet" type="text/css" href="css/main.css"> -->
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css')}}">
-    <!-- <script src="bootstrap/js/bootstrap.min.js"></script> -->
-    <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js')}}"></script>
+  <title>Death Scape</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css')}}">
+  <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js')}}"></script>
 </head>
+
 <body>
-    <div class="full-height container-fluid centering bg-dark text-white">
-      <div class="text-center">
-        <form class="" action="/" method="post">
-          <label for="player_name">Player Name</label>
-          <input type="text" name="player_name" value="">
-          <button type="submit" name="submit">Play</button>
-        </form>
-      </div>
+  <div class="text-white text-center margins">
+    <div class="mb-5">
+      <h1>Death Scape</h1>
     </div>
+    <form action="/" method="post">
+      <div class="mb-2">
+        <label for="player_name">Player Name:</label>
+      </div>
+      <div class="mb-5">
+        <input type="text" name="player_name">
+      </div>
+      <div>
+        <button type="submit" name="submit">Start Game</button>
+      </div>
+    </form>
+  </div>
 </body>
+
 </html>
