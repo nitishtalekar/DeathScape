@@ -26,7 +26,8 @@ def index():
     if request.method == "POST":
         player = request.form["player_name"]
 
-        return redirect("/deathscape?player={}".format(player))
+        # return redirect("/deathscape?player={}".format(player))
+        return redirect("/deathscape/button_room?player={}".format(player))
     else:
         return render_template("index.html")
 
@@ -45,6 +46,42 @@ def deathscape():
             story.set_choices(request.form["choice"])
 
         return render_template("deathscape.html", data=story.current)
+
+
+@app.route("/deathscape/button_room", methods=["GET", "POST"])
+def button_room():
+    global story
+    player = request.args.get("player")
+
+    if player == None:
+        return redirect("/")
+    else:
+        story = Story(player)
+
+        data = {
+            "current": story.current,
+            "room": story.button_room
+        }
+
+        return render_template("button_room.html", data=data)
+
+
+@app.route("/deathscape/lab_room", methods=["GET", "POST"])
+def lab_room():
+    global story
+    player = request.args.get("player")
+
+    if player == None:
+        return redirect("/")
+    else:
+        story = Story(player)
+
+        data = {
+            "current": story.current,
+            "room": story.lab_room
+        }
+
+        return render_template("lab_room.html", data=data)
 
 
 # ChatBot responses

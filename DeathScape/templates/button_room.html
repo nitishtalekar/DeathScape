@@ -24,15 +24,14 @@
             <h2>{{data.room.name}}</h2>
         </div>
         <div class="mb-5" id="story">
-            {% for story in data.story %}
+            {% for story in data.room.story %}
             <div class="mb-2">
                 <p>{{story}}</p>
             </div>
             {% endfor %}
         </div>
         <div id="choices">
-            <!-- <form action="/deathscape?player={{data.player.name}}" method="post"> -->
-            {% for choice in data.choices %}
+            {% for choice in data.room.choices %}
             <div class="mb-2">
                 <button class="btn btn-light" id="button-{{choice.index}}" type="submit" name="choice"
                     value="{{choice.name}}">
@@ -40,7 +39,6 @@
                 </button>
             </div>
             {% endfor %}
-            <!-- </form> -->
         </div>
 </body>
 

@@ -21,6 +21,62 @@ class Story:
             "choices": self.rooms["1"]["choices"]
         }
 
+        # For demo purposes only
+        # self.death_order = self.get_death_order()
+        self.remaining_characters = [character for character, info in self.characters.items() if info["alive"]]
+
+        # print("DEATH ORDER:\n-----------------------------------------------------------------------------\n{}".format(self.death_order))
+        print("REMAINING CHARACTERS:\n-----------------------------------------------------------------------------\n{}".format(self.remaining_characters))
+
+        self.button_room = {
+            "player": {
+                "name": player,
+                "doomsday": 0,
+                "clue": self.rooms["1"]["clues"]["clue1"]
+            },
+            "level": 1,
+            "room": self.rooms["1"],
+            "characters": self.remaining_characters,
+            "story": self.story[self.rooms["1"]["name"]],
+            "choices": self.rooms["1"]["choices"]
+        }
+
+        # del self.remaining_characters[self.death_order[0]]
+        self.remaining_characters.pop()
+
+        self.lab_room = {
+            "player": {
+                "name": player,
+                "doomsday": 0,
+                "clue": ""
+            },
+            "level": 1,
+            "room": self.rooms["2"],
+            "characters": self.remaining_characters,
+            "story": self.story[self.rooms["2"]["name"]],
+            "choices": self.rooms["2"]["choices"]
+        }
+        
+        print("REMAINING CHARACTERS:\n-----------------------------------------------------------------------------\n{}".format(self.remaining_characters))
+
+        self.remaining_characters.pop()
+
+        self.lab_room = {
+            "player": {
+                "name": player,
+                "doomsday": 0,
+                "clue": ""
+            },
+            "level": 1,
+            "room": self.rooms["2"],
+            "characters": self.remaining_characters,
+            "story": self.story[self.rooms["2"]["name"]],
+            "choices": self.rooms["2"]["choices"]
+        }
+        
+        print("REMAINING CHARACTERS:\n-----------------------------------------------------------------------------\n{}".format(self.remaining_characters))
+
+
     def init_rooms(self):
         with open("data/rooms.json") as f:
             room_names = json.load(f)
@@ -119,3 +175,22 @@ class Story:
         replaced = replaced.replace("%DEAD%", dead)
 
         return replaced
+
+    # For demo purposes only
+    # def get_death_order(self):
+    #     order = []
+
+    #     # for i in range(len(self.characters)):
+    #     #     max_doomsday = 0
+    #     #     item = ""
+
+    #     #     for character, info in self.characters.items():
+    #     #         if info["doomsday"] > max_doomsday:
+    #     #             if character not in order:
+    #     #                 item = character
+
+    #     #     order.append(item)
+
+    #     order = sorted(self.characters.items(), key=lambda info:info["doomsday"])
+
+    #     return order
