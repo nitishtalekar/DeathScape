@@ -108,9 +108,12 @@ class Story:
         max_doomsday = 0
         dead = ""
 
+        replaced = replaced.replace("%CLUE%", self.current["player"]["clue"])
+
         for character, info in self.current["characters"].items():
             replaced = replaced.replace(
-                "%NPC{}%".format(num_characters), character)
+                "%NPC{}%".format(num_characters), character).replace(
+                "%CLUE{}%".format(num_characters), info["clue"])
             num_characters += 1
 
             if info["doomsday"] > max_doomsday:
