@@ -29,34 +29,37 @@
       </div>
       {% endfor %}
     </div>
-    <div class="choices">
+    <div class="choices" id="choices">
       <form class="" action="/deathscape?player={{data.player.name}}" method="post">
         {% for choice in data.room.choices %}
-        {% if choice.name == "Talk to a character" %}
-        <div class="mb-2 btn btn-light" onclick="toggleDisplay()">
-          Talk to an NPC
-        </div>
-        {% else %}
+        {% if choice.name != "Talk to a character" %}
         <div class="mb-2">
           <button type="submit" name="{{choice.name}}" class="btn btn-light">
             {{choice.name}}
           </button>
         </div>
+        {% else %}
+        <div class="mb-2 btn btn-light" onclick="toggle()">
+          {{choice.name}}
+        </div>
         {% endif %}
-        <br />
         {% endfor %}
       </form>
     </div>
     <div class="d-none characters" id="characters">
-      <form class="" action="/deathscape?player={{data.player.name}}" method="post">
+      <form action="/deathscape?player={{data.player.name}}" method="post">
         {% for character in data.characters %}
         <div class="mb-2">
           <button type="submit" name="talk_to_character" class="btn btn-light" value="{{character}}">
             Talk to {{character}}
           </button>
         </div>
-        <br />
         {% endfor %}
+        <div class="mb-2">
+          <button class="mb-2 btn btn-light" onclick="toggle()">
+            Go back
+          </button>
+        </div>
       </form>
     </div>
 </body>

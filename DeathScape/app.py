@@ -37,18 +37,10 @@ def deathscape():
 
     if player == None:
         return redirect("/")
+    else:
+        story = Story(player)
 
-    story = Story(player)
-
-    data = {}
-
-    for key, value in story.__dict__.items():
-        data[key] = value
-
-    data["room"] = story.rooms["{}".format(story.level)]
-    data["story"] = story.story[story.rooms["{}".format(story.level)]["name"]]
-
-    return render_template("deathscape.html", data=data)
+        return render_template("deathscape.html", data=story.current)
 
 
 # ChatBot responses

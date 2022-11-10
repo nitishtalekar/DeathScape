@@ -4,15 +4,21 @@ import random
 
 class Story:
     def __init__(self, player):
-        self.player = {
-            "name": player,
-            "doomsday": 0
-        }
-        self.level = 1
         self.rooms = self.init_rooms()
         self.character_features = self.init_character_features()
         self.characters = self.init_characters()
         self.story = self.init_story()
+
+        self.current = {
+            "player": {
+                "name": player,
+                "doomsday": 0
+            },
+            "level": 1,
+            "room": self.rooms["1"],
+            "characters": {character: info for character, info in self.characters.items() if info["alive"]},
+            "story": self.story[self.rooms["1"]["name"]]
+        }
 
     def init_rooms(self):
         with open("data/rooms.json") as f:
