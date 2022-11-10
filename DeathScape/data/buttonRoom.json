@@ -1,6 +1,6 @@
 {
   "name": "The Button Room",
-  "description": "The room simply has a table with four buttons: red, yellow, green, and blue. Beside the table, there is a box with a note on top of it saying 'Everyone take one.' Everyone reaches into the box to grab one piece of paper from inside before going off in their own directions to explore the room.",
+  "description": "The room simply has a table with four buttons: red, yellow, green, and blue. Beside the table, there is a box with a note on top of it saying that everyone must take one. Everyone reaches into the box to grab one piece of paper from inside before going off in their own directions to explore the room.",
   "actions": {
     "npc1": "%NPC1% is sitting on the ground.",
     "npc2": "%NPC2% is pacing back and forth across the room.",
@@ -17,14 +17,14 @@
     "clue6": "The golden button is a key to one survival."
   },
   "deaths": {
-    "player": "You get stuck on the spot and realize that you can't move. The door is right in front of you, and everyone else had already gone through, leaving you behind. The door closes, and a block comes from the ceiling and crushes your body from top to bottom, effectively ending your life.",
+    "player": "You get stuck on the spot and realize that you are unable to move. The door is right in front of you, and everyone else had already gone through, leaving you behind. The door closes, and a block comes from the ceiling and crushes your body from top to bottom, effectively ending your life.",
     "npc": "%NPC% tries to walk but is unable to due to being paralyzed on the spot. The door is open, and everyone else is rushing out. The door closes with you looking back, bewildered that someone was left behind. As the door closes, a crushing sound can be heard from behind."
   },
   "conclusion": "Everyone is silent in the next room as they processed what happened. Someone had just died, and everyone is now more wary than ever of their future actions.",
   "choices": [
     {
       "name": "Read your piece of paper and try the puzzle",
-      "text": "It seems like in order to solve the puzzle and hopefully escape the room, you have to press the four buttons in the correct order. The piece of paper in your hand is a hint, but since everyone else also got one, you'll have to talk to everyone to figure out what their hints are.",
+      "text": "It seems like in order to solve the puzzle and hopefully escape the room, you have to press the four buttons in the correct order. The piece of paper in your hand is a hint, but since everyone else also got one, you will have to talk to everyone to figure out what their hints are.",
       "next": [
         {
           "name": "Press button 1",
@@ -47,7 +47,7 @@
               "text": "You pressed the last button."
             },
             {
-              "name": "Don't press the last button",
+              "name": "Do not press the last button",
               "text": "%DEAD% pressed the last button"
             }
           ]

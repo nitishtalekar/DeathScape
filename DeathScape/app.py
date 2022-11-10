@@ -13,7 +13,7 @@ from story import Story
 
 
 app = Flask(__name__)
-story = ""
+story = None
 
 
 @app.errorhandler(404)
@@ -33,12 +33,16 @@ def index():
 
 @app.route("/deathscape", methods=["GET", "POST"])
 def deathscape():
+    global story
     player = request.args.get("player")
 
     if player == None:
         return redirect("/")
     else:
-        story = Story(player)
+        if request.method == "GET":
+            story = Story(player)
+        elif "choice" in request.form:
+            story.set_choices(request.form["choice"])
 
         return render_template("deathscape.html", data=story.current)
 

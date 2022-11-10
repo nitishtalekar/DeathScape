@@ -17,7 +17,8 @@ class Story:
             "level": 1,
             "room": self.rooms["1"],
             "characters": {character: info for character, info in self.characters.items() if info["alive"]},
-            "story": self.story[self.rooms["1"]["name"]]
+            "story": self.story[self.rooms["1"]["name"]],
+            "choices": self.rooms["1"]["choices"]
         }
 
     def init_rooms(self):
@@ -67,3 +68,13 @@ class Story:
             story[room["name"]] = [room["description"]]
 
         return story
+
+    def set_choices(self, current):
+        for choice in self.current["choices"]:
+            if choice["name"] == current:
+                if "next" in choice:
+                    self.current["choices"] = choice["next"]
+                else:
+                    self.current["choices"] = self.rooms["1"]["choices"]
+
+                return

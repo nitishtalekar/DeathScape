@@ -16,50 +16,24 @@
     <div class="mb-5">
       <h1>Death Scape</h1>
     </div>
-    <div class="story">
-      <div class="mb-5">
-        <img src="{{ url_for('static', filename='img/default_room.jpg')}}" style="width: 50%">
-      </div>
-      <div class="mb-5">
-        <h2>{{data.room.name}}</h2>
-      </div>
-      {% for text in data.story%}
-      <div class="mb-5">
-        <p>{{text}}</p>
-      </div>
-      {% endfor %}
+    <div class="mb-5">
+      <img src="{{ url_for('static', filename='img/default_room.jpg')}}" style="width: 50%">
     </div>
-    <div class="choices" id="choices">
-      <form class="" action="/deathscape?player={{data.player.name}}" method="post">
-        {% for choice in data.room.choices %}
-        {% if choice.name != "Talk to a character" %}
+    <div class="mb-5">
+      <h2>{{data.room.name}}</h2>
+    </div>
+    <div class="mb-5" id="story">
+      <p>{{data.story[0]}}</p>
+    </div>
+    <div id="choices">
+      <form action="/deathscape?player={{data.player.name}}" method="post">
+        {% for choice in data.choices %}
         <div class="mb-2">
-          <button type="submit" name="{{choice.name}}" class="btn btn-light">
+          <button class="btn btn-light" type="submit" name="choice" value="{{choice.name}}">
             {{choice.name}}
           </button>
         </div>
-        {% else %}
-        <div class="mb-2 btn btn-light" onclick="toggle()">
-          {{choice.name}}
-        </div>
-        {% endif %}
         {% endfor %}
-      </form>
-    </div>
-    <div class="d-none characters" id="characters">
-      <form action="/deathscape?player={{data.player.name}}" method="post">
-        {% for character in data.characters %}
-        <div class="mb-2">
-          <button type="submit" name="talk_to_character" class="btn btn-light" value="{{character}}">
-            Talk to {{character}}
-          </button>
-        </div>
-        {% endfor %}
-        <div class="mb-2">
-          <button class="mb-2 btn btn-light" onclick="toggle()">
-            Go back
-          </button>
-        </div>
       </form>
     </div>
 </body>

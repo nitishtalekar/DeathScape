@@ -1,6 +1,6 @@
 {
   "name": "The Room of Justice",
-  "description": "The room has worn-out walls and dimmed lighting. There is a guillotine in the center of the room along with a message scratched on the wall: 'Will justice be served?' and a box next to the guillotine saying to draw a slip with a number on it. There are four puppets in the room along the wall that mimic the remaining players' appearances. Whoever is found guilty in the room has their puppet sent to the guillotine for their head to be chopped off. Lying is not allowed. At the end, whoever has lied the most gets killed by a hidden blade from the side that slices through their neck.",
+  "description": "The room has worn-out walls and dimmed lighting. There is a guillotine in the center of the room along with a message scratched on the wall: Will justice be served? There is a box next to the guillotine saying to draw a slip with a number on it. There are four puppets in the room along the wall that mimic the appearances of the remaining people. Whoever is found guilty in the room has their puppet sent to the guillotine for their head to be chopped off. Lying is not allowed. At the end, whoever has lied the most gets killed by a hidden blade from the side that slices through their neck.",
   "actions": {
     "npc1": "%NPC1% is inspecting the guillotine and stroking the side of the blade.",
     "npc2": "%NPC2% is drawing patterns on the floor with their finger.",
@@ -13,9 +13,9 @@
   },
   "deaths": {
     "player": "As you are walking towards the door to the next room, you briefly hear something from the side before a blade slices the air from the side, chopping your neck off and effectively killing you.",
-    "npc": "As everyone is walking towards the next room, a scream is heard from behind and you see %DEAD%'s head being sliced by a blade that flew out from the side."
+    "npc": "As everyone is walking towards the next room, a scream is heard from behind and you see the head of %DEAD% being sliced by a blade that flew out from the side."
   },
-  "conclusion": "It seemed that you were the only one who had noticed, or maybe it's because everyone else is ignoring what's happening, but you all proceed into the next room eventually.",
+  "conclusion": "It seemed that you were the only one who had noticed, or maybe it is because everyone else is ignoring what is happening, but you all proceed into the next room eventually.",
   "choices": [
     {
       "name": "Try the Justice Room puzzle",
