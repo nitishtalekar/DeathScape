@@ -16,19 +16,19 @@
   "choices": [
     {
       "name": "Try the Dilemma Room puzzle",
-      "text": "TrDilemmaap Room puzzle description. %CLUE",
+      "text": "Build trust with each other, and agree to coordinate your actions.",
       "next": [
         {
-          "name": "Do action 1 for the Dilemma Room puzzle",
-          "text": "You action 1 for the Dilemma Room puzzle."
+          "name": "Save everyone.",
+          "text": "You place yourself at risk to get both you and %NPC1% out of the room."
         },
         {
-          "name": "Do action 2 for the Dilemma Room puzzle",
-          "text": "You did action 2 for the Dilemma Room puzzle.",
+          "name": "Prioritize your safety.",
+          "text": "You prioritize your safety to get yourself out, not caring about the consequences.",
           "next": [
             {
-              "name": "Do something after solving the Dilemma Room puzzle",
-              "text": "%DEAD% died after solving the Dilemma Room puzzle."
+              "name": "Proceed to the exit...",
+              "text": "You hear a scream behind you as you watch %NPC1% take their final breath. Satisfied with your work, you walk out of the exit, only to find yourself at a dead end. You hear an automated voice before you lose consciousness forever. \"Betrayal is not the answer.\" \n%DEAD% died after solving the Dilemma Room puzzle."
             }
           ]
         }
@@ -36,7 +36,7 @@
     },
     {
       "name": "Talk to %NPC1%",
-      "text": "You talked to %NPC1%. Their clue says %CLUE1%"
+      "text": "You decide to talk to %NPC1%. They are eyeing you warily. \"Let's call a truce,\" you say, holding out your hand for a handshake. Without a word, %NPC1% shakes your hand."
     }
   ]
 }

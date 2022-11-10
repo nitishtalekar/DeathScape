@@ -19,18 +19,18 @@
   "choices": [
     {
       "name": "Try the Justice Room puzzle",
-      "text": "Justice Room puzzle description.",
+      "text": "Choose the one to place under the blade as the worthy sacrifice.",
       "next": [
         {
-          "name": "Do action 1 for the Justice Room puzzle",
-          "text": "You action 1 for the Justice Room puzzle."
+          "name": "Place the puppet with the lowest number under the blade.",
+          "text": "You place the puppet with the lowest number under the guillotine's blade."
         },
         {
-          "name": "Do action 2 for the Justice Room puzzle",
-          "text": "You did action 2 for the Justice Room puzzle.",
+          "name": "Place the person with the lowest number under the blade.",
+          "text": "You forcibly tie up the person with the lowest number and place them under the guillotine's blade. Their eyes are wide and bewildered, angry at your betrayal.",
           "next": [
             {
-              "name": "Do something after solving the Justice Room puzzle",
+              "name": "Proceed to jury result...",
               "text": "%DEAD% died after solving the Justice Room puzzle."
             }
           ]
@@ -43,15 +43,15 @@
       "next": [
         {
           "name": "Talk to %NPC1%",
-          "text": "You talked to %NPC1%. Their clue says %CLUE1%"
+          "text": "You decide to talk to %NPC1%. \"I'm okay with sharing my number as long as you share yours in return.\""
         },
         {
           "name": "Talk to %NPC2%",
-          "text": "You talked to %NPC2%. Their clue says %CLUE2%"
+          "text": "You decide to talk to %NPC2%. \"Do we really have to share our numbers? I don't want to kill anyone because the rules say so.\" "
         },
         {
           "name": "Talk to %NPC3%",
-          "text": "You talked to %NPC3%. Their clue says %CLUE3%"
+          "text": "You decide to talk to %NPC3%. \"Do you think the dolls have something to do with how we're supposed to solve this?\""
         }
       ]
     }

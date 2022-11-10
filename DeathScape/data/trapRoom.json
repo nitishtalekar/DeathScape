@@ -18,19 +18,19 @@
   "choices": [
     {
       "name": "Try the Trap Room puzzle",
-      "text": "Trap Room puzzle description. %CLUE%",
+      "text": "Find the designated path to freedom.",
       "next": [
         {
-          "name": "Do action 1 for the Trap Room puzzle",
-          "text": "You action 1 for the Trap Room puzzle."
+          "name": "Use your knowledge combined with what you observed to find the path.",
+          "text": "You decide to follow your gut and use the knowledge that you've compiled to your advantage."
         },
         {
-          "name": "Do action 2 for the Trap Room puzzle",
-          "text": "You did action 2 for the Trap Room puzzle.",
+          "name": "Follow the advice from the other participants and combine it with your knowledge to find the path.",
+          "text": "You decide to trust in your fellow participants and use what they have told you to help solve the puzzle.",
           "next": [
             {
-              "name": "Do something after solving the Trap Room puzzle",
-              "text": "%DEAD% died after solving the Trap Room puzzle."
+              "name": "Proceed to the path...",
+              "text": "You volunteer to go first, but as you are midway through the room, you feel the file below you drop, and you feel yourself falling into an endless pit of darkness. %DEAD% died after solving the Trap Room puzzle."
             }
           ]
         }
@@ -42,11 +42,11 @@
       "next": [
         {
           "name": "Talk to %NPC1%",
-          "text": "You talked to %NPC1%. Their clue says %CLUE1%"
+          "text": "You decide to talk to %NPC1%. \"Do you think the spikes will fly out at us while we try and figure out the path? Either way, we should tread carefully.\""
         },
         {
           "name": "Talk to %NPC2%",
-          "text": "You talked to %NPC2%. Their clue says %CLUE2%"
+          "text": "You decide to talk to %NPC2%. They seem to be deep in thought. \n\"What do you think?\" you ask %NPC2%. \n\"We need to trial and error this somehow,\" %NPC2% tells you. \"The tiles are all identical, and there aren't any funny marks to give us any hints. We should have one person go at a time.\""
         }
       ]
     }

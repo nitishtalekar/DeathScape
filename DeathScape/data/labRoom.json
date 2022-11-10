@@ -21,18 +21,18 @@
   "choices": [
     {
       "name": "Try the Lab Room puzzle",
-      "text": "Lab Room puzzle description",
+      "text": "Find a way to dislocate the lock to successfully escape the room.",
       "next": [
         {
-          "name": "Do action 1 for the Lab Room puzzle",
-          "text": "You action 1 for the Lab Room puzzle."
+          "name": "Mix the hydrochloric acid sample with water.",
+          "text": "You mix the hydrochloric acid sample with water and pour it on the lock. The lock quickly dissolves and its remains fall to the ground with a clack. The handle of the door is now free."
         },
         {
-          "name": "Do action 2 for the Lab Room puzzle",
-          "text": "You did action 2 for the Lab Room puzzle.",
+          "name": "Mix water with the hydrochloric acid sample.",
+          "text": "You mix water with the hydrochloric acid sample and pour it on the lock. It fizzles a bit before you feel a stinging sensation.",
           "next": [
             {
-              "name": "Do something after solving the Lab Room puzzle",
+              "name": "Reaction effect...",
               "text": "%DEAD% died after solving the Lab Room puzzle."
             }
           ]
@@ -45,19 +45,19 @@
       "next": [
         {
           "name": "Talk to %NPC1%",
-          "text": "You talked to %NPC1%. Their clue says %CLUE1%."
+          "text": "You decide to talk to %NPC1%. They seem oddly happy for some reason. \n\"This room is truly fascinating,\" %NPC1% tells you. \"I want to take a close look at everything as much as I can. Oh, and did you know? %CLUE1%.\""
         },
         {
           "name": "Talk to %NPC2%",
-          "text": "You talked to %NPC2%. Their clue says %CLUE2%."
+          "text": "You decide to talk to %NPC2%. They are examining the samples of unknown subtance on one of the lab tables. \n\"What are you doing?\" you ask. \n\"These are sulfuric acid samples. It looks like something is hidden in one of them, so I'm thinking about where to pour the samples to fish out the hidden object.\" %NPC2% takes an empty plastic container at the side and puts on rubber gloves before dumping each sample into the box. A sound is heard, and %NPC2% fishes out the object, which appears to be a key to something. They then use tweezers to place the object into a beaker with fresh liquid before handing it to you. Carefully, you take the key and thank them."
         },
         {
           "name": "Talk to %NPC3%",
-          "text": "You talked to %NPC3%. Their clue says %CLUE3%."
+          "text": "You decide to talk to %NPC3%. \n\"I'm not sure what to do with this, so I'll leave it to you,\" %NPC3% says as they hand you a flask with a label that says hydrochloric acid."
         },
         {
           "name": "Talk to %NPC4%",
-          "text": "You talked to %NPC4%. Their clue says %CLUE4%."
+          "text": "You decide to talk to %NPC4%. \n\"We need the correct materials to melt down the lock,\" %NPC4% says as they examine the lock. \"If you know anything, feel free to try it out.\""
         }
       ]
     }
