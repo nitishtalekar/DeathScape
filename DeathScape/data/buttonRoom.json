@@ -27,63 +27,63 @@
       "next" : ["1","2","3","4"]
     },
     "1": {
-      "opt_text" : "Option 1",
-      "text" : "Option 1 Text Here",
+      "opt_text" : "Inspect the table.",
+      "text" : "You decide to inspect the table. You notice four buttons in a 2-by-2 setup: red, yellow, green, and blue.",
       "next" : ["1.1","1.2"]
     },
     "1.1": {
-      "opt_text" : "Option 1.1",
-      "text" : "Option 1.1 Text Here",
+      "opt_text" : "Look closer at the table.",
+      "text" : "You decide to take a closer look at the table. There's the four buttons, but there's also a strangely outlined square in the middle.",
       "next" : ["1.1.1","1.1.2"]
     },
     "1.1.1": {
-      "opt_text" : "Option 1.1.1",
+      "opt_text" : "Attempt the button sequence.",
       "text" : "Option 1.1.1 Text Here",
       "next" : ["1","2","3","4"]
     },
     "1.1.2": {
-      "opt_text" : "Option 1.1.2",
-      "text" : "Option 1.1.2 Text Here",
+      "opt_text" : "Look around some more.",
+      "text" : "You decide to look around some more before attempting the button sequence.",
       "next" : ["1","2","3","4"]
     },
     "1.2": {
-      "opt_text" : "Option 1.2",
-      "text" : "Option 1.2 Text Here",
+      "opt_text" : "Check the table's surroundings",
+      "text" : "You check the table's surroundings and notice that it's bolted to the ground.",
       "next" : ["1.2.1","1.2.2"]
     },
     "1.2.1": {
-      "opt_text" : "Option 1.2.1",
-      "text" : "Option 1.1.1 Text Here",
+      "opt_text" : "Attempt to move the table.",
+      "text" : "You try and move the table, but it doesn't budge.",
       "next" : ["1.1"]
     },
     "1.2.2": {
-      "opt_text" : "Option 1.2.2",
-      "text" : "Option 1.2.2 Text Here",
+      "opt_text" : "Look underneath the table.",
+      "text" : "As you look underneath the table, you see an incomprehensible message scrawled on the underside.",
       "next" : ["1","2","3","4"]
     },
     "2": {
-      "opt_text" : "Option 2",
-      "text" : "Option 2 Text Here",
+      "opt_text" : "Examine the door.",
+      "text" : "You go to the door to take a closer look.",
       "next" : ["2.1","2.2"]
     },
     "2.1": {
-      "opt_text" : "Option 2.1",
-      "text" : "Option 2.1 Text Here",
+      "opt_text" : "Turn the doorknob.",
+      "text" : "The doorknob refuses to turn.",
       "next" : ["1","2","3","4"]
     },
     "2.2": {
-      "opt_text" : "Option 2.2",
-      "text" : "Option 2.2 Text Here",
+      "opt_text" : "Knock on the door.",
+      "text" : "You knock on the door a few times, but all you get is a hollow sounds in return.",
       "next" : ["1","2","3","4"]
     },
     "3": {
-      "opt_text" : "Option 3",
-      "text" : "Option 3 Text Here",
+      "opt_text" : "Inspect the paper in your hand.",
+      "text" : "You unfold the piece of paper in your hand and read its contents. 'The color of human blood should go first.'",
       "next" : ["1","2","4"]
     },
     "4": {
-      "opt_text" : "Option 4",
-      "text" : "Option 4 Text Here",
+      "opt_text" : "Look around the room.",
+      "text" : "You scan the room, taking in the general atmosphere of the people and the environment. The room is fairly empty, the only thing occupying it being the table with four buttons. Everyone trapped with you is scattered around the room and seem to be preoccupied with their activities.",
       "next" : ["1","2","3"]
     }
   }
