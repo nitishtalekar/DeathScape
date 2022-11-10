@@ -46,7 +46,7 @@ class Story:
         for index, character in zip(range(len(characters)), characters):
             characters[character]["alive"] = True
             characters[character]["clue"] = self.rooms["1"]["clues"]["clue{}".format(
-                + 2)]
+                index + 2)]
 
             for character_feature in character_features:
                 characters[character][character_feature] = random.choice(
