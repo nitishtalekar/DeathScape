@@ -11,7 +11,8 @@
   <script src="{{ url_for('static', filename='js/main.js')}}"></script>
 </head>
 
-<body>
+<body
+  onload="preprocess(`{{data.player}}`, `{{data.level}}`, `{{data.room}}`, `{{data.characters}}`, `{{data.story}}`, `{{data.choices}}`)">
   <div class="text-white text-center vertical-center container margins">
     <div class="mb-5">
       <h1>Death Scape</h1>
@@ -33,7 +34,8 @@
       <form action="/deathscape?player={{data.player.name}}" method="post">
         {% for choice in data.choices %}
         <div class="mb-2">
-          <button class="btn btn-light" type="submit" name="choice" value="{{choice.name}}">
+          <button class="btn btn-light" type="submit" name="choice" value="{{choice.name}}"
+            onsubmit="handle(`{{choice.name}}`)">
             {{choice.name}}
           </button>
         </div>
