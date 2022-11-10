@@ -19,7 +19,7 @@
   "choices": [
     {
       "name": "Try the Justice Room puzzle",
-      "text": "Justice Room puzzle description",
+      "text": "Justice Room puzzle description.",
       "next": [
         {
           "name": "Do action 1 for the Justice Room puzzle",
@@ -43,15 +43,15 @@
       "next": [
         {
           "name": "Talk to %NPC1%",
-          "text": "You talked to %NPC1%."
+          "text": "You talked to %NPC1%. Their clue says %CLUE1%"
         },
         {
           "name": "Talk to %NPC2%",
-          "text": "You talked to %NPC2%."
+          "text": "You talked to %NPC2%. Their clue says %CLUE2%"
         },
         {
           "name": "Talk to %NPC3%",
-          "text": "You talked to %NPC3%."
+          "text": "You talked to %NPC3%. Their clue says %CLUE3%"
         }
       ]
     }

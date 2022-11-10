@@ -13,70 +13,83 @@
     "clue2": "The lucky color of the day should go first.",
     "clue3": "The color of plants should go last.",
     "clue4": "The color of water should go after the lucky color.",
-    "clue5": "The color of wealth should go before the color of plants.",
+    "clue5": "The color of the sunflowers should go before the color of plants.",
     "clue6": "The golden button is a key to one survival."
   },
   "deaths": {
-    "player": "You get stuck on the spot and realize that you are unable to move. The door is right in front of you, and everyone else had already gone through, leaving you behind. The door closes, and a block comes from the ceiling and crushes your body from top to bottom, effectively ending your life.",
+    "player": "You get stuck on the spot and realize that you are unable to move. The door is right in front of you, and everyone else had already gone through, leaving you behind. The door closes, and a block comes from the ceiling and crushes your body from top to bottom, ending your life.",
     "npc": "%NPC% tries to walk but is unable to due to being paralyzed on the spot. The door is open, and everyone else is rushing out. The door closes with you looking back, bewildered that someone was left behind. As the door closes, a crushing sound can be heard from behind."
   },
   "conclusion": "Everyone is silent in the next room as they processed what happened. Someone had just died, and everyone is now more wary than ever of their future actions.",
   "choices": [
     {
+      "index": 1,
       "name": "Read your piece of paper and try the puzzle",
-      "text": "You read your piece of paper and try the puzzle. It seems like in order to solve the puzzle and hopefully escape the room, you have to press the four buttons in the correct order. The piece of paper in your hand is a hint, but since everyone else also got one, you will have to talk to everyone to figure out what their hints are.",
+      "text": "You read your piece of paper and try the puzzle. %CLUE% It seems like in order to solve the puzzle and hopefully escape the room, you have to press the four buttons in the correct order. The piece of paper in your hand is a hint, but since everyone else also got one, you will have to talk to everyone to figure out what their hints are.",
       "next": [
         {
-          "name": "Press button 1",
-          "text": "You pressed button 1."
+          "index": 1,
+          "name": "Press the red button",
+          "text": "You pressed the red button."
         },
         {
-          "name": "Press button 2",
-          "text": "You pressed button 2."
+          "index": 2,
+          "name": "Press the yellow button",
+          "text": "You pressed the yellow button."
         },
         {
-          "name": "Press button 3",
-          "text": "You pressed button 3."
-        },
-        {
-          "name": "Press button 4",
-          "text": "You pressed button 4.",
+          "index": 3,
+          "name": "Press the green button",
+          "text": "You pressed the green button and a hidden compartment on the table pops open to reveal a golden button.",
           "next": [
             {
-              "name": "Press the last button",
-              "text": "You pressed the last button."
+              "index": 1,
+              "name": "Press the golden button",
+              "text": "You pressed the golden button."
             },
             {
-              "name": "Do not press the last button",
-              "text": "%DEAD% pressed the last button."
+              "index": 2,
+              "name": "Do not press the golden button",
+              "text": "%DEAD% pressed the golden button."
             }
           ]
+        },
+        {
+          "index": 4,
+          "name": "Press the blue button",
+          "text": "You pressed the blue button."
         }
       ]
     },
     {
+      "index": 2,
       "name": "Talk to a character",
       "text": "Which character do you want to talk to?",
       "next": [
         {
+          "index": 1,
           "name": "Talk to %NPC1%",
-          "text": "You talked to %NPC1%."
+          "text": "You talked to %NPC1%. Their clue says %CLUE1%"
         },
         {
+          "index": 2,
           "name": "Talk to %NPC2%",
-          "text": "You talked to %NPC2%."
+          "text": "You talked to %NPC2%. Their clue says %CLUE2%"
         },
         {
+          "index": 3,
           "name": "Talk to %NPC3%",
-          "text": "You talked to %NPC3%."
+          "text": "You talked to %NPC3%. Their clue says %CLUE3%"
         },
         {
+          "index": 4,
           "name": "Talk to %NPC4%",
-          "text": "You talked to %NPC4%."
+          "text": "You talked to %NPC4%. Their clue says %CLUE4%"
         },
         {
+          "index": 5,
           "name": "Talk to %NPC5%",
-          "text": "You talked to %NPC5%."
+          "text": "You talked to %NPC5%. Their clue says %CLUE5%"
         }
       ]
     }

@@ -5,14 +5,14 @@ import random
 class Story:
     def __init__(self, player):
         self.rooms = self.init_rooms()
-        self.character_features = self.init_character_features()
         self.characters = self.init_characters()
         self.story = self.init_story()
 
         self.current = {
             "player": {
                 "name": player,
-                "doomsday": 0
+                "doomsday": 0,
+                "clue": self.rooms["1"]["clues"]["clue1"]
             },
             "level": 1,
             "room": self.rooms["1"],
@@ -33,20 +33,22 @@ class Story:
 
         return rooms
 
-    def init_character_features(self):
+    def init_characters(self):
         with open("data/characterFeatures.json") as f:
             character_features = json.load(f)
 
-        return character_features
-
-    def init_characters(self):
         with open("data/characters.json") as f:
             characters = json.load(f)
 
-        for character in characters:
-            characters[character]["alive"] = True
+        # player_has_clue = len(self.rooms["clues"]) > len(
+        #     {character: info for character, info in self.characters.items() if info["alive"]})
 
-            for character_feature in self.character_features:
+        for index, character in zip(range(len(characters)), characters):
+            characters[character]["alive"] = True
+            characters[character]["clue"] = self.rooms["1"]["clues"]["clue{}".format(
+                + 2)]
+
+            for character_feature in character_features:
                 characters[character][character_feature] = random.choice(
                     [-1, 0, 1])
 

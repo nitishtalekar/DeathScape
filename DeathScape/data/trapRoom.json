@@ -18,7 +18,7 @@
   "choices": [
     {
       "name": "Try the Trap Room puzzle",
-      "text": "Trap Room puzzle description",
+      "text": "Trap Room puzzle description. %CLUE%",
       "next": [
         {
           "name": "Do action 1 for the Trap Room puzzle",
@@ -42,11 +42,11 @@
       "next": [
         {
           "name": "Talk to %NPC1%",
-          "text": "You talked to %NPC1%."
+          "text": "You talked to %NPC1%. Their clue says %CLUE1%"
         },
         {
           "name": "Talk to %NPC2%",
-          "text": "You talked to %NPC2%."
+          "text": "You talked to %NPC2%. Their clue says %CLUE2%"
         }
       ]
     }

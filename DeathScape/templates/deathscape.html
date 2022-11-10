@@ -34,8 +34,8 @@
       <form action="/deathscape?player={{data.player.name}}" method="post">
         {% for choice in data.choices %}
         <div class="mb-2">
-          <button class="btn btn-light" type="submit" name="choice" value="{{choice.name}}"
-            onsubmit="handle(`{{choice.name}}`)">
+          <button class="btn btn-light" id="button-{{choice.index}}" type="submit" name="choice" value="{{choice.name}}"
+            onsubmit="handle(`button-{{choice.index}}`, `{{choice.name}}`)">
             {{choice.name}}
           </button>
         </div>

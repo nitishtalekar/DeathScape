@@ -16,7 +16,7 @@
   "choices": [
     {
       "name": "Try the Dilemma Room puzzle",
-      "text": "TrDilemmaap Room puzzle description",
+      "text": "TrDilemmaap Room puzzle description. %CLUE",
       "next": [
         {
           "name": "Do action 1 for the Dilemma Room puzzle",
@@ -36,7 +36,7 @@
     },
     {
       "name": "Talk to %NPC1%",
-      "text": "You talked to %NPC1%."
+      "text": "You talked to %NPC1%. Their clue says %CLUE1%"
     }
   ]
 }
