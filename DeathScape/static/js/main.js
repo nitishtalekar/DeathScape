@@ -6,7 +6,7 @@ function addText(text) {
 }
 
 function handle(choice) {
-  console.log(choice)
+  addText(choice);
 }
 
 function toggle() {

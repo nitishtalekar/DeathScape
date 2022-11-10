@@ -72,9 +72,48 @@ class Story:
     def set_choices(self, current):
         for choice in self.current["choices"]:
             if choice["name"] == current:
+                replaced = self.replace_placeholders(
+                    "\n{}".format(choice["text"]))
+                if replaced not in self.current["story"]:
+                    self.current["story"].append(replaced)
+
+                replaced = []
+                next = None
+
                 if "next" in choice:
-                    self.current["choices"] = choice["next"]
+                    next = choice["next"]
                 else:
-                    self.current["choices"] = self.rooms["1"]["choices"]
+                    next = self.rooms["1"]["choices"]
+
+                for item in next:
+                    replaced.append({
+                        "name": self.replace_placeholders(item["name"]),
+                        "text": self.replace_placeholders(item["text"])
+                    })
+
+                    if "next" in item:
+                        replaced[len(replaced) - 1].update({
+                            "next": item["next"]
+                        })
+
+                self.current["choices"] = replaced
 
                 return
+
+    def replace_placeholders(self, text):
+        replaced = text
+        num_characters = 1
+        max_doomsday = 0
+        dead = ""
+
+        for character, info in self.current["characters"].items():
+            replaced = replaced.replace(
+                "%NPC{}%".format(num_characters), character)
+            num_characters += 1
+
+            if info["doomsday"] > max_doomsday:
+                dead = character.split(" ")[0]
+
+        replaced = replaced.replace("%DEAD%", dead)
+
+        return replaced

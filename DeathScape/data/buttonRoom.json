@@ -24,7 +24,7 @@
   "choices": [
     {
       "name": "Read your piece of paper and try the puzzle",
-      "text": "It seems like in order to solve the puzzle and hopefully escape the room, you have to press the four buttons in the correct order. The piece of paper in your hand is a hint, but since everyone else also got one, you will have to talk to everyone to figure out what their hints are.",
+      "text": "You read your piece of paper and try the puzzle. It seems like in order to solve the puzzle and hopefully escape the room, you have to press the four buttons in the correct order. The piece of paper in your hand is a hint, but since everyone else also got one, you will have to talk to everyone to figure out what their hints are.",
       "next": [
         {
           "name": "Press button 1",
@@ -48,7 +48,7 @@
             },
             {
               "name": "Do not press the last button",
-              "text": "%DEAD% pressed the last button"
+              "text": "%DEAD% pressed the last button."
             }
           ]
         }

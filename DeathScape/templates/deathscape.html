@@ -23,7 +23,11 @@
       <h2>{{data.room.name}}</h2>
     </div>
     <div class="mb-5" id="story">
-      <p>{{data.story[0]}}</p>
+      {% for story in data.story %}
+      <div class="mb-2">
+        <p>{{story}}</p>
+      </div>
+      {% endfor %}
     </div>
     <div id="choices">
       <form action="/deathscape?player={{data.player.name}}" method="post">
