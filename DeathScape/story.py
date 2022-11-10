@@ -22,11 +22,7 @@ class Story:
         }
 
         # For demo purposes only
-        # self.death_order = self.get_death_order()
         self.remaining_characters = [character for character, info in self.characters.items() if info["alive"]]
-
-        # print("DEATH ORDER:\n-----------------------------------------------------------------------------\n{}".format(self.death_order))
-        print("REMAINING CHARACTERS:\n-----------------------------------------------------------------------------\n{}".format(self.remaining_characters))
 
         self.button_room = {
             "player": {
@@ -41,7 +37,6 @@ class Story:
             "choices": self.rooms["1"]["choices"]
         }
 
-        # del self.remaining_characters[self.death_order[0]]
         self.remaining_characters.pop()
 
         self.lab_room = {
@@ -50,32 +45,57 @@ class Story:
                 "doomsday": 0,
                 "clue": ""
             },
-            "level": 1,
+            "level": 2,
             "room": self.rooms["2"],
             "characters": self.remaining_characters,
             "story": self.story[self.rooms["2"]["name"]],
             "choices": self.rooms["2"]["choices"]
         }
-        
-        print("REMAINING CHARACTERS:\n-----------------------------------------------------------------------------\n{}".format(self.remaining_characters))
 
         self.remaining_characters.pop()
 
-        self.lab_room = {
+        self.justice_room = {
             "player": {
                 "name": player,
                 "doomsday": 0,
                 "clue": ""
             },
-            "level": 1,
-            "room": self.rooms["2"],
+            "level": 3,
+            "room": self.rooms["3"],
             "characters": self.remaining_characters,
-            "story": self.story[self.rooms["2"]["name"]],
-            "choices": self.rooms["2"]["choices"]
+            "story": self.story[self.rooms["3"]["name"]],
+            "choices": self.rooms["3"]["choices"]
         }
-        
-        print("REMAINING CHARACTERS:\n-----------------------------------------------------------------------------\n{}".format(self.remaining_characters))
 
+        self.remaining_characters.pop()
+
+        self.trap_room = {
+            "player": {
+                "name": player,
+                "doomsday": 0,
+                "clue": self.rooms["4"]["clues"]["clue1"]
+            },
+            "level": 4,
+            "room": self.rooms["4"],
+            "characters": self.remaining_characters,
+            "story": self.story[self.rooms["4"]["name"]],
+            "choices": self.rooms["4"]["choices"]
+        }
+
+        self.remaining_characters.pop()
+
+        self.dilemma_room = {
+            "player": {
+                "name": player,
+                "doomsday": 0,
+                "clue": self.rooms["5"]["clues"]["clue1"]
+            },
+            "level": 5,
+            "room": self.rooms["5"],
+            "characters": self.remaining_characters,
+            "story": self.story[self.rooms["5"]["name"]],
+            "choices": self.rooms["5"]["choices"]
+        }
 
     def init_rooms(self):
         with open("data/rooms.json") as f:

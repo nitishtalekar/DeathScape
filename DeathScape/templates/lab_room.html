@@ -18,20 +18,20 @@
             <h1>Death Scape</h1>
         </div>
         <div class="mb-5">
-            <img src="{{ url_for('static', filename='img/default_room.jpg')}}" style="width: 50%">
+            <img src="{{ url_for('static', filename='img/lab_room.jpg')}}" style="width: 50%">
         </div>
         <div class="mb-5">
-            <h2>{{data.room.name}}</h2>
+            <h2>{{data.room.room.name}}</h2>
         </div>
         <div class="mb-5" id="story">
-            {% for story in data.story %}
+            {% for story in data.room.story %}
             <div class="mb-2">
                 <p>{{story}}</p>
             </div>
             {% endfor %}
         </div>
         <div id="choices">
-            {% for choice in data.choices %}
+            {% for choice in data.room.choices %}
             <div class="mb-2">
                 <button class="btn btn-light" id="button-{{choice.index}}" type="submit" name="choice"
                     value="{{choice.name}}">

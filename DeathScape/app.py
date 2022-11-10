@@ -84,6 +84,60 @@ def lab_room():
         return render_template("lab_room.html", data=data)
 
 
+@app.route("/deathscape/justice_room", methods=["GET", "POST"])
+def justice_room():
+    global story
+    player = request.args.get("player")
+
+    if player == None:
+        return redirect("/")
+    else:
+        story = Story(player)
+
+        data = {
+            "current": story.current,
+            "room": story.justice_room
+        }
+
+        return render_template("justice_room.html", data=data)
+
+
+@app.route("/deathscape/trap_room", methods=["GET", "POST"])
+def trap_room():
+    global story
+    player = request.args.get("player")
+
+    if player == None:
+        return redirect("/")
+    else:
+        story = Story(player)
+
+        data = {
+            "current": story.current,
+            "room": story.trap_room
+        }
+
+        return render_template("trap_room.html", data=data)
+
+
+@app.route("/deathscape/dilemma_room", methods=["GET", "POST"])
+def dilemma_room():
+    global story
+    player = request.args.get("player")
+
+    if player == None:
+        return redirect("/")
+    else:
+        story = Story(player)
+
+        data = {
+            "current": story.current,
+            "room": story.dilemma_room
+        }
+
+        return render_template("dilemma_room.html", data=data)
+
+
 # ChatBot responses
 # @app.route("/chat")
 # def get_bot_response():
