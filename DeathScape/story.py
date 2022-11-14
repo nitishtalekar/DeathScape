@@ -1,5 +1,8 @@
 import json
 import random
+from chatterbot import ChatBot
+from chatterbot.conversation import Statement
+from chatterbot.trainers import ChatterBotCorpusTrainer
 
 
 class Story:
@@ -20,7 +23,43 @@ class Story:
             "story": self.story[self.rooms["1"]["name"]],
             "choices": self.rooms["1"]["choices"]
         }
-
+        self.chatbots = {}
+        self.bot = ""
+        self.initChat()
+        self.msg = []
+        
+    #For chatting Purposes
+    def initChat(self):
+        # create ChatBot
+        sk = ChatBot("SarahKrista")
+        nj = ChatBot("NataliaJonathan")
+        am = ChatBot("ArjunManoj")
+        ty = ChatBot("TaimoYong")
+        ey = ChatBot("EsterYura")
+        
+        # create ChatBot trainer
+        sk_trainer = ChatterBotCorpusTrainer(sk)
+        nj_trainer = ChatterBotCorpusTrainer(nj)
+        am_trainer = ChatterBotCorpusTrainer(am)
+        ty_trainer = ChatterBotCorpusTrainer(ty)
+        ey_trainer = ChatterBotCorpusTrainer(ey)
+        
+        self.chatbots["SarahKrista"] = sk
+        self.chatbots["NataliaJonathan"] = nj
+        self.chatbots["ArjunManoj"] = am
+        self.chatbots["TaimoYong"] = ty
+        self.chatbots["EsterYura"] = ey
+        
+    def chat_npc(self,npc_name):
+        self.npc = npc_name
+        self.bot = self.chatbots[npc_name]
+        
+    def end_convo(self):
+        print(self.msg)
+        #USE IT FOR LOGGING
+        self.msg = []
+        self.bot = ""
+        
     def init_rooms(self):
         with open("data/rooms.json") as f:
             room_names = json.load(f)
@@ -122,3 +161,6 @@ class Story:
         replaced = replaced.replace("%DEAD%", dead)
 
         return replaced
+        
+    
+        

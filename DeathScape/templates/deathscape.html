@@ -41,6 +41,22 @@
         </div>
         {% endfor %}
       </form>
+      <form action="/deathscape?player={{data.player.name}}" method="post">
+        <button type="submit" name="talk_npc" value="SarahKrista">Talk to Sarah Krista</button>
+        <button type="submit" name="talk_npc" value="NataliaJonathan">Talk to Natalia Jonathan</button>
+        <button type="submit" name="talk_npc" value="ArjunManoj">Talk to Arjun Manoj</button>
+        <button type="submit" name="talk_npc" value="TaimoYong">Talk to Taimo Yong</button>
+        <button type="submit" name="talk_npc" value="EsterYura">Talk to Ester Yura</button>
+        <br><br>
+        {% for message in msg %}
+          {{message.name}} : {{message.text}} <br>
+        {% endfor %}
+        {% if talk %}
+          <textarea name="msg" rows="8" cols="80"></textarea>
+          <button type="submit" name="talk_npc" value="msg">Submit</button><br>
+          <button type="submit" name="talk_npc" value="end_convo">End</button>
+        {% endif %}
+      </form>
     </div>
 </body>
 
