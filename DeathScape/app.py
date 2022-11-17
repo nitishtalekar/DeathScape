@@ -17,23 +17,28 @@ def page_not_found(e):
     return render_template("page_not_found.html"), 404
 
 
-@app.route("/", methods=["GET", "POST"])
+@app.route("/")
 def index():
-    if request.method == "POST":
-        player = request.form["player_name"]
-
-        return redirect("/deathscape?player={}".format(player))
-    else:
-        return render_template("index.html")
+    return redirect("/deathscape")
 
 
 @app.route("/deathscape", methods=["GET", "POST"])
 def deathscape():
+    if request.method == "POST":
+        player = request.form["player_name"]
+
+        return redirect("/deathscape/button_room?player={}".format(player))
+    else:
+        return render_template("index.html")
+
+
+@app.route("/deathscape/button_room", methods=["GET", "POST"])
+def button_room():
     global story
     player = request.args.get("player")
     talk = False
     if player == None:
-        return redirect("/")
+        return redirect("/deathscape")
     else:
         if request.method == "POST":
             if "choice" in request.form:
@@ -58,25 +63,7 @@ def deathscape():
         elif request.method == "GET":
             story = Story(player)
 
-        return render_template("deathscape.html", data=story.current, talk=talk, msg=story.msg)
-
-
-@app.route("/deathscape/button_room", methods=["GET", "POST"])
-def button_room():
-    global story
-    player = request.args.get("player")
-
-    if player == None:
-        return redirect("/")
-    else:
-        story = Story(player)
-
-        data = {
-            "current": story.current,
-            "room": story.button_room
-        }
-
-        return render_template("button_room.html", data=data)
+        return render_template("button_room.html", data=story.current, talk=talk, msg=story.msg)
 
 
 @app.route("/deathscape/lab_room", methods=["GET", "POST"])

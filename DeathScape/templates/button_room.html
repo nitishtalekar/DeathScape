@@ -21,25 +21,56 @@
             <img src="{{ url_for('static', filename='img/button_room.jpg')}}" style="width: 50%">
         </div>
         <div class="mb-5">
-            <h2>{{data.room.room.name}}</h2>
+            <h2>{{data.room.name}}</h2>
         </div>
         <div class="mb-5" id="story">
-            {% for story in data.room.story %}
+            {% for story in data.story %}
             <div class="mb-2">
                 <p>{{story}}</p>
             </div>
             {% endfor %}
         </div>
-        <div id="choices">
-            {% for choice in data.room.choices %}
+        <form action="/deathscape/button_room?player={{data.player.name}}" method="post">
+            {% for choice in data.choices %}
             <div class="mb-2">
-                <button class="btn btn-light" id="button-{{choice.index}}" type="submit" name="choice"
-                    value="{{choice.name}}">
+                <button class="btn btn-light" type="submit" name="choice" value="{{choice.name}}">
                     {{choice.name}}
                 </button>
             </div>
             {% endfor %}
-        </div>
+        </form>
+        <form action="/deathscape/button_room?player={{data.player.name}}" method="post">
+            {% for character in data.characters %}
+            <div class="mb-2">
+                <button class="btn btn-light" type="submit" name="character" value="{{character}}">
+                    Talk to {{character}}
+                </button>
+            </div>
+            {% endfor %}
+
+            {% for message in msg %}
+            <div>
+                {{message.name}}: {{message.text}}
+            </div>
+            {% endfor %}
+            {% if talk %}
+            <div>
+                <div class="mb-2">
+                    <textarea class="form-control" name="msg"></textarea>
+                </div>
+                <div class="mb-2">
+                    <button class="btn btn-light" type="submit" name="character" value="msg">
+                        Submit
+                    </button>
+                </div>
+                <div class="mb-2">
+                    <button class="btn btn-light" type="submit" name="character" value="end_convo">
+                        End
+                    </button>
+                </div>
+            </div>
+            {% endif %}
+        </form>
 </body>
 
 </html>
