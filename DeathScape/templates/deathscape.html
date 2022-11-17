@@ -18,7 +18,7 @@
       <h1>Death Scape</h1>
     </div>
     <div class="mb-5">
-      <img src="{{ url_for('static', filename='img/default_room.jpg')}}" style="width: 50%">
+      <img src="{{ url_for('static', filename='img/button_room.jpg')}}" style="width: 50%">
     </div>
     <div class="mb-5">
       <h2>{{data.room.name}}</h2>
@@ -49,12 +49,12 @@
         <button type="submit" name="talk_npc" value="EsterYura">Talk to Ester Yura</button>
         <br><br>
         {% for message in msg %}
-          {{message.name}} : {{message.text}} <br>
+        {{message.name}} : {{message.text}} <br>
         {% endfor %}
         {% if talk %}
-          <textarea name="msg" rows="8" cols="80"></textarea>
-          <button type="submit" name="talk_npc" value="msg">Submit</button><br>
-          <button type="submit" name="talk_npc" value="end_convo">End</button>
+        <textarea name="msg" rows="8" cols="80"></textarea>
+        <button type="submit" name="talk_npc" value="msg">Submit</button><br>
+        <button type="submit" name="talk_npc" value="end_convo">End</button>
         {% endif %}
       </form>
     </div>
