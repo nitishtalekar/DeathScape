@@ -30,34 +30,47 @@
       </div>
       {% endfor %}
     </div>
-    <div id="choices">
-      <form action="/deathscape?player={{data.player.name}}" method="post">
-        {% for choice in data.choices %}
+    <form action="/deathscape?player={{data.player.name}}" method="post">
+      {% for choice in data.choices %}
+      <div class="mb-2">
+        <button class="btn btn-light" type="submit" name="choice" value="{{choice.name}}">
+          {{choice.name}}
+        </button>
+      </div>
+      {% endfor %}
+    </form>
+    <form action="/deathscape?player={{data.player.name}}" method="post">
+      {% for character in data.characters %}
+      <div class="mb-2">
+        <button class="btn btn-light" type="submit" name="character" value="{{character}}">
+          Talk to {{character}}
+        </button>
+      </div>
+      {% endfor %}
+
+      {% for message in msg %}
+      <div>
+        {{message.name}}: {{message.text}}
+      </div>
+      {% endfor %}
+      {% if talk %}
+      <div>
         <div class="mb-2">
-          <button class="btn btn-light" id="button-{{choice.index}}" type="submit" name="choice" value="{{choice.name}}"
-            onsubmit="handle(`button-{{choice.index}}`, `{{choice.name}}`)">
-            {{choice.name}}
+          <textarea class="form-control" name="msg"></textarea>
+        </div>
+        <div class="mb-2">
+          <button class="btn btn-light" type="submit" name="character" value="msg">
+            Submit
           </button>
         </div>
-        {% endfor %}
-      </form>
-      <form action="/deathscape?player={{data.player.name}}" method="post">
-        <button type="submit" name="talk_npc" value="SarahKrista">Talk to Sarah Krista</button>
-        <button type="submit" name="talk_npc" value="NataliaJonathan">Talk to Natalia Jonathan</button>
-        <button type="submit" name="talk_npc" value="ArjunManoj">Talk to Arjun Manoj</button>
-        <button type="submit" name="talk_npc" value="TaimoYong">Talk to Taimo Yong</button>
-        <button type="submit" name="talk_npc" value="EsterYura">Talk to Ester Yura</button>
-        <br><br>
-        {% for message in msg %}
-        {{message.name}} : {{message.text}} <br>
-        {% endfor %}
-        {% if talk %}
-        <textarea name="msg" rows="8" cols="80"></textarea>
-        <button type="submit" name="talk_npc" value="msg">Submit</button><br>
-        <button type="submit" name="talk_npc" value="end_convo">End</button>
-        {% endif %}
-      </form>
-    </div>
+        <div class="mb-2">
+          <button class="btn btn-light" type="submit" name="character" value="end_convo">
+            End
+          </button>
+        </div>
+      </div>
+      {% endif %}
+    </form>
 </body>
 
 </html>

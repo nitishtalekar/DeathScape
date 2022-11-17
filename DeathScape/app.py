@@ -14,7 +14,7 @@ trainer.train("chatterbot.corpus.english")
 
 @app.errorhandler(404)
 def page_not_found(e):
-    return render_template('page_not_found.html'), 404
+    return render_template("page_not_found.html"), 404
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -39,8 +39,8 @@ def deathscape():
             if "choice" in request.form:
                 story.set_choices(request.form["choice"])
 
-            if "talk_npc" in request.form:
-                npc = request.form["talk_npc"]
+            if "character" in request.form:
+                npc = request.form["character"]
                 talk = True
                 if npc == "end_convo":
                     story.end_convo()
@@ -151,18 +151,15 @@ def dilemma_room():
         return render_template("dilemma_room.html", data=data)
 
 
-@app.route("/chat", methods=["GET", "POST"])
+@app.route("/chat", methods=["POST"])
 def get_bot_response():
-    if request.method == "POST":
-        userText = request.form["msg"]
-        print(userText)
-        resp = str(chatbot.get_response(userText))
-        print(resp)
-        print("----------")
-        return render_template("chat.html", response=resp)
+    userText = request.form["msg"]
+    resp = str(chatbot.get_response(userText))
 
-    resp = "HELLO THERE"
-    return render_template("chat.html", response=resp)
+    print(userText)
+    print(resp)
+
+    return render_template("chat.html", userText=userText, response=resp)
 
 
 if __name__ == "__main__":

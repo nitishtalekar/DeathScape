@@ -7,11 +7,11 @@ from chatterbot.conversation import Statement
 from chatterbot.trainers import ChatterBotCorpusTrainer
 
 # create ChatBot
-sk = ChatBot("SarahKrista")
-nj = ChatBot("NataliaJonathan")
-am = ChatBot("ArjunManoj")
-ty = ChatBot("TaimoYong")
-ey = ChatBot("EsterYura")
+sk = ChatBot("Sarah Krista")
+nj = ChatBot("Natalia Jonathan")
+am = ChatBot("Arjun Manoj")
+ty = ChatBot("Taimo Yong")
+ey = ChatBot("Ester Yura")
 
 # create ChatBot trainer
 sk_trainer = ChatterBotCorpusTrainer(sk)
@@ -32,12 +32,12 @@ ey_trainer = ChatterBotCorpusTrainer(ey)
 # ey_trainer.train("chatterbot.corpus.english")
 
 while True:
-    npc = int(input("Enter:\n 1: SarahKrista\n 2: NataliaJonathan\n 3: ArjunManoj\n 4: TaimoYong\n 5: EsterYura\n"))
+    npc = int(input("Enter:\n 1: Sarah Krista\n 2: Natalia Jonathan\n 3: Arjun Manoj\n 4: Taimo Yong\n 5: Ester Yura\n"))
     
     if npc == 0:
         break
     
-    name_list = {1: "SarahKrista", 2: "NataliaJonathan", 3: "ArjunManoj", 4: "TaimoYong", 5: "EsterYura"}
+    name_list = {1: "Sarah Krista", 2: "Natalia Jonathan", 3: "Arjun Manoj", 4: "Taimo Yong", 5: "Ester Yura"}
     chat_list = {1: sk,2:nj,3:am,4:ty,5:ey}
 
     bot = chat_list[npc]

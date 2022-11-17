@@ -29,7 +29,7 @@ class Story:
         self.initChat()
         self.msg = []
 
-        self.init_choices(self.current["choices"])
+        self.init_choices()
 
         # For demo purposes only
         # self.remaining_characters = [
@@ -107,36 +107,6 @@ class Story:
         #     "story": self.story[self.rooms["5"]["name"]],
         #     "choices": self.rooms["5"]["choices"]
         # }
-
-    # For chatting Purposes
-    def initChat(self):
-        sk = ChatBot("SarahKrista")
-        nj = ChatBot("NataliaJonathan")
-        am = ChatBot("ArjunManoj")
-        ty = ChatBot("TaimoYong")
-        ey = ChatBot("EsterYura")
-
-        sk_trainer = ChatterBotCorpusTrainer(sk)
-        nj_trainer = ChatterBotCorpusTrainer(nj)
-        am_trainer = ChatterBotCorpusTrainer(am)
-        ty_trainer = ChatterBotCorpusTrainer(ty)
-        ey_trainer = ChatterBotCorpusTrainer(ey)
-
-        self.chatbots["SarahKrista"] = sk
-        self.chatbots["NataliaJonathan"] = nj
-        self.chatbots["ArjunManoj"] = am
-        self.chatbots["TaimoYong"] = ty
-        self.chatbots["EsterYura"] = ey
-
-    def chat_npc(self, npc_name):
-        self.npc = npc_name
-        self.bot = self.chatbots[npc_name]
-
-    def end_convo(self):
-        print(self.msg)
-
-        self.msg = []
-        self.bot = ""
 
     def init_rooms(self):
         with open("data/rooms.json") as f:
@@ -237,6 +207,46 @@ class Story:
 
         return replaced
 
+    def initChat(self):
+        sk = ChatBot("Sarah Krista")
+        nj = ChatBot("Natalia Jonathan")
+        am = ChatBot("Arjun Manoj")
+        ty = ChatBot("Taimo Yong")
+        ey = ChatBot("Ester Yura")
+
+        sk_trainer = ChatterBotCorpusTrainer(sk)
+        nj_trainer = ChatterBotCorpusTrainer(nj)
+        am_trainer = ChatterBotCorpusTrainer(am)
+        ty_trainer = ChatterBotCorpusTrainer(ty)
+        ey_trainer = ChatterBotCorpusTrainer(ey)
+
+        self.chatbots["Sarah Krista"] = sk
+        self.chatbots["Natalia Jonathan"] = nj
+        self.chatbots["Arjun Manoj"] = am
+        self.chatbots["Taimo Yong"] = ty
+        self.chatbots["Ester Yura"] = ey
+
+    def chat_npc(self, npc_name):
+        self.npc = npc_name
+        self.bot = self.chatbots[npc_name]
+
+    def end_convo(self):
+        print(self.msg)
+
+        self.msg = []
+        self.bot = ""
+
+    def init_choices(self):
+        for choice in self.current["choices"]:
+            self.add_parent(choice, None)
+
+    def add_parent(self, node, parent):
+        node["parent"] = parent
+        if not node.get("next"):
+            return
+        for child in node["next"]:
+            self.add_parent(child, node["name"])
+
     # For demo purposes only
     # def get_death_order(self):
     #     order = []
@@ -256,14 +266,3 @@ class Story:
     #                    key=lambda info: info["doomsday"])
 
     #     return order
-
-    def init_choices(self, choices):
-        for choice in choices:
-            self.add_parent(choice, None)
-
-    def add_parent(self, node, parent):
-        node['parent'] = parent
-        if not node.get('next'):
-            return
-        for child in node['next']:
-            self.add_parent(child, node)
