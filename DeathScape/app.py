@@ -41,10 +41,19 @@ def button_room():
     else:
         global story
         talk = False
+        solved = False
 
         if request.method == "POST":
             if "choice" in request.form:
-                story.set_choices(request.form["choice"])
+                choice = request.form["choice"]
+
+                if choice == "Talk to a character":
+                    story.set_choices(choice)
+                else:
+                    story.set_choices(choice)
+                        
+                    if "golden button" in choice:
+                        solved = True
             elif "character" in request.form:
                 npc = request.form["character"]
                 talk = True
@@ -64,10 +73,12 @@ def button_room():
                     story.msg.append(npc_chat)
                 else:
                     story.chat_npc(npc)
+            elif "next" in request.form:
+                return redirect("/deathscape/lab_room?player={}".format(player))
         elif request.method == "GET":
             story = Story(player)
 
-        return render_template("button_room.html", data=story.current, talk=talk, msg=story.msg)
+        return render_template("button_room.html", data=story.current, talk=talk, msg=story.msg, solved=solved)
 
 
 @app.route("/deathscape/lab_room", methods=["GET", "POST"])

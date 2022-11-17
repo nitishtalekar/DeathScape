@@ -30,6 +30,7 @@
             </div>
             {% endfor %}
         </div>
+        {% if not solved %}
         {% if not data.show_characters %}
         <div>
             <form action="/deathscape/button_room?player={{data.player.name}}" method="post">
@@ -86,6 +87,14 @@
                 {% endif %}
             </form>
         </div>
+        {% endif %}
+        {% endif %}
+        {% if solved %}
+        <form action="/deathscape/lab_room?player={{data.player.name}}" method="post">
+            <div>
+                <button class="btn btn-light" type="submit" name="next">Next</button>
+            </div>
+        </form>
         {% endif %}
 </body>
 

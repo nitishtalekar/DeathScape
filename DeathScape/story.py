@@ -189,7 +189,7 @@ class Story:
                 if "next" in choice:
                     next = choice["next"]
                 else:
-                    next = self.rooms["1"]["choices"]
+                    next = self.rooms["{}".format(self.current["level"])]["choices"]
 
                 for item in next:
                     replaced.append({
