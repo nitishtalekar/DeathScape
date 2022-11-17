@@ -21,92 +21,85 @@ class Story:
             "room": self.rooms["1"],
             "characters": {character: info for character, info in self.characters.items() if info["alive"]},
             "story": self.story[self.rooms["1"]["name"]],
-            "choices": self.rooms["1"]["choices"]
+            "choices": self.rooms["1"]["choices"],
+            "show_characters": False
         }
-
-        self.chatbots = {}
-        self.bot = ""
-        self.initChat()
-        self.msg = []
 
         self.init_choices()
 
+        self.chatbots = {}
+        self.bot = ""
+        self.msg = []
+
+        self.init_chat()
+
         # For demo purposes only
-        # self.remaining_characters = [
-        #     character for character, info in self.characters.items() if info["alive"]]
+        self.remaining_characters = [
+            character for character, info in self.characters.items() if info["alive"]]
 
-        # self.button_room = {
-        #     "player": {
-        #         "name": player,
-        #         "doomsday": 0,
-        #         "clue": self.rooms["1"]["clues"]["clue1"]
-        #     },
-        #     "level": 1,
-        #     "room": self.rooms["1"],
-        #     "characters": self.remaining_characters,
-        #     "story": self.story[self.rooms["1"]["name"]],
-        #     "choices": self.rooms["1"]["choices"]
-        # }
+        self.remaining_characters.pop()
 
-        # self.remaining_characters.pop()
+        self.lab_room = {
+            "player": {
+                "name": player,
+                "doomsday": 0,
+                "clue": ""
+            },
+            "level": 2,
+            "room": self.rooms["2"],
+            "characters": self.remaining_characters,
+            "story": self.story[self.rooms["2"]["name"]],
+            "choices": self.rooms["2"]["choices"],
+            "show_characters": False
+        }
 
-        # self.lab_room = {
-        #     "player": {
-        #         "name": player,
-        #         "doomsday": 0,
-        #         "clue": ""
-        #     },
-        #     "level": 2,
-        #     "room": self.rooms["2"],
-        #     "characters": self.remaining_characters,
-        #     "story": self.story[self.rooms["2"]["name"]],
-        #     "choices": self.rooms["2"]["choices"]
-        # }
+        self.remaining_characters.pop()
 
-        # self.remaining_characters.pop()
+        self.justice_room = {
+            "player": {
+                "name": player,
+                "doomsday": 0,
+                "clue": ""
+            },
+            "level": 3,
+            "room": self.rooms["3"],
+            "characters": self.remaining_characters,
+            "story": self.story[self.rooms["3"]["name"]],
+            "choices": self.rooms["3"]["choices"],
+            "show_characters": False
+        }
 
-        # self.justice_room = {
-        #     "player": {
-        #         "name": player,
-        #         "doomsday": 0,
-        #         "clue": ""
-        #     },
-        #     "level": 3,
-        #     "room": self.rooms["3"],
-        #     "characters": self.remaining_characters,
-        #     "story": self.story[self.rooms["3"]["name"]],
-        #     "choices": self.rooms["3"]["choices"]
-        # }
+        self.remaining_characters.pop()
 
-        # self.remaining_characters.pop()
+        self.trap_room = {
+            "player": {
+                "name": player,
+                "doomsday": 0,
+                "clue": self.rooms["4"]["clues"]["clue1"]
+            },
+            "level": 4,
+            "room": self.rooms["4"],
+            "characters": self.remaining_characters,
+            "story": self.story[self.rooms["4"]["name"]],
+            "choices": self.rooms["4"]["choices"],
+            "show_characters": False
+        }
 
-        # self.trap_room = {
-        #     "player": {
-        #         "name": player,
-        #         "doomsday": 0,
-        #         "clue": self.rooms["4"]["clues"]["clue1"]
-        #     },
-        #     "level": 4,
-        #     "room": self.rooms["4"],
-        #     "characters": self.remaining_characters,
-        #     "story": self.story[self.rooms["4"]["name"]],
-        #     "choices": self.rooms["4"]["choices"]
-        # }
+        self.remaining_characters.pop()
 
-        # self.remaining_characters.pop()
-
-        # self.dilemma_room = {
-        #     "player": {
-        #         "name": player,
-        #         "doomsday": 0,
-        #         "clue": self.rooms["5"]["clues"]["clue1"]
-        #     },
-        #     "level": 5,
-        #     "room": self.rooms["5"],
-        #     "characters": self.remaining_characters,
-        #     "story": self.story[self.rooms["5"]["name"]],
-        #     "choices": self.rooms["5"]["choices"]
-        # }
+        self.dilemma_room = {
+            "player": {
+                "name": player,
+                "doomsday": 0,
+                "clue": self.rooms["5"]["clues"]["clue1"]
+            },
+            "level": 5,
+            "room": self.rooms["5"],
+            "characters": self.remaining_characters,
+            "story": self.story[self.rooms["5"]["name"]],
+            "choices": self.rooms["5"]["choices"],
+            "show_characters": False
+        }
 
     def init_rooms(self):
         with open("data/rooms.json") as f:
@@ -128,9 +121,10 @@ class Story:
             characters = json.load(f)
 
         for index, character in zip(range(len(characters)), characters):
+            characters[character]["index"] = index + 1
             characters[character]["alive"] = True
             characters[character]["clue"] = self.rooms["1"]["clues"]["clue{}".format(
-                index + 2)]
+                characters[character]["index"] + 1)]
 
             for character_feature in character_features:
                 characters[character][character_feature] = random.choice(
@@ -155,12 +149,38 @@ class Story:
 
         return story
 
+    def init_choices(self):
+        for choice in self.current["choices"]:
+            self.add_parent(choice, None)
+
+    def init_chat(self):
+        sk = ChatBot("Sarah Krista")
+        nj = ChatBot("Natalia Jonathan")
+        am = ChatBot("Arjun Manoj")
+        ty = ChatBot("Taimo Yong")
+        ey = ChatBot("Ester Yura")
+
+        # sk_trainer = ChatterBotCorpusTrainer(sk)
+        # nj_trainer = ChatterBotCorpusTrainer(nj)
+        # am_trainer = ChatterBotCorpusTrainer(am)
+        # ty_trainer = ChatterBotCorpusTrainer(ty)
+        # ey_trainer = ChatterBotCorpusTrainer(ey)
+
+        self.chatbots["Sarah Krista"] = sk
+        self.chatbots["Natalia Jonathan"] = nj
+        self.chatbots["Arjun Manoj"] = am
+        self.chatbots["Taimo Yong"] = ty
+        self.chatbots["Ester Yura"] = ey
+
     def set_choices(self, current):
+        if current == "Talk to a character":
+            self.current["show_characters"] = True
         for choice in self.current["choices"]:
             if choice["name"] == current:
                 replaced = self.replace_placeholders(
                     "\n{}".format(choice["text"]))
-                if replaced not in self.current["story"]:
+
+                if replaced not in self.current["story"] or replaced == "\nYou decide to talk to a character.":
                     self.current["story"].append(replaced)
 
                 replaced = []
@@ -188,7 +208,6 @@ class Story:
 
     def replace_placeholders(self, text):
         replaced = text
-        num_characters = 1
         max_doomsday = 0
         dead = ""
 
@@ -196,9 +215,8 @@ class Story:
 
         for character, info in self.current["characters"].items():
             replaced = replaced.replace(
-                "%NPC{}%".format(num_characters), character).replace(
-                "%CLUE{}%".format(num_characters), info["clue"])
-            num_characters += 1
+                "%NPC{}%".format(info["index"]), character).replace(
+                "%CLUE{}%".format(info["index"]), info["clue"])
 
             if info["doomsday"] > max_doomsday:
                 dead = character.split(" ")[0]
@@ -207,45 +225,44 @@ class Story:
 
         return replaced
 
-    def initChat(self):
-        sk = ChatBot("Sarah Krista")
-        nj = ChatBot("Natalia Jonathan")
-        am = ChatBot("Arjun Manoj")
-        ty = ChatBot("Taimo Yong")
-        ey = ChatBot("Ester Yura")
-
-        sk_trainer = ChatterBotCorpusTrainer(sk)
-        nj_trainer = ChatterBotCorpusTrainer(nj)
-        am_trainer = ChatterBotCorpusTrainer(am)
-        ty_trainer = ChatterBotCorpusTrainer(ty)
-        ey_trainer = ChatterBotCorpusTrainer(ey)
-
-        self.chatbots["Sarah Krista"] = sk
-        self.chatbots["Natalia Jonathan"] = nj
-        self.chatbots["Arjun Manoj"] = am
-        self.chatbots["Taimo Yong"] = ty
-        self.chatbots["Ester Yura"] = ey
-
-    def chat_npc(self, npc_name):
-        self.npc = npc_name
-        self.bot = self.chatbots[npc_name]
-
-    def end_convo(self):
-        print(self.msg)
-
-        self.msg = []
-        self.bot = ""
-
-    def init_choices(self):
-        for choice in self.current["choices"]:
-            self.add_parent(choice, None)
-
     def add_parent(self, node, parent):
         node["parent"] = parent
         if not node.get("next"):
             return
         for child in node["next"]:
             self.add_parent(child, node["name"])
+
+    def add_new_character_to_story(self, new_character):
+        for character in self.current["characters"]:
+            if character == new_character:
+                replaced = self.replace_placeholders(
+                    self.current["room"]["actions"]["npc{}".format(self.current["characters"][character]["index"])])
+                self.current["story"].append(replaced)
+
+                if self.current["characters"][character]["description"] not in self.current["story"]:
+                    self.current["story"].append(
+                        self.current["characters"][character]["description"])
+
+                return
+
+    def chat_npc(self, npc_name):
+        self.npc = npc_name
+        self.bot = self.chatbots[npc_name]
+
+    def end_convo(self):
+        self.current["show_characters"] = False
+
+        for message in self.msg:
+            self.current["story"].append(
+                self.replace_placeholders("\n{}: {}".format(message["name"] if message["name"] != self.current["player"]["name"] else "You", message["text"])))
+
+        for character in self.current["characters"]:
+            if character == self.npc:
+                self.current["story"].append("\n{}".format(self.replace_placeholders(
+                    self.current["characters"][character]["clue"])))
+
+        self.msg = []
+        self.bot = ""
 
     # For demo purposes only
     # def get_death_order(self):

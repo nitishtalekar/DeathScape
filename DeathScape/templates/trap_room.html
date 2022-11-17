@@ -12,13 +12,13 @@
 </head>
 
 <body
-    onload="preprocess(`{{data.player}}`, `{{data.level}}`, `{{data.room}}`, `{{data.characters}}`, `{{data.story}}`, `{{data.choices}}`)">
+    onload="preprocess(`{{data.player}}`, `{{data.level}}`, `{{data.room}}`, `{{data.characters}}`, `{{data.story}}`, `{{data.choices}}`, `{{data.show_characters}}`)">
     <div class="text-white text-center vertical-center container margins">
         <div class="mb-5">
             <h1>Death Scape</h1>
         </div>
         <div class="mb-5">
-            <img src="{{ url_for('static', filename='img/trap_room.jpg')}}" style="width: 50%">
+            <img src="{{ url_for('static', filename='img/trap_room.jpg')}}">
         </div>
         <div class="mb-5">
             <h2>{{data.room.room.name}}</h2>
@@ -33,8 +33,7 @@
         <div id="choices">
             {% for choice in data.room.choices %}
             <div class="mb-2">
-                <button class="btn btn-light" id="button-{{choice.index}}" type="submit" name="choice"
-                    value="{{choice.name}}">
+                <button class="btn btn-light" type="submit" name="choice" value="{{choice.name}}">
                     {{choice.name}}
                 </button>
             </div>

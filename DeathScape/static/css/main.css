@@ -5,7 +5,23 @@ body {
   overflow: auto;
 }
 
+img {
+  width: 50%
+}
+
+textarea {
+  border-radius: 5px;
+  padding: 10px;
+}
+
 .margins {
   margin-top: 5%;
   margin-bottom: 5%;
+}
+
+.chat {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1%;
 }

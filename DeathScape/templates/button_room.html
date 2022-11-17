@@ -12,13 +12,13 @@
 </head>
 
 <body
-    onload="preprocess(`{{data.player}}`, `{{data.level}}`, `{{data.room}}`, `{{data.characters}}`, `{{data.story}}`, `{{data.choices}}`)">
+    onload="preprocess(`{{data.player}}`, `{{data.level}}`, `{{data.room}}`, `{{data.characters}}`, `{{data.story}}`, `{{data.choices}}`, `{{data.show_characters}}`)">
     <div class="text-white text-center vertical-center container margins">
         <div class="mb-5">
             <h1>Death Scape</h1>
         </div>
         <div class="mb-5">
-            <img src="{{ url_for('static', filename='img/button_room.jpg')}}" style="width: 50%">
+            <img src="{{ url_for('static', filename='img/button_room.jpg')}}">
         </div>
         <div class="mb-5">
             <h2>{{data.room.name}}</h2>
@@ -26,51 +26,67 @@
         <div class="mb-5" id="story">
             {% for story in data.story %}
             <div class="mb-2">
-                <p>{{story}}</p>
+                {{story}}
             </div>
             {% endfor %}
         </div>
-        <form action="/deathscape/button_room?player={{data.player.name}}" method="post">
-            {% for choice in data.choices %}
-            <div class="mb-2">
-                <button class="btn btn-light" type="submit" name="choice" value="{{choice.name}}">
-                    {{choice.name}}
-                </button>
-            </div>
-            {% endfor %}
-        </form>
-        <form action="/deathscape/button_room?player={{data.player.name}}" method="post">
-            {% for character in data.characters %}
-            <div class="mb-2">
-                <button class="btn btn-light" type="submit" name="character" value="{{character}}">
-                    Talk to {{character}}
-                </button>
-            </div>
-            {% endfor %}
-
-            {% for message in msg %}
-            <div>
-                {{message.name}}: {{message.text}}
-            </div>
-            {% endfor %}
-            {% if talk %}
-            <div>
+        {% if not data.show_characters %}
+        <div>
+            <form action="/deathscape/button_room?player={{data.player.name}}" method="post">
+                {% for choice in data.choices %}
                 <div class="mb-2">
-                    <textarea class="form-control" name="msg"></textarea>
-                </div>
-                <div class="mb-2">
-                    <button class="btn btn-light" type="submit" name="character" value="msg">
-                        Submit
+                    <button class="btn btn-light" type="submit" name="choice" value="{{choice.name}}">
+                        {{choice.name}}
                     </button>
                 </div>
+                {% endfor %}
+            </form>
+        </div>
+        {% endif %}
+        {% if data.show_characters %}
+        <div>
+            <form action="/deathscape/button_room?player={{data.player.name}}" method="post">
+                {% if not talk %}
+                {% for character in data.characters %}
                 <div class="mb-2">
-                    <button class="btn btn-light" type="submit" name="character" value="end_convo">
-                        End
+                    <button class="btn btn-light" type="submit" name="character" value="{{character}}">
+                        Talk to {{character}}
                     </button>
                 </div>
-            </div>
-            {% endif %}
-        </form>
+                {% endfor %}
+                {% endif %}
+                <div class="mb-5">
+                    {% for message in msg %}
+                    <div class="mb-2">
+                        {{message.name}}: {{message.text}}
+                    </div>
+                    {% endfor %}
+                </div>
+                {% if talk %}
+                <div>
+                    <div class="mb-5 chat">
+                        <div>
+                            <label for="msg">You:</label>
+                        </div>
+                        <div>
+                            <textarea name="msg" rows="1" cols="50"></textarea>
+                        </div>
+                        <div>
+                            <button class="btn btn-light" type="submit" name="character" value="msg">
+                                Talk
+                            </button>
+                        </div>
+                    </div>
+                    <div class="mb-2">
+                        <button class="btn btn-light" type="submit" name="character" value="end_convo">
+                            End Conversation
+                        </button>
+                    </div>
+                </div>
+                {% endif %}
+            </form>
+        </div>
+        {% endif %}
 </body>
 
 </html>

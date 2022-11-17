@@ -34,19 +34,23 @@ def deathscape():
 
 @app.route("/deathscape/button_room", methods=["GET", "POST"])
 def button_room():
-    global story
     player = request.args.get("player")
-    talk = False
+
     if player == None:
         return redirect("/deathscape")
     else:
+        global story
+        talk = False
+
         if request.method == "POST":
             if "choice" in request.form:
                 story.set_choices(request.form["choice"])
-
-            if "character" in request.form:
+            elif "character" in request.form:
                 npc = request.form["character"]
                 talk = True
+
+                story.add_new_character_to_story(request.form["character"])
+
                 if npc == "end_convo":
                     story.end_convo()
                     talk = False

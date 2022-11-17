@@ -9,12 +9,12 @@
     "npc5": "%NPC5% is in a corner muttering to themselves."
   },
   "clues": {
-    "clue1": "The color of human blood should go first.",
-    "clue2": "The lucky color of the day should go first.",
-    "clue3": "The color of plants should go last.",
-    "clue4": "The color of water should go after the lucky color.",
-    "clue5": "The color of the sunflowers should go before the color of plants.",
-    "clue6": "The golden button is a key to one survival."
+    "clue1": "You read your piece of paper to try the puzzle.\n\n\"The color of human blood should go first.\"\n\nIt seems like in order to solve the puzzle and hopefully escape the room, you have to press the four buttons in the correct order. The piece of paper in your hand is a hint, but since everyone else also got one, you will have to talk to everyone to figure out what their hints are.",
+    "clue2": "%NPC1%: It appears that we need to find a way to get out of here, but I can't help but think there's a catch. That's why I haven't showed this to anyone yet. You look like you know what you're doing though, so here.\n\n%NPC1% holds out their piece of paper in front of you.\n\n\"The lucky color of the day should go first.\"\n\nYou murmur quietly to yourself.\n\n%NPC1%: Did that help?\n\nYou: Yep, it did. Thanks. I'll update you when I find more clues.",
+    "clue3": "You: Do you mind if we exchange clues? I'm trying to find a way to get everyone out of here by connecting all the information we have.\n\n%NPC2%: Yeah, sure. Here's mine.\n\n%NPC2% holds out their clue in front of your face, and you quietly read it aloud.\n\n\"The color of plants should go last.\"\n\nYou: Thanks\n\n You hold out your clue to them as well.\n\nYou: Here's mine.\n\n%NPC2% quickly scans the contents before nodding. You acknowledge the signal as you hurriedly leave, not wanting to disturb %NPC2% any further.",
+    "clue4": "You: I'm currently seeing if there's any trick to the buttons. You never know, after all.\n\n%NPC3%: I see. Well, if you have anything to share, it'd be really helpful.\n\nYou: I do have something to share, actually.\n\nYou bring out your clue.\n\n%NPC3%: Really? I'll share mine in exchange then. Let's show each other on the count of three.\n\n%NPC3% counts down from three, and you both show each other your clues at the same time.\n\n\"The color of water should go after the lucky color.\"\n\n%NPC3% reads through your clue in the meantime.\n\nYou: Interesting, I'll keep that in mind. Thank you for your input.",
+    "clue5": "You: What are you doing?\n\n%NPC4%: I'm seeing if there's a way to pick the door lock so that we don't have to do this puzzle.\n\n%NPC4% picks at the different tightly wedged screws on the heavy-duty metal door.\n\n%NPC4%: I admit that the clue I got is somewhat useful to a certain extent, but there's a limit to what I can do if I can't figure out the rest of the puzzle without everyone looking suspicious.\n\nYou: I can tell you what I know.\n\n%NPC4%: You sure?\n\n%NPC4% seems wary of your underlying intentions, but you shake your head to indicate otherwise.\n\n%NPC4%: Alright then. Show me what you have.\n\nYou hand your clue over, and %NPC4% hands you their clue in return.\n\n\"The color of the sunflowers should go before the color of plants.\"\n\nAfter both of you are done reading, you ponder over the possible connections.\n\n%NPC4%: I feel like we're missing something, but I think we're on the right track though.\n\nYou: I agree. I'll take a look around and see if I can find anything else.",
+    "clue6": "You: I was wondering if you had anything useful to help us get out of here.\n\n%NPC5 hands you their clue without hesitation.\n\n%NPC5: It's the most useless clue ever, but here. Take it.\n\n\"The golden button is a key to one survival.\"\n\nYou show your clue to %NPC5% as thanks for them sharing theirs with you.\n\nYou: I hope this helps in some way.\n\n%NPC5% peers at your clue and nods when they are finished skimming.\n\n%NPC5%: Somewhat. Thanks for sharing. I need to continue my scenario and calculation simulator now.\n\nYou: Okay...?\n\nYou quickly wave goodbye and go back to investigating other things, not wanting to question what they were doing."
   },
   "deaths": {
     "player": "You get stuck on the spot and realize that you are unable to move. The door is right in front of you, and everyone else had already gone through, leaving you behind. The door closes, and a block comes from the ceiling and crushes your body from top to bottom, ending your life.",
@@ -23,75 +23,40 @@
   "conclusion": "Everyone is silent in the next room as they processed what happened. Someone had just died, and everyone is now more wary than ever of their future actions.",
   "choices": [
     {
-      "index": 1,
-      "name": "Read your piece of paper and try the puzzle",
-      "text": "You read your piece of paper and try the puzzle. %CLUE% It seems like in order to solve the puzzle and hopefully escape the room, you have to press the four buttons in the correct order. The piece of paper in your hand is a hint, but since everyone else also got one, you will have to talk to everyone to figure out what their hints are.",
+      "name": "Try the puzzle",
+      "text": "%CLUE%",
       "next": [
         {
-          "index": 1,
           "name": "Press the red button",
           "text": "You pressed the red button."
         },
         {
-          "index": 2,
           "name": "Press the yellow button",
           "text": "You pressed the yellow button."
         },
         {
-          "index": 3,
           "name": "Press the green button",
           "text": "You pressed the green button and a hidden compartment on the table pops open to reveal a golden button.",
           "next": [
             {
-              "index": 1,
               "name": "Press the golden button",
               "text": "You pressed the golden button."
             },
             {
-              "index": 2,
               "name": "Do not press the golden button",
               "text": "%DEAD% pressed the golden button."
             }
           ]
         },
         {
-          "index": 4,
           "name": "Press the blue button",
           "text": "You pressed the blue button."
         }
       ]
     },
     {
-      "index": 2,
       "name": "Talk to a character",
-      "text": "Which character do you want to talk to?",
-      "next": [
-        {
-          "index": 1,
-          "name": "Talk to %NPC1%",
-          "text": "You decide to talk to %NPC1%. \n\"Hey there. It appears that we need to find a way to get out of here, but I can't help but think there's a catch. That's why I haven't showed this to anyone yet. You look like you know what you're doing though, so here.\" %NPC1% holds out their piece of paper in front of you.\n \"%CLUE1%\" you murmur quietly to yourself. \n\"Did that help?\" %NPC1% asked. \n\"Yep, it did. Thanks. I'll update you when I find more clues.\""
-        },
-        {
-          "index": 2,
-          "name": "Talk to %NPC2%",
-          "text": "You decide to talk to %NPC2%. \n\"What?\" %NPC2% stops pacing backing and forth and turns their attention to you, a hint of annoyance on their face. \"I'm not in the mood to talk right now, so if you've got something then say it and leave.\"\n\"Do you mind if we exchange clues?\" you ask. \"I'm trying to find a way to get everyone out of here by connecting all the information we have.\" \n\"Yeah, sure. Here's mine.\" %NPC2% holds out their clue in front of your face, and you read it aloud quietly.\n\"%CLUE2%\"\n\"Thanks,\" you say, holding out your clue to them as well. \"Here's mine.\"\n%NPC2% quickly scans the contents before nodding. You acknowledge the signal as you hurriedly leave, not wanting to disturb %NPC2% any further."
-        },
-        {
-          "index": 3,
-          "name": "Talk to %NPC3%",
-          "text": "You decide to talk to %NPC3%. \n\"Hi, how's it going?\" NPC3 greets you. \"I'm currently seeing if there's any trick to the buttons. You never know, after all.\" \nYou nod. \"Just checking up on everyone.\"\n%NPC3% smiles in response. \"I see. Well, if you have anything to share in regards to this, it'd be really helpful.\"\n\"I do have something to share,\" you say.\n\"Really? I'll share mine in exchange then. On the count of three.\" %NPC3% counts down from three, and you both show each other your clues at the same time. \n\"Here's what I have,\" you say as you read through %NPC3%'s clue. \"%CLUE3%\" \n%NPC3% reads through your clue in the meantime. \"Interesting, I'll keep that in mind. Thank you for your input.\""
-        },
-        {
-          "index": 4,
-          "name": "Talk to %NPC4%",
-          "text": "You decide to talk to %NPC4%. \"What are you doing?\" you ask %NPC4%. \"I'm seeing if there's a way to picklock our way through the door so that we don't have to do this puzzle,\" %NPC4% replies, picking at the different tightly wedged screws on the heavy duty metal door. \"I admit that the clue I got is somewhat useful to a certain extent, but there's a limit to what I can do if I can't figure out the rest of the puzzle with everyone looking suspicious.\"\n\"I can tell you what I know,\" you tell %NPC4%.\n\"You sure?\" %NPC4% asks, wary of underlying intentions, but you shake your head to indicate otherwise.\n\"Alright then,\" %NPC4% says. \"Show me what you have.\" You hand your clue over, and %NPC4% hands you their clue in return. After the both of you are done, you ponder over the possible connections.\n\"%CLUE4%\" \n\"I feel like we're missing something,\" %NPC4% says. \"I think we're on the right track though.\" \nYou nod. \"I agree. I'll take a look around and see if I can find anything else.\""
-        },
-        {
-          "index": 5,
-          "name": "Talk to %NPC5%",
-          "text": "You decide to talk to %NPC5%. \"Hello?\" You wave your hand in front of %NPC5%'s face as they seem to be in their own world. \"What- oh, hi! Sorry, did you need something from me?\" %NPC5% jolts up in surprise, snapping back to reality. \n\"I was wondering if you had anything useful to help us get out of here.\" \n%NPC5 hands you their clue without hesitation. \"It's the most useless clue ever, but here. Take it.\"\nYou show your clue to %NPC5% as thanks for them sharing theirs with you. \"I hope this helps in some way.\" \n%NPC5% peers at your clue and nods when they are finished skimming. \"Somewhat. Thanks for sharing. I need to continue my scenario and calculation simulator now.\"\n\"Okay,\" you respond, not wanting to question why they were doing so. You quickly wave and go back to investigating other things."
-        }
-      ]
+      "text": "You decide to talk to a character."
     }
   ]
 }
