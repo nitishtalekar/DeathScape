@@ -7,6 +7,7 @@ from chatterbot.trainers import ChatterBotCorpusTrainer
 
 class Story:
     def __init__(self, player):
+        self.intro = self.init_intro()
         self.rooms = self.init_rooms()
         self.characters = self.init_characters()
         self.story = self.init_story()
@@ -100,6 +101,12 @@ class Story:
             "choices": self.rooms["5"]["choices"],
             "show_characters": False
         }
+
+    def init_intro(self):
+        with open("data/intro.json") as f:
+            intro = json.load(f)
+
+        return intro["description"]
 
     def init_rooms(self):
         with open("data/rooms.json") as f:

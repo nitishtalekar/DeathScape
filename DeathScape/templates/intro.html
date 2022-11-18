@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Death Scape</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css')}}">
+    <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js')}}"></script>
+    <script src="{{ url_for('static', filename='js/main.js')}}"></script>
+</head>
+
+<body>
+    <div class="text-white text-center vertical-center container margins">
+        <div class="mb-5">
+            <h1>Death Scape</h1>
+        </div>
+        <div class="mb-5">
+            {{data.intro}}
+        </div>
+        <form action="/deathscape/button_room?player={{data.player.name}}" method="post">
+            <div>
+                <button class="btn btn-light" type="submit" name="submit">Continue</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

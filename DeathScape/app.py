@@ -27,9 +27,31 @@ def deathscape():
     if request.method == "POST":
         player = request.form["player_name"]
 
-        return redirect("/deathscape/button_room?player={}".format(player))
+        return redirect("/deathscape/intro?player={}".format(player))
     else:
         return render_template("index.html")
+
+
+@app.route("/deathscape/intro", methods=["GET", "POST"])
+def intro():
+    player = request.args.get("player")
+
+    if player == None:
+        return redirect("/deathscape")
+    else:
+        global story
+
+        if request.method == "GET":
+            story = Story(player)
+
+            data = {
+                "player": story.current["player"],
+                "intro": story.intro
+            }
+
+            return render_template("intro.html", data=data)
+        elif request.method == "POST":
+            return redirect("/deathscape/button_room?player={}".format(player))
 
 
 @app.route("/deathscape/button_room", methods=["GET", "POST"])
