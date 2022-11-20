@@ -28,7 +28,7 @@
           "next": [
             {
               "name": "Proceed to the exit...",
-              "text": "You hear a scream behind you as you watch %NPC1% take their final breath. Satisfied with your work, you walk out of the exit, only to find yourself at a dead end. You hear an automated voice before you lose consciousness forever. \"Betrayal is not the answer.\" \n%DEAD% died after solving the Dilemma Room puzzle."
+              "text": "You hear a scream behind you as you watch %NPC1% take their final breath. Satisfied with your work, you walk out of the exit, only to find yourself at a dead end. You hear an automated voice before you lose consciousness forever. \"Betrayal is not the answer.\" %DEAD% died after solving the Dilemma Room puzzle."
             }
           ]
         }

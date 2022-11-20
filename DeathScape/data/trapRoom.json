@@ -46,7 +46,7 @@
         },
         {
           "name": "Talk to %NPC2%",
-          "text": "You decide to talk to %NPC2%. They seem to be deep in thought. \n\"What do you think?\" you ask %NPC2%. \n\"We need to trial and error this somehow,\" %NPC2% tells you. \"The tiles are all identical, and there aren't any funny marks to give us any hints. We should have one person go at a time.\""
+          "text": "You decide to talk to %NPC2%. They seem to be deep in thought. \"What do you think?\" you ask %NPC2%. \"We need to trial and error this somehow,\" %NPC2% tells you. \"The tiles are all identical, and there aren't any funny marks to give us any hints. We should have one person go at a time.\""
         }
       ]
     }

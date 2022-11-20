@@ -1,15 +1,10 @@
-from chatterbot import ChatBot
 from chatterbot.conversation import Statement
-from chatterbot.trainers import ChatterBotCorpusTrainer
 from flask import Flask, redirect, request, render_template
 from story import Story
 
 
 app = Flask(__name__)
 story = None
-# chatbot = ChatBot("ChatBot")
-# trainer = ChatterBotCorpusTrainer(chatbot)
-# trainer.train("chatterbot.corpus.english")
 
 
 @app.errorhandler(404)
@@ -173,17 +168,6 @@ def dilemma_room():
         }
 
         return render_template("dilemma_room.html", data=data)
-
-
-@app.route("/chat", methods=["POST"])
-def get_bot_response():
-    userText = request.form["msg"]
-    resp = str(chatbot.get_response(userText))
-
-    print(userText)
-    print(resp)
-
-    return render_template("chat.html", userText=userText, response=resp)
 
 
 if __name__ == "__main__":

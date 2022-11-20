@@ -1,8 +1,8 @@
 import json
 import random
 from chatterbot import ChatBot
-from chatterbot.conversation import Statement
-from chatterbot.trainers import ChatterBotCorpusTrainer
+# from chatterbot.conversation import Statement
+# from chatterbot.trainers import ChatterBotCorpusTrainer
 
 
 class Story:
@@ -33,8 +33,7 @@ class Story:
         self.msg = []
 
         self.init_chat()
-
-        # For demo purposes only
+        
         self.remaining_characters = [
             character for character, info in self.characters.items() if info["alive"]]
 
@@ -161,18 +160,17 @@ class Story:
             self.add_parent(choice, None)
 
     def init_chat(self):
-        # print("Train")
         sk = ChatBot("Sarah Krista")
         nj = ChatBot("Natalia Jonathan")
         am = ChatBot("Arjun Manoj")
         ty = ChatBot("Taimo Yong")
         ey = ChatBot("Ester Yura")
 
-        sk_trainer = ChatterBotCorpusTrainer(sk)
-        nj_trainer = ChatterBotCorpusTrainer(nj)
-        am_trainer = ChatterBotCorpusTrainer(am)
-        ty_trainer = ChatterBotCorpusTrainer(ty)
-        ey_trainer = ChatterBotCorpusTrainer(ey)
+        # sk_trainer = ChatterBotCorpusTrainer(sk)
+        # nj_trainer = ChatterBotCorpusTrainer(nj)
+        # am_trainer = ChatterBotCorpusTrainer(am)
+        # ty_trainer = ChatterBotCorpusTrainer(ty)
+        # ey_trainer = ChatterBotCorpusTrainer(ey)
         
         # sk_trainer.train("chatterbot.corpus.english.greetings")
         # nj_trainer.train("chatterbot.corpus.english.emotion")
@@ -278,22 +276,4 @@ class Story:
         self.msg = []
         self.bot = ""
 
-    # For demo purposes only
-    # def get_death_order(self):
-    #     order = []
-
-    #     # for i in range(len(self.characters)):
-    #     #     max_doomsday = 0
-    #     #     item = ""
-
-    #     #     for character, info in self.characters.items():
-    #     #         if info["doomsday"] > max_doomsday:
-    #     #             if character not in order:
-    #     #                 item = character
-
-    #     #     order.append(item)
-
-    #     order = sorted(self.characters.items(),
-    #                    key=lambda info: info["doomsday"])
-
-    #     return order
+        
