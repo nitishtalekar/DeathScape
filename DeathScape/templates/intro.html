@@ -17,7 +17,10 @@
             <h1>Death Scape</h1>
         </div>
         <div class="mb-5">
-            {{data.intro}}
+          {% autoescape on %}
+                {{data.intro}}
+          {% endautoescape %}
+          
         </div>
         <form action="/deathscape/button_room?player={{data.player.name}}" method="post">
             <div>
