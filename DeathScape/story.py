@@ -161,17 +161,24 @@ class Story:
             self.add_parent(choice, None)
 
     def init_chat(self):
+        # print("Train")
         sk = ChatBot("Sarah Krista")
         nj = ChatBot("Natalia Jonathan")
         am = ChatBot("Arjun Manoj")
         ty = ChatBot("Taimo Yong")
         ey = ChatBot("Ester Yura")
 
-        # sk_trainer = ChatterBotCorpusTrainer(sk)
-        # nj_trainer = ChatterBotCorpusTrainer(nj)
-        # am_trainer = ChatterBotCorpusTrainer(am)
-        # ty_trainer = ChatterBotCorpusTrainer(ty)
-        # ey_trainer = ChatterBotCorpusTrainer(ey)
+        sk_trainer = ChatterBotCorpusTrainer(sk)
+        nj_trainer = ChatterBotCorpusTrainer(nj)
+        am_trainer = ChatterBotCorpusTrainer(am)
+        ty_trainer = ChatterBotCorpusTrainer(ty)
+        ey_trainer = ChatterBotCorpusTrainer(ey)
+        
+        # sk_trainer.train("chatterbot.corpus.english.greetings")
+        # nj_trainer.train("chatterbot.corpus.english.emotion")
+        # am_trainer.train("chatterbot.corpus.english.food")
+        # ty_trainer.train("chatterbot.corpus.english")
+        # ey_trainer.train("chatterbot.corpus.english")
 
         self.chatbots["Sarah Krista"] = sk
         self.chatbots["Natalia Jonathan"] = nj

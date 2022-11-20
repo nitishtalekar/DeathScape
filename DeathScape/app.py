@@ -7,9 +7,9 @@ from story import Story
 
 app = Flask(__name__)
 story = None
-chatbot = ChatBot("ChatBot")
-trainer = ChatterBotCorpusTrainer(chatbot)
-trainer.train("chatterbot.corpus.english")
+# chatbot = ChatBot("ChatBot")
+# trainer = ChatterBotCorpusTrainer(chatbot)
+# trainer.train("chatterbot.corpus.english")
 
 
 @app.errorhandler(404)
