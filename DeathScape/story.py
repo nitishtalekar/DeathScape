@@ -7,7 +7,6 @@ from chatterbot import ChatBot
 
 class Story:
     def __init__(self, player):
-        self.intro = self.init_intro()
         self.rooms = self.init_rooms()
         self.characters = self.init_characters()
         self.story = self.init_story()
@@ -30,6 +29,7 @@ class Story:
             "messages": []
         }
 
+        self.intro = self.init_intro()
         self.init_choices()
         self.init_chat()
 
@@ -104,7 +104,7 @@ class Story:
         with open("data/intro.json") as f:
             intro = json.load(f)
 
-        return intro["description"]
+        return self.replace_placeholders(intro["description"])
 
     def init_rooms(self):
         with open("data/rooms.json") as f:
@@ -237,7 +237,7 @@ class Story:
                 next = None
 
                 if "next" not in choice:
-                    if "Try the puzzle later" == current:
+                    if "Try the puzzle later" == current or "Talk to someone" == current:
                         next = self.rooms["{}".format(
                             self.current["level"])]["choices"]
                     else:
