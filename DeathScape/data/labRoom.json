@@ -14,8 +14,8 @@
         "clue4": "Hydrochloric acid is your best friend."
     },
     "deaths": {
-        "player": "You suddenly feel a pour of unknown liquid splash on you and hear a click. You feel your body burning as you realize that your body has been set on fire.",
-        "npc": "As you are all walking out of the room, you hear a splash from behind and notice that %DEAD% has been doused in an unknown liquid and lit on fire. You and the others watch, horrified, as the body burns away and a stench fills the air.<br /><br />Unable to watch any further, you all turn away and face forwards, leaving the door behind you to shut on its own as you enter the next room."
+        "player": "The lock fizzles a bit, but then you suddenly feel an unknown liquid raining down on you from above. You look up and a burst of fire spews out from the ceiling. You scream as you feel your body burning and realize that your body has been set on fire.",
+        "npc": " The lock quickly dissolves and its remains fall to the ground with a clack. The handle of the door is now free. As you start walking out of the room, you hear a splash from behind and notice that %DEAD% has been doused in an unknown liquid and lit on fire. You and the others watch, horrified, as the body burns away and a stench fills the air.<br /><br />Unable to watch any further, you all turn away and face forwards, leaving the door behind you to shut on its own as you enter the next room."
     },
     "choices": [
         {
@@ -24,17 +24,11 @@
             "next": [
                 {
                     "name": "Mix the hydrochloric acid sample with water.",
-                    "text": "You mix the hydrochloric acid sample with water and pour it on the lock. The lock quickly dissolves and its remains fall to the ground with a clack. The handle of the door is now free."
+                    "text": "You mix the hydrochloric acid sample with water and pour it on the lock."
                 },
                 {
                     "name": "Mix water with the hydrochloric acid sample.",
-                    "text": "You mix water with the hydrochloric acid sample and pour it on the lock. It fizzles a bit before you feel a stinging sensation.",
-                    "next": [
-                        {
-                            "name": "Reaction effect...",
-                            "text": "%DEAD% died after solving the Lab Room puzzle."
-                        }
-                    ]
+                    "text": "You mix water with the hydrochloric acid sample and pour it on the lock."
                 },
                 {
                     "name": "Try the puzzle later",

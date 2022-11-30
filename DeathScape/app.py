@@ -115,6 +115,11 @@ def lab_room():
             if "choice" in request.form:
                 choice = request.form["choice"]
                 story.set_choices(choice)
+
+                if "water with the hydrochloric acid sample" in choice:
+                    dead = True
+                elif "the hydrochloric acid sample with water" in choice:
+                    solved = True
             elif "character" in request.form:
                 choice = request.form["character"]
                 talk = True
@@ -139,7 +144,7 @@ def lab_room():
             elif "restart" in request.form:
                 return redirect("/")
 
-        return render_template("lab_room.html", data=story.current, talk=talk, messages=story.current["messages"])
+        return render_template("lab_room.html", data=story.current, talk=talk, messages=story.current["messages"], solved=solved, dead=dead)
 
 
 @app.route("/deathscape/justice_room", methods=["GET", "POST"])

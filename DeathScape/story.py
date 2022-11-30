@@ -214,9 +214,9 @@ class Story:
                         if self.current["player"]["clue"] != "":
                             self.current["story"].append(
                                 self.current["player"]["clue"])
-                        elif "It seems like you have to find a way to dislocate the lock to successfully escape the room." not in self.current["story"]:
+                        elif "It seems like you might be able to disintegrate the lock on the exit door." not in self.current["story"]:
                             self.current["story"].append(
-                                "It seems like you have to find a way to dislocate the lock to successfully escape the room.")
+                                "It seems like you might be able to disintegrate the lock on the exit door.")
                     elif "golden button" in current:
                         if "Do not" in current:
                             self.current["story"].append(self.replace_placeholders(
