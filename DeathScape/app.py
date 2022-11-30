@@ -62,7 +62,9 @@ def button_room():
         talk = False
 
         if request.method == "POST":
-            if "choice" in request.form:
+            if "next" in request.form and "next" == request.form["next"]:
+                return redirect("/deathscape/lab_room?player={}".format(player))
+            elif "choice" in request.form:
                 choice = request.form["choice"]
                 story.set_choices(choice)
 
@@ -89,8 +91,6 @@ def button_room():
                 else:
                     story.add_character_to_story(choice)
                     story.set_bot(choice)
-            elif "next" in request.form:
-                return redirect("/deathscape/lab_room?player={}".format(player))
             elif "restart" in request.form:
                 return redirect("/")
 
@@ -107,6 +107,162 @@ def lab_room():
         global story
 
         if story.current["level"] != 2:
+            story.next()
+
+        dead = False
+        solved = False
+        talk = False
+
+        if request.method == "POST":
+            if "next" in request.form and "next" == request.form["next"]:
+                return redirect("/deathscape/justice_room?player={}".format(player))
+            elif "choice" in request.form:
+                choice = request.form["choice"]
+                story.set_choices(choice)
+
+                if "water with the hydrochloric acid sample" in choice:
+                    dead = True
+                elif "the hydrochloric acid sample with water" in choice:
+                    solved = True
+            elif "character" in request.form:
+                choice = request.form["character"]
+                talk = True
+
+                if choice == "back":
+                    story.dont_talk()
+                    talk = False
+                elif choice == "end_conversation":
+                    story.end_conversation()
+                    talk = False
+                elif choice == "talk":
+                    player_message = request.form["messages"]
+                    character_message = str(story.current["bot"].get_response(
+                        Statement(text=player_message, search_text=player_message)))
+
+                    story.add_messages(player_message, character_message)
+                else:
+                    story.add_character_to_story(choice)
+                    story.set_bot(choice)
+            elif "restart" in request.form:
+                return redirect("/")
+
+        return render_template("lab_room.html", data=story.current, talk=talk, messages=story.current["messages"], solved=solved, dead=dead)
+
+
+@app.route("/deathscape/justice_room", methods=["GET", "POST"])
+def justice_room():
+    player = request.args.get("player")
+
+    if player == None:
+        return redirect("/deathscape")
+    else:
+        global story
+
+        if story.current["level"] != 3:
+            story.next()
+
+        dead = False
+        solved = False
+        talk = False
+
+        if request.method == "POST":
+            if "next" in request.form and "next" == request.form["next"]:
+                return redirect("/deathscape/trap_room?player={}".format(player))
+            elif "choice" in request.form:
+                choice = request.form["choice"]
+                story.set_choices(choice)
+
+                if "water with the hydrochloric acid sample" in choice:
+                    dead = True
+                elif "the hydrochloric acid sample with water" in choice:
+                    solved = True
+            elif "character" in request.form:
+                choice = request.form["character"]
+                talk = True
+
+                if choice == "back":
+                    story.dont_talk()
+                    talk = False
+                elif choice == "end_conversation":
+                    story.end_conversation()
+                    talk = False
+                elif choice == "talk":
+                    player_message = request.form["messages"]
+                    character_message = str(story.current["bot"].get_response(
+                        Statement(text=player_message, search_text=player_message)))
+
+                    story.add_messages(player_message, character_message)
+                else:
+                    story.add_character_to_story(choice)
+                    story.set_bot(choice)
+            elif "restart" in request.form:
+                return redirect("/")
+
+        return render_template("justice_room.html", data=story.current, talk=talk, messages=story.current["messages"], solved=solved, dead=dead)
+
+
+@app.route("/deathscape/trap_room", methods=["GET", "POST"])
+def trap_room():
+    player = request.args.get("player")
+
+    if player == None:
+        return redirect("/deathscape")
+    else:
+        global story
+
+        if story.current["level"] != 4:
+            story.next()
+
+        dead = False
+        solved = False
+        talk = False
+
+        if request.method == "POST":
+            if "next" in request.form and "next" == request.form["next"]:
+                return redirect("/deathscape/dilemma_room?player={}".format(player))
+            elif "choice" in request.form:
+                choice = request.form["choice"]
+                story.set_choices(choice)
+
+                if "water with the hydrochloric acid sample" in choice:
+                    dead = True
+                elif "the hydrochloric acid sample with water" in choice:
+                    solved = True
+            elif "character" in request.form:
+                choice = request.form["character"]
+                talk = True
+
+                if choice == "back":
+                    story.dont_talk()
+                    talk = False
+                elif choice == "end_conversation":
+                    story.end_conversation()
+                    talk = False
+                elif choice == "talk":
+                    player_message = request.form["messages"]
+                    character_message = str(story.current["bot"].get_response(
+                        Statement(text=player_message, search_text=player_message)))
+
+                    story.add_messages(player_message, character_message)
+                else:
+                    story.add_character_to_story(choice)
+                    story.set_bot(choice)
+            elif "restart" in request.form:
+                return redirect("/")
+
+        return render_template("trap_room.html", data=story.current, talk=talk, messages=story.current["messages"], solved=solved, dead=dead)
+
+
+@app.route("/deathscape/dilemma_room", methods=["GET", "POST"])
+def dilemma_room():
+    player = request.args.get("player")
+
+    if player == None:
+        return redirect("/deathscape")
+    else:
+        global story
+
+        if story.current["level"] != 5:
             story.next()
 
         dead = False
@@ -141,149 +297,6 @@ def lab_room():
                 else:
                     story.add_character_to_story(choice)
                     story.set_bot(choice)
-            # elif "next" in request.form:
-            #     return redirect("/deathscape/justice_room?player={}".format(player))
-            elif "restart" in request.form:
-                return redirect("/")
-
-        return render_template("lab_room.html", data=story.current, talk=talk, messages=story.current["messages"], solved=solved, dead=dead)
-
-
-@app.route("/deathscape/justice_room", methods=["GET", "POST"])
-def justice_room():
-    player = request.args.get("player")
-
-    if player == None:
-        return redirect("/deathscape")
-    else:
-        global story
-
-        if story.current["level"] != 3:
-            story.next()
-
-        dead = False
-        solved = False
-        talk = False
-
-        if request.method == "POST":
-            if "choice" in request.form:
-                choice = request.form["choice"]
-                story.set_choices(choice)
-            elif "character" in request.form:
-                choice = request.form["character"]
-                talk = True
-
-                if choice == "back":
-                    story.dont_talk()
-                    talk = False
-                elif choice == "end_conversation":
-                    story.end_conversation()
-                    talk = False
-                elif choice == "talk":
-                    player_message = request.form["messages"]
-                    character_message = str(story.current["bot"].get_response(
-                        Statement(text=player_message, search_text=player_message)))
-
-                    story.add_messages(player_message, character_message)
-                else:
-                    story.add_character_to_story(choice)
-                    story.set_bot(choice)
-            # elif "next" in request.form:
-            #     return redirect("/deathscape/trap_room?player={}".format(player))
-            elif "restart" in request.form:
-                return redirect("/")
-
-        return render_template("justice_room.html", data=story.current, talk=talk, messages=story.current["messages"], solved=solved, dead=dead)
-
-
-@app.route("/deathscape/trap_room", methods=["GET", "POST"])
-def trap_room():
-    player = request.args.get("player")
-
-    if player == None:
-        return redirect("/deathscape")
-    else:
-        global story
-
-        if story.current["level"] != 4:
-            story.next()
-
-        dead = False
-        solved = False
-        talk = False
-
-        if request.method == "POST":
-            if "choice" in request.form:
-                choice = request.form["choice"]
-                story.set_choices(choice)
-            elif "character" in request.form:
-                choice = request.form["character"]
-                talk = True
-
-                if choice == "back":
-                    story.dont_talk()
-                    talk = False
-                elif choice == "end_conversation":
-                    story.end_conversation()
-                    talk = False
-                elif choice == "talk":
-                    player_message = request.form["messages"]
-                    character_message = str(story.current["bot"].get_response(
-                        Statement(text=player_message, search_text=player_message)))
-
-                    story.add_messages(player_message, character_message)
-                else:
-                    story.add_character_to_story(choice)
-                    story.set_bot(choice)
-            # elif "next" in request.form:
-            #     return redirect("/deathscape/dilemma_room?player={}".format(player))
-            elif "restart" in request.form:
-                return redirect("/")
-
-        return render_template("trap_room.html", data=story.current, talk=talk, messages=story.current["messages"], solved=solved, dead=dead)
-
-
-@app.route("/deathscape/dilemma_room", methods=["GET", "POST"])
-def dilemma_room():
-    player = request.args.get("player")
-
-    if player == None:
-        return redirect("/deathscape")
-    else:
-        global story
-
-        if story.current["level"] != 5:
-            story.next()
-
-        dead = False
-        solved = False
-        talk = False
-
-        if request.method == "POST":
-            if "choice" in request.form:
-                choice = request.form["choice"]
-                story.set_choices(choice)
-            elif "character" in request.form:
-                choice = request.form["character"]
-                talk = True
-
-                if choice == "back":
-                    story.dont_talk()
-                    talk = False
-                elif choice == "end_conversation":
-                    story.end_conversation()
-                    talk = False
-                elif choice == "talk":
-                    player_message = request.form["messages"]
-                    character_message = str(story.current["bot"].get_response(
-                        Statement(text=player_message, search_text=player_message)))
-
-                    story.add_messages(player_message, character_message)
-                else:
-                    story.add_character_to_story(choice)
-                    story.set_bot(choice)
-            # elif "next" in request.form:
-            #     return redirect("/deathscape/ending?player={}".format(player))
             elif "restart" in request.form:
                 return redirect("/")
 
