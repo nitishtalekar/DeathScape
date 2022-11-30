@@ -11,6 +11,13 @@ var data = {
 var pressed_buttons = ""
 
 function preprocess(player, level, room, characters, story, choices, show_characters) {
+    window.scrollTo(0, document.body.scrollHeight);
+
+    var scrollbox = document.getElementsByClassName("scrollbox")[0];
+    if (scrollbox) {
+        scrollbox.scrollTop = scrollbox.scrollHeight;
+    }
+
     data = {
         "player": player,
         "level": level,

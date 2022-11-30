@@ -23,17 +23,16 @@ class Story:
             "characters": {character: info for character, info in self.characters.items() if info["alive"]},
             "story": self.story[self.rooms["1"]["name"]],
             "choices": self.rooms["1"]["choices"],
-            "show_characters": False
+            "show_characters": False,
+            "chatbots": {},
+            "npc": "",
+            "bot": "",
+            "messages": []
         }
 
         self.init_choices()
-
-        self.chatbots = {}
-        self.bot = ""
-        self.msg = []
-
         self.init_chat()
-        
+
         self.remaining_characters = [
             character for character, info in self.characters.items() if info["alive"]]
 
@@ -134,12 +133,12 @@ class Story:
 
             for character_feature in character_features:
                 characters[character][character_feature] = random.choice(
-                    [-1, 0, 1])
+                    [-1, 1])
 
             doomsday = 0
-            for friendliness in [1, 0, -1]:
-                for anger in [1, 0, -1]:
-                    for quietness in [1, 0, -1]:
+            for friendliness in [1, -1]:
+                for anger in [1, -1]:
+                    for quietness in [1, -1]:
                         doomsday += 10
 
                         if characters[character]["friendliness"] == friendliness and characters[character]["anger"] == anger and characters[character]["quietness"] == quietness:
@@ -159,6 +158,9 @@ class Story:
         for choice in self.current["choices"]:
             self.add_parent(choice, None)
 
+        # for choice in self.current["choices"]:
+        #     self.set_parent(choice)
+
     def init_chat(self):
         sk = ChatBot("Sarah Krista")
         nj = ChatBot("Natalia Jonathan")
@@ -171,42 +173,90 @@ class Story:
         # am_trainer = ChatterBotCorpusTrainer(am)
         # ty_trainer = ChatterBotCorpusTrainer(ty)
         # ey_trainer = ChatterBotCorpusTrainer(ey)
-        
+
         # sk_trainer.train("chatterbot.corpus.english.greetings")
         # nj_trainer.train("chatterbot.corpus.english.emotion")
         # am_trainer.train("chatterbot.corpus.english.food")
         # ty_trainer.train("chatterbot.corpus.english")
         # ey_trainer.train("chatterbot.corpus.english")
 
-        self.chatbots["Sarah Krista"] = sk
-        self.chatbots["Natalia Jonathan"] = nj
-        self.chatbots["Arjun Manoj"] = am
-        self.chatbots["Taimo Yong"] = ty
-        self.chatbots["Ester Yura"] = ey
+        self.current["chatbots"]["Sarah Krista"] = sk
+        self.current["chatbots"]["Natalia Jonathan"] = nj
+        self.current["chatbots"]["Arjun Manoj"] = am
+        self.current["chatbots"]["Taimo Yong"] = ty
+        self.current["chatbots"]["Ester Yura"] = ey
+
+    def add_parent(self, node, parent):
+        node["parent"] = parent
+
+        if "next" not in node:
+            return
+
+        for child in node["next"]:
+            self.add_parent(child, node["name"])
+
+    def set_parent(self, node):
+        for choice in self.current["choices"]:
+            if choice["name"] == node["parent"]:
+                node["parent"] = choice["parent"]
+
+                break
+
+        if "next" not in node:
+            return
+
+        for child in node["next"]:
+            self.set_parent(child)
+
+    def replace_placeholders(self, text):
+        replaced = text
+        max_doomsday = 0
+        dead = ""
+
+        for character, info in self.current["characters"].items():
+            replaced = replaced.replace(
+                "%NPC{}%".format(info["index"]), character).replace(
+                "%CLUE{}%".format(info["index"]), info["clue"])
+
+            if info["doomsday"] > max_doomsday:
+                max_doomsday = info["doomsday"]
+                dead = character.split(" ")[0]
+
+        replaced = replaced.replace("%DEAD%", dead)
+
+        return replaced
 
     def set_choices(self, current):
-        if current == "Talk to a character":
+        if current == "Talk to someone":
             self.current["show_characters"] = True
         for choice in self.current["choices"]:
             if choice["name"] == current:
-                replaced = self.replace_placeholders(
-                    "\n{}".format(choice["text"]))
-
-                if replaced not in self.current["story"] or replaced == "\nYou decide to talk to a character.":
-                    self.current["story"].append(replaced)
+                self.add_to_story(current)
 
                 replaced = []
                 next = None
 
-                if "next" in choice:
-                    next = choice["next"]
+                if "next" not in choice:
+                    if "Try the puzzle later" == current:
+                        next = self.rooms["{}".format(
+                            self.current["level"])]["choices"]
+                    else:
+                        next = self.rooms["{}".format(
+                            self.current["level"])]["choices"][0]["next"]
                 else:
-                    next = self.rooms["{}".format(self.current["level"])]["choices"]
+                    if "red" in self.current["story"][len(self.current["story"]) - 4] and "blue" in self.current["story"][len(self.current["story"]) - 3] and "yellow" in self.current["story"][len(self.current["story"]) - 2] and "green" in self.current["story"][len(self.current["story"]) - 1]:
+                        self.current["story"].append(
+                            "A hidden compartment on the table pops open to reveal a golden button.")
+                        next = choice["next"]
+                    else:
+                        next = self.rooms["{}".format(
+                            self.current["level"])]["choices"][0]["next"]
 
                 for item in next:
                     replaced.append({
                         "name": self.replace_placeholders(item["name"]),
-                        "text": self.replace_placeholders(item["text"])
+                        "text": self.replace_placeholders(item["text"]),
+                        "parent": item["parent"]
                     })
 
                     if "next" in item:
@@ -218,38 +268,45 @@ class Story:
 
                 return
 
-    def replace_placeholders(self, text):
-        replaced = text
-        max_doomsday = 0
-        dead = ""
+    def add_to_story(self, current):
+        for choice in self.current["choices"]:
+            if choice["name"] == current:
+                replaced = self.replace_placeholders(
+                    "\n{}".format(choice["text"]))
 
-        replaced = replaced.replace("%CLUE%", self.current["player"]["clue"])
+                if (replaced not in self.current["story"][len(self.current["story"]) - 1] or "pressed the" in replaced.lower()) and (replaced not in self.current["story"] or "You decide to talk to someone" in replaced or "You decide to try the puzzle" in replaced or "pressed the" in replaced.lower()):
+                    self.current["story"].append(replaced)
 
-        for character, info in self.current["characters"].items():
-            replaced = replaced.replace(
-                "%NPC{}%".format(info["index"]), character).replace(
-                "%CLUE{}%".format(info["index"]), info["clue"])
+                    if "Try the puzzle" == current and self.current["player"]["clue"] not in self.current["story"]:
+                        self.current["story"].append(
+                            self.current["player"]["clue"])
+                    elif "golden button" in current:
+                        if "Do not" in current:
+                            self.current["story"].append(self.replace_placeholders(
+                                self.current["room"]["deaths"]["npc"]))
 
-            if info["doomsday"] > max_doomsday:
-                dead = character.split(" ")[0]
+                            max_doomsday = 0
+                            dead = ""
+                            for character, info in self.current["characters"].items():
+                                if info["doomsday"] > max_doomsday:
+                                    max_doomsday = info["doomsday"]
+                                    dead = character
 
-        replaced = replaced.replace("%DEAD%", dead)
+                            self.current["characters"][dead]["alive"] = False
+                        else:
+                            self.current["story"].append(self.replace_placeholders(
+                                self.current["room"]["deaths"]["player"]))
 
-        return replaced
+                return
 
-    def add_parent(self, node, parent):
-        node["parent"] = parent
-        if not node.get("next"):
-            return
-        for child in node["next"]:
-            self.add_parent(child, node["name"])
-
-    def add_new_character_to_story(self, new_character):
+    def add_character_to_story(self, new_character):
         for character in self.current["characters"]:
             if character == new_character:
-                replaced = self.replace_placeholders(
-                    self.current["room"]["actions"]["npc{}".format(self.current["characters"][character]["index"])])
-                self.current["story"].append(replaced)
+                replaced = "You approach {}. {}".format(character, self.replace_placeholders(
+                    self.current["room"]["actions"]["npc{}".format(self.current["characters"][character]["index"])]))
+
+                if replaced not in self.current["story"][len(self.current["story"]) - 1] and replaced not in self.current["story"][len(self.current["story"]) - 2]:
+                    self.current["story"].append(replaced)
 
                 if self.current["characters"][character]["description"] not in self.current["story"]:
                     self.current["story"].append(
@@ -257,23 +314,76 @@ class Story:
 
                 return
 
-    def chat_npc(self, npc_name):
-        self.npc = npc_name
-        self.bot = self.chatbots[npc_name]
+    def go_back(self, current):
+        self.add_to_story(current)
 
-    def end_convo(self):
+        for choice in self.current["choices"]:
+            if choice["name"] == current:
+                self.set_choices(choice["parent"])
+
+                return
+
+    def set_bot(self, npc_name):
+        self.current["npc"] = npc_name
+        self.current["bot"] = self.current["chatbots"][npc_name]
+
+    def add_messages(self, query, resp):
+        user_chat = {"name": "You", "text": query}
+        npc_chat = {"name": self.current["npc"], "text": resp}
+
+        if len(self.current["messages"]) == 0 or (self.current["messages"][len(self.current["messages"]) - 2] != user_chat and self.current["messages"][len(self.current["messages"]) - 1] != npc_chat):
+            self.current["messages"].append(user_chat)
+            self.current["messages"].append(npc_chat)
+
+    def dont_talk(self):
         self.current["show_characters"] = False
 
-        for message in self.msg:
-            self.current["story"].append(
-                self.replace_placeholders("\n{}: {}".format(message["name"] if message["name"] != self.current["player"]["name"] else "You", message["text"])))
+        if "You decide not to talk to anyone." not in self.current["story"][len(self.current["story"]) - 1]:
+            self.current["story"].append("You decide not to talk to anyone.")
 
-        for character in self.current["characters"]:
-            if character == self.npc:
-                self.current["story"].append("\n{}".format(self.replace_placeholders(
-                    self.current["characters"][character]["clue"])))
+    def end_conversation(self):
+        self.current["show_characters"] = False
 
-        self.msg = []
-        self.bot = ""
+        for message in self.current["messages"]:
+            self.current["story"].append(self.replace_placeholders("\n{}: {}".format(
+                message["name"] if message["name"] != self.current["player"]["name"] else "You", message["text"])))
 
-        
+        if self.current["npc"] != "":
+            for character in self.current["characters"]:
+                if character == self.current["npc"]:
+                    replaced = self.replace_placeholders(
+                        self.current["characters"][character]["clue"])
+
+                    if replaced not in self.current["story"]:
+                        self.current["story"].append(replaced)
+
+                    if "You walk away." not in self.current["story"][len(self.current["story"]) - 1]:
+                        self.current["story"].append(
+                            "You walk away.")
+
+                    break
+
+        self.current["npc"] = ""
+        self.current["messages"] = []
+        self.current["bot"] = ""
+
+    def next(self):
+        self.current = {
+            "player": {
+                "name": self.current["player"]["name"],
+                "doomsday": self.current["player"]["doomsday"],
+                "clue": ""
+            },
+            "level": self.current["level"] + 1,
+            "room": self.rooms["{}".format(self.current["level"] + 1)],
+            "characters": {character: info for character, info in self.characters.items() if info["alive"]},
+            "story": self.story[self.rooms["{}".format(self.current["level"] + 1)]["name"]],
+            "choices": self.rooms["{}".format(self.current["level"] + 1)]["choices"],
+            "show_characters": False,
+            "chatbots": {},
+            "npc": "",
+            "bot": "",
+            "messages": []
+        }
+
+        self.init_choices()

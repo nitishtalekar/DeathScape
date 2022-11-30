@@ -24,11 +24,13 @@
             <h2>{{data.room.room.name}}</h2>
         </div>
         <div class="mb-5" id="story">
+            {% autoescape on %}
             {% for story in data.room.story %}
             <div class="mb-2">
-                <p>{{story}}</p>
+                {{story}}
             </div>
             {% endfor %}
+            {% endautoescape %}
         </div>
         <div id="choices">
             {% for choice in data.room.choices %}

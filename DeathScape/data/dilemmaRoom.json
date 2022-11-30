@@ -1,42 +1,41 @@
 {
-  "name": "The Dilemma Room",
-  "description": "The room is a gas chamber. There is a timer above the exit door with the remaining time left in the room until the gas releases. Once the gas is released, there will be another countdown for opening the door to the exit.",
-  "actions": {
-    "npc1": "%NPC1% is eyeing you carefully."
-  },
-  "clues": {
-    "clue1": "Build trust in each other.",
-    "clue2": "Agree on a mutual option."
-  },
-  "deaths": {
-    "player": "Deciding to circumvent the trust system was a mistake on your part. You find yourself in an invisible chokehold and suspended midair, unable to breathe. Gas rapidly flows through the chamber, putting you through a slow and painful death.",
-    "npc": "%NPC% had circumvented the trust system, having lied to you during the trust process. They are placed in an invisible chokehold and suspended midair, unable to breathe. Gas rapidly flows through the chamber, putting %NPC% through a slow and painful death."
-  },
-  "conclusion": "You have survived the entire ordeal and made it out alive, even if it meant sacrificing people along the way. Congratulations on the difficult feat, and best of luck on the road ahead.",
-  "choices": [
-    {
-      "name": "Try the Dilemma Room puzzle",
-      "text": "Build trust with each other, and agree to coordinate your actions.",
-      "next": [
+    "name": "The Dilemma Room",
+    "description": "The room is a gas chamber. There is a timer above the exit door with the remaining time left in the room until the gas releases. Once the gas is released, there will be another countdown for opening the door to the exit.",
+    "actions": {
+        "npc1": "%NPC1% is eyeing you carefully."
+    },
+    "clues": {
+        "clue1": "Build trust in each other.",
+        "clue2": "Agree on a mutual option."
+    },
+    "deaths": {
+        "player": "Deciding to circumvent the trust system was a mistake on your part. You find yourself in an invisible chokehold and suspended midair, unable to breathe. Gas rapidly flows through the chamber, putting you through a slow and painful death.",
+        "npc": "%DEAD% had circumvented the trust system, having lied to you during the trust process. They are placed in an invisible chokehold and suspended midair, unable to breathe. Gas rapidly flows through the chamber, putting %DEAD% through a slow and painful death.<br /><br />You have survived the entire ordeal and made it out alive, even if it meant sacrificing people along the way. Congratulations on the difficult feat, and best of luck on the road ahead."
+    },
+    "choices": [
         {
-          "name": "Save everyone.",
-          "text": "You place yourself at risk to get both you and %NPC1% out of the room."
+            "name": "Try the Dilemma Room puzzle",
+            "text": "Build trust with each other, and agree to coordinate your actions.",
+            "next": [
+                {
+                    "name": "Save everyone.",
+                    "text": "You place yourself at risk to get both you and %NPC1% out of the room."
+                },
+                {
+                    "name": "Prioritize your safety.",
+                    "text": "You prioritize your safety to get yourself out, not caring about the consequences.",
+                    "next": [
+                        {
+                            "name": "Proceed to the exit...",
+                            "text": "You hear a scream behind you as you watch %NPC1% take their final breath. Satisfied with your work, you walk out of the exit, only to find yourself at a dead end. You hear an automated voice before you lose consciousness forever. \"Betrayal is not the answer.\" %DEAD% died after solving the Dilemma Room puzzle."
+                        }
+                    ]
+                }
+            ]
         },
         {
-          "name": "Prioritize your safety.",
-          "text": "You prioritize your safety to get yourself out, not caring about the consequences.",
-          "next": [
-            {
-              "name": "Proceed to the exit...",
-              "text": "You hear a scream behind you as you watch %NPC1% take their final breath. Satisfied with your work, you walk out of the exit, only to find yourself at a dead end. You hear an automated voice before you lose consciousness forever. \"Betrayal is not the answer.\" %DEAD% died after solving the Dilemma Room puzzle."
-            }
-          ]
+            "name": "Talk to %NPC1%",
+            "text": "You decide to talk to %NPC1%. They are eyeing you warily. \"Let's call a truce,\" you say, holding out your hand for a handshake. Without a word, %NPC1% shakes your hand."
         }
-      ]
-    },
-    {
-      "name": "Talk to %NPC1%",
-      "text": "You decide to talk to %NPC1%. They are eyeing you warily. \"Let's call a truce,\" you say, holding out your hand for a handshake. Without a word, %NPC1% shakes your hand."
-    }
-  ]
+    ]
 }

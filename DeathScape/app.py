@@ -57,45 +57,53 @@ def button_room():
         return redirect("/deathscape")
     else:
         global story
-        talk = False
+
+        dead = False
         solved = False
+        talk = False
 
         if request.method == "POST":
             if "choice" in request.form:
                 choice = request.form["choice"]
 
-                if choice == "Talk to a character":
-                    story.set_choices(choice)
-                else:
-                    story.set_choices(choice)
-                        
-                    if "golden button" in choice:
-                        solved = True
+                # if choice == "Try the puzzle later":
+                #     story.go_back(choice)
+                # else:
+                story.set_choices(choice)
+
+                if "Press the golden button" in choice:
+                    dead = True
+                elif "golden button" in choice:
+                    solved = True
             elif "character" in request.form:
-                npc = request.form["character"]
+                choice = request.form["character"]
                 talk = True
 
-                story.add_new_character_to_story(request.form["character"])
-
-                if npc == "end_convo":
-                    story.end_convo()
+                if choice == "back":
+                    story.dont_talk()
                     talk = False
-                elif npc == "msg":
-                    query = request.form["msg"]
-                    resp = str(story.bot.get_response(
+                elif choice == "end_conversation":
+                    story.end_conversation()
+                    talk = False
+                elif choice == "talk":
+                    query = request.form["messages"]
+                    resp = str(story.current["bot"].get_response(
                         Statement(text=query, search_text=query)))
-                    user_chat = {"name": player, "text": query}
-                    npc_chat = {"name": story.npc, "text": resp}
-                    story.msg.append(user_chat)
-                    story.msg.append(npc_chat)
+
+                    story.add_messages(query, resp)
                 else:
-                    story.chat_npc(npc)
+                    story.add_character_to_story(choice)
+                    story.set_bot(choice)
             elif "next" in request.form:
+                # story.next()
+
                 return redirect("/deathscape/lab_room?player={}".format(player))
+            elif "restart" in request.form:
+                return redirect("/")
         elif request.method == "GET":
             story = Story(player)
 
-        return render_template("button_room.html", data=story.current, talk=talk, msg=story.msg, solved=solved)
+        return render_template("button_room.html", data=story.current, talk=talk, messages=story.current["messages"], solved=solved, dead=dead)
 
 
 @app.route("/deathscape/lab_room", methods=["GET", "POST"])
@@ -114,6 +122,51 @@ def lab_room():
         }
 
         return render_template("lab_room.html", data=data)
+
+    # player = request.args.get("player")
+
+    # if player == None:
+    #     return redirect("/deathscape")
+    # else:
+    #     global story
+
+    #     talk = False
+
+    #     if request.method == "POST":
+    #         if "choice" in request.form:
+    #             choice = request.form["choice"]
+
+    #             # if choice == "Try the puzzle later":
+    #             #     story.go_back(choice)
+    #             # else:
+    #             story.set_choices(choice)
+    #         elif "character" in request.form:
+    #             choice = request.form["character"]
+    #             talk = True
+
+    #             if choice == "back":
+    #                 story.dont_talk()
+    #                 talk = False
+    #             elif choice == "end_conversation":
+    #                 story.end_conversation()
+    #                 talk = False
+    #             elif choice == "talk":
+    #                 query = request.form["messages"]
+    #                 resp = str(story.current["bot"].get_response(
+    #                     Statement(text=query, search_text=query)))
+
+    #                 story.add_messages(query, resp)
+    #             else:
+    #                 story.add_character_to_story(choice)
+    #                 story.set_bot(choice)
+    #         elif "next" in request.form:
+    #             return redirect("/deathscape/justice_room?player={}".format(player))
+    #         elif "restart" in request.form:
+    #             return redirect("/")
+    #     elif request.method == "GET":
+    #         story = story
+
+    #     return render_template("lab_room.html", data=story.current, talk=talk, messages=story.current["messages"])
 
 
 @app.route("/deathscape/justice_room", methods=["GET", "POST"])

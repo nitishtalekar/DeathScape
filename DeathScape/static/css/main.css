@@ -2,11 +2,11 @@ html,
 body {
   min-height: 100%;
   background-color: #0f0e0e;
-  overflow: auto;
+  /* overflow: auto; */
 }
 
 img {
-  width: 50%
+  width: 80%
 }
 
 textarea {
@@ -17,11 +17,36 @@ textarea {
 .margins {
   margin-top: 5%;
   margin-bottom: 5%;
+  margin-left: 20%;
+  margin-right: 20%;
 }
 
 .chat {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 1%;
+}
+
+.scrollbox {
+  width: 500px;
+  max-height: 30vh;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: rgb(26, 26, 26);
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 2px rgb(105, 105, 105);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(255, 255, 255);
+  border-radius: 5px;
 }

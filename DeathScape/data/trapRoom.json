@@ -1,54 +1,53 @@
 {
-  "name": "The Trap Room",
-  "description": "The room is a trap room. Spikes align the walls, and the floor is tiled. Each tile on the floor can be lifted in some way if some condition is fulfilled. One misstep could mean instant death for all, as some tiles can potentially drop at any time. A message says you need to activate three traps to proceed. If you are lucky, you live, and if not, you die.",
-  "actions": {
-    "npc1": "%NPC1% is examining the spikes on the wall.",
-    "npc2": "%NPC2% is muttering something incomprehensible while intensely eyeing the tiles on the floor."
-  },
-  "clues": {
-    "clue1": "Reveal the path and you shall be free.",
-    "clue2": "A noble sacrifice shall be chosen.",
-    "clue3": "Choose wisely."
-  },
-  "deaths": {
-    "player": "You have been chosen to be the noble sacrifice. The ground beneath you disappears, and you feel yourself fallin grapidly into an endless pit of darkness.",
-    "npc": "%NPC% is seen falling and screaming as they fall through one of the tiles into an endless pit of darkness."
-  },
-  "conclusion": "There is no turning back as only two people remain, including you. The next room will most likely end things once and for all.",
-  "choices": [
-    {
-      "name": "Try the Trap Room puzzle",
-      "text": "Find the designated path to freedom.",
-      "next": [
-        {
-          "name": "Use your knowledge combined with what you observed to find the path.",
-          "text": "You decide to follow your gut and use the knowledge that you've compiled to your advantage."
-        },
-        {
-          "name": "Follow the advice from the other participants and combine it with your knowledge to find the path.",
-          "text": "You decide to trust in your fellow participants and use what they have told you to help solve the puzzle.",
-          "next": [
-            {
-              "name": "Proceed to the path...",
-              "text": "You volunteer to go first, but as you are midway through the room, you feel the file below you drop, and you feel yourself falling into an endless pit of darkness. %DEAD% died after solving the Trap Room puzzle."
-            }
-          ]
-        }
-      ]
+    "name": "The Trap Room",
+    "description": "The room is a trap room. Spikes align the walls, and the floor is tiled. Each tile on the floor can be lifted in some way if some condition is fulfilled. One misstep could mean instant death for all, as some tiles can potentially drop at any time. A message says you need to activate three traps to proceed. If you are lucky, you live, and if not, you die.",
+    "actions": {
+        "npc1": "%NPC1% is examining the spikes on the wall.",
+        "npc2": "%NPC2% is muttering something incomprehensible while intensely eyeing the tiles on the floor."
     },
-    {
-      "name": "Talk to a character",
-      "text": "Which character do you want to talk to?",
-      "next": [
+    "clues": {
+        "clue1": "Reveal the path and you shall be free.",
+        "clue2": "A noble sacrifice shall be chosen.",
+        "clue3": "Choose wisely."
+    },
+    "deaths": {
+        "player": "You have been chosen to be the noble sacrifice. The ground beneath you disappears, and you feel yourself fallin grapidly into an endless pit of darkness.",
+        "npc": "%DEAD% is seen falling and screaming as they fall through one of the tiles into an endless pit of darkness.<br /><br />There is no turning back as only two people remain, including you. The next room will most likely end things once and for all."
+    },
+    "choices": [
         {
-          "name": "Talk to %NPC1%",
-          "text": "You decide to talk to %NPC1%. \"Do you think the spikes will fly out at us while we try and figure out the path? Either way, we should tread carefully.\""
+            "name": "Try the Trap Room puzzle",
+            "text": "Find the designated path to freedom.",
+            "next": [
+                {
+                    "name": "Use your knowledge combined with what you observed to find the path.",
+                    "text": "You decide to follow your gut and use the knowledge that you've compiled to your advantage."
+                },
+                {
+                    "name": "Follow the advice from the other participants and combine it with your knowledge to find the path.",
+                    "text": "You decide to trust in your fellow participants and use what they have told you to help solve the puzzle.",
+                    "next": [
+                        {
+                            "name": "Proceed to the path...",
+                            "text": "You volunteer to go first, but as you are midway through the room, you feel the file below you drop, and you feel yourself falling into an endless pit of darkness. %DEAD% died after solving the Trap Room puzzle."
+                        }
+                    ]
+                }
+            ]
         },
         {
-          "name": "Talk to %NPC2%",
-          "text": "You decide to talk to %NPC2%. They seem to be deep in thought. \"What do you think?\" you ask %NPC2%. \"We need to trial and error this somehow,\" %NPC2% tells you. \"The tiles are all identical, and there aren't any funny marks to give us any hints. We should have one person go at a time.\""
+            "name": "Talk to someone",
+            "text": "Which character do you want to talk to?",
+            "next": [
+                {
+                    "name": "Talk to %NPC1%",
+                    "text": "You decide to talk to %NPC1%. \"Do you think the spikes will fly out at us while we try and figure out the path? Either way, we should tread carefully.\""
+                },
+                {
+                    "name": "Talk to %NPC2%",
+                    "text": "You decide to talk to %NPC2%. They seem to be deep in thought. \"What do you think?\" you ask %NPC2%. \"We need to trial and error this somehow,\" %NPC2% tells you. \"The tiles are all identical, and there aren't any funny marks to give us any hints. We should have one person go at a time.\""
+                }
+            ]
         }
-      ]
-    }
-  ]
+    ]
 }

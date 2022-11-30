@@ -1,17 +1,14 @@
 {
     "friendliness": {
-        "-1": "unfriendly",
-        "0": "polite",
-        "1": "overly-friendly"
+        "-1": "mean",
+        "1": "nice"
     },
     "anger": {
-        "-1": "easily angered",
-        "0": "angered on triggers",
+        "-1": "angry",
         "1": "not angry"
     },
     "quietness": {
-        "-1": "creepy",
-        "0": "mute",
-        "1": "shy"
+        "-1": "quiet",
+        "1": "loud"
     }
 }
