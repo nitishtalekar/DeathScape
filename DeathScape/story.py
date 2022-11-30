@@ -310,7 +310,7 @@ class Story:
             "player": {
                 "name": self.current["player"]["name"],
                 "doomsday": self.current["player"]["doomsday"],
-                "clue": ""
+                "clue": "" if len({character: info for character, info in self.characters.items() if info["alive"]}) == len(self.rooms["{}".format(self.current["level"] + 1)]["clues"].items()) else self.rooms["{}".format(self.current["level"] + 1)]["clues"]["clue1"]
             },
             "level": self.current["level"] + 1,
             "room": self.rooms["{}".format(self.current["level"] + 1)],
@@ -326,7 +326,13 @@ class Story:
 
         self.init_choices()
 
+        print("NEXT:")
+        print("--------------------------------------------------------------------------------------")
+        print(self.current["player"])
+        print("\n\n\n")
+        print(self.current["characters"])
+
         for index, character in zip(range(len(self.current["characters"])), self.current["characters"]):
             self.current["characters"][character]["index"] = index + 1
             self.current["characters"][character]["clue"] = self.current["room"]["clues"]["clue{}".format(
-                self.current["characters"][character]["index"] if len(self.current["characters"]) == len(self.current["room"]["clues"].items()) else self.current["characters"][character]["index"] + 1)]
+                self.current["characters"][character]["index"] if self.current["player"]["clue"] == "" else self.current["characters"][character]["index"] + 1)]
