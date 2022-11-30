@@ -44,25 +44,7 @@
         },
         {
             "name": "Talk to someone",
-            "text": "Which character do you want to talk to?",
-            "next": [
-                {
-                    "name": "Talk to %NPC1%",
-                    "text": "You decide to talk to %NPC1%. They seem oddly happy for some reason. \"This room is truly fascinating,\" %NPC1% tells you. \"I want to take a close look at everything as much as I can. Oh, and did you know? %CLUE1%.\""
-                },
-                {
-                    "name": "Talk to %NPC2%",
-                    "text": "You decide to talk to %NPC2%. They are examining the samples of unknown subtance on one of the lab tables. \"What are you doing?\" you ask. \"These are sulfuric acid samples. It looks like something is hidden in one of them, so I'm thinking about where to pour the samples to fish out the hidden object.\" %NPC2% takes an empty plastic container at the side and puts on rubber gloves before dumping each sample into the box. A sound is heard, and %NPC2% fishes out the object, which appears to be a key to something. They then use tweezers to place the object into a beaker with fresh liquid before handing it to you. Carefully, you take the key and thank them."
-                },
-                {
-                    "name": "Talk to %NPC3%",
-                    "text": "You decide to talk to %NPC3%. \"I'm not sure what to do with this, so I'll leave it to you,\" %NPC3% says as they hand you a flask with a label that says hydrochloric acid."
-                },
-                {
-                    "name": "Talk to %NPC4%",
-                    "text": "You decide to talk to %NPC4%. \"We need the correct materials to melt down the lock,\" %NPC4% says as they examine the lock. \"If you know anything, feel free to try it out.\""
-                }
-            ]
+            "text": "You decide to talk to someone."
         }
     ]
 }

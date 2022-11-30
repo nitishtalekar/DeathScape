@@ -38,8 +38,8 @@
             ]
         },
         {
-            "name": "Talk to %NPC1%",
-            "text": "You decide to talk to %NPC1%. They are eyeing you warily. \"Let's call a truce,\" you say, holding out your hand for a handshake. Without a word, %NPC1% shakes your hand."
+            "name": "Talk to someone",
+            "text": "You decide to talk to someone."
         }
     ]
 }

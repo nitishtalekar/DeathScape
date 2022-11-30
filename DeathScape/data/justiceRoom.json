@@ -42,21 +42,7 @@
         },
         {
             "name": "Talk to someone",
-            "text": "Which character do you want to talk to?",
-            "next": [
-                {
-                    "name": "Talk to %NPC1%",
-                    "text": "You decide to talk to %NPC1%. \"I'm okay with sharing my number as long as you share yours in return.\""
-                },
-                {
-                    "name": "Talk to %NPC2%",
-                    "text": "You decide to talk to %NPC2%. \"Do we really have to share our numbers? I don't want to kill anyone because the rules say so.\" "
-                },
-                {
-                    "name": "Talk to %NPC3%",
-                    "text": "You decide to talk to %NPC3%. \"Do you think the dolls have something to do with how we're supposed to solve this?\""
-                }
-            ]
+            "text": "You decide to talk to someone."
         }
     ]
 }

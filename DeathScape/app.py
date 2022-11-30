@@ -83,7 +83,7 @@ def button_room():
                 elif choice == "talk":
                     player_message = request.form["messages"]
                     character_message = str(story.current["bot"].get_response(
-                        Statement(text=player_message, search_text=character_message)))
+                        Statement(text=player_message, search_text=player_message)))
 
                     story.add_messages(player_message, character_message)
                 else:
@@ -128,7 +128,7 @@ def lab_room():
                 elif choice == "talk":
                     player_message = request.form["messages"]
                     character_message = str(story.current["bot"].get_response(
-                        Statement(text=player_message, search_text=character_message)))
+                        Statement(text=player_message, search_text=player_message)))
 
                     story.add_messages(player_message, character_message)
                 else:
@@ -173,7 +173,7 @@ def justice_room():
                 elif choice == "talk":
                     player_message = request.form["messages"]
                     character_message = str(story.current["bot"].get_response(
-                        Statement(text=player_message, search_text=character_message)))
+                        Statement(text=player_message, search_text=player_message)))
 
                     story.add_messages(player_message, character_message)
                 else:
@@ -218,7 +218,7 @@ def trap_room():
                 elif choice == "talk":
                     player_message = request.form["messages"]
                     character_message = str(story.current["bot"].get_response(
-                        Statement(text=player_message, search_text=character_message)))
+                        Statement(text=player_message, search_text=player_message)))
 
                     story.add_messages(player_message, character_message)
                 else:
@@ -263,7 +263,7 @@ def dilemma_room():
                 elif choice == "talk":
                     player_message = request.form["messages"]
                     character_message = str(story.current["bot"].get_response(
-                        Statement(text=player_message, search_text=character_message)))
+                        Statement(text=player_message, search_text=player_message)))
 
                     story.add_messages(player_message, character_message)
                 else:

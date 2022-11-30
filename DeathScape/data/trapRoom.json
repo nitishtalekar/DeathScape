@@ -41,17 +41,7 @@
         },
         {
             "name": "Talk to someone",
-            "text": "Which character do you want to talk to?",
-            "next": [
-                {
-                    "name": "Talk to %NPC1%",
-                    "text": "You decide to talk to %NPC1%. \"Do you think the spikes will fly out at us while we try and figure out the path? Either way, we should tread carefully.\""
-                },
-                {
-                    "name": "Talk to %NPC2%",
-                    "text": "You decide to talk to %NPC2%. They seem to be deep in thought. \"What do you think?\" you ask %NPC2%. \"We need to trial and error this somehow,\" %NPC2% tells you. \"The tiles are all identical, and there aren't any funny marks to give us any hints. We should have one person go at a time.\""
-                }
-            ]
+            "text": "You decide to talk to someone."
         }
     ]
 }

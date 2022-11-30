@@ -33,73 +33,6 @@ class Story:
         self.init_choices()
         self.init_chat()
 
-        self.remaining_characters = [
-            character for character, info in self.characters.items() if info["alive"]]
-
-        self.remaining_characters.pop()
-
-        self.lab_room = {
-            "player": {
-                "name": player,
-                "doomsday": 0,
-                "clue": ""
-            },
-            "level": 2,
-            "room": self.rooms["2"],
-            "characters": self.remaining_characters,
-            "story": self.story[self.rooms["2"]["name"]],
-            "choices": self.rooms["2"]["choices"],
-            "show_characters": False
-        }
-
-        self.remaining_characters.pop()
-
-        self.justice_room = {
-            "player": {
-                "name": player,
-                "doomsday": 0,
-                "clue": ""
-            },
-            "level": 3,
-            "room": self.rooms["3"],
-            "characters": self.remaining_characters,
-            "story": self.story[self.rooms["3"]["name"]],
-            "choices": self.rooms["3"]["choices"],
-            "show_characters": False
-        }
-
-        self.remaining_characters.pop()
-
-        self.trap_room = {
-            "player": {
-                "name": player,
-                "doomsday": 0,
-                "clue": self.rooms["4"]["clues"]["clue1"]
-            },
-            "level": 4,
-            "room": self.rooms["4"],
-            "characters": self.remaining_characters,
-            "story": self.story[self.rooms["4"]["name"]],
-            "choices": self.rooms["4"]["choices"],
-            "show_characters": False
-        }
-
-        self.remaining_characters.pop()
-
-        self.dilemma_room = {
-            "player": {
-                "name": player,
-                "doomsday": 0,
-                "clue": self.rooms["5"]["clues"]["clue1"]
-            },
-            "level": 5,
-            "room": self.rooms["5"],
-            "characters": self.remaining_characters,
-            "story": self.story[self.rooms["5"]["name"]],
-            "choices": self.rooms["5"]["choices"],
-            "show_characters": False
-        }
-
     def init_intro(self):
         with open("data/intro.json") as f:
             intro = json.load(f)
@@ -227,7 +160,7 @@ class Story:
         return replaced
 
     def set_choices(self, current):
-        if current == "Talk to someone":
+        if "Talk to someone" == current:
             self.current["show_characters"] = True
         for choice in self.current["choices"]:
             if choice["name"] == current:
@@ -312,7 +245,7 @@ class Story:
                 if replaced not in self.current["story"][len(self.current["story"]) - 1] and replaced not in self.current["story"][len(self.current["story"]) - 2]:
                     self.current["story"].append(replaced)
 
-                if self.current["characters"][character]["description"] not in self.current["story"]:
+                if self.current["level"] == 1 and self.current["characters"][character]["description"] not in self.current["story"]:
                     self.current["story"].append(
                         self.current["characters"][character]["description"])
 
@@ -328,6 +261,7 @@ class Story:
                 return
 
     def set_bot(self, npc_name):
+        print(self.current["chatbots"])
         self.current["npc"] = npc_name
         self.current["bot"] = self.current["chatbots"][npc_name]
 
@@ -384,10 +318,15 @@ class Story:
             "story": self.story[self.rooms["{}".format(self.current["level"] + 1)]["name"]],
             "choices": self.rooms["{}".format(self.current["level"] + 1)]["choices"],
             "show_characters": False,
-            "chatbots": {},
+            "chatbots": self.current["chatbots"],
             "npc": "",
             "bot": "",
             "messages": []
         }
 
         self.init_choices()
+
+        for index, character in zip(range(len(self.current["characters"])), self.current["characters"]):
+            self.current["characters"][character]["index"] = index + 1
+            self.current["characters"][character]["clue"] = self.current["room"]["clues"]["clue{}".format(
+                self.current["characters"][character]["index"] if len(self.current["characters"]) == len(self.current["room"]["clues"].items()) else self.current["characters"][character]["index"] + 1)]

@@ -5,12 +5,16 @@ var data = {
     "characters": {},
     "story": [],
     "choices": [],
-    "show_characters": false
+    "show_characters": false,
+    "chatbots": {},
+    "npc": "",
+    "bot": None,
+    "messages": []
 }
 
 var pressed_buttons = ""
 
-function preprocess(player, level, room, characters, story, choices, show_characters) {
+function preprocess(player, level, room, characters, story, choices, show_characters, chatbots, npc, bot, messages) {
     window.scrollTo(0, document.body.scrollHeight);
 
     var scrollbox = document.getElementsByClassName("scrollbox")[0];
@@ -25,7 +29,11 @@ function preprocess(player, level, room, characters, story, choices, show_charac
         "characters": characters,
         "story": story,
         "choices": choices,
-        "show_characters": show_characters
+        "show_characters": show_characters,
+        "chatbots": chatbots,
+        "npc": npc,
+        "bot": bot,
+        "messages": messages
     }
 
     console.log("PLAYER: " + data["player"]);
@@ -35,4 +43,8 @@ function preprocess(player, level, room, characters, story, choices, show_charac
     console.log("STORY: " + data["story"]);
     console.log("CHOICES: " + data["choices"]);
     console.log("SHOW_CHARACTERS: " + data["show_characters"]);
+    console.log("CHATBOTS: " + data["chatbots"]);
+    console.log("NPC: " + data["npc"]);
+    console.log("BOT: " + data["bot"]);
+    console.log("MESSAGES: " + data["messages"]);
 }
