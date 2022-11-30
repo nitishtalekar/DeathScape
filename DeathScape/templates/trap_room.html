@@ -13,34 +13,120 @@
 
 <body
     onload="preprocess(`{{data.player}}`, `{{data.level}}`, `{{data.room}}`, `{{data.characters}}`, `{{data.story}}`, `{{data.choices}}`, `{{data.show_characters}}`)">
-    <div class="text-white text-center vertical-center container margins">
-        <div class="mb-5">
-            <h1>Death Scape</h1>
-        </div>
-        <div class="mb-5">
-            <img src="{{ url_for('static', filename='img/trap_room.jpg')}}">
-        </div>
-        <div class="mb-5">
-            <h2>{{data.room.room.name}}</h2>
-        </div>
-        <div class="mb-5" id="story">
-            {% autoescape on %}
-            {% for story in data.room.story %}
-            <div class="mb-2">
-                {{story}}
+    <div class="text-white text-center vertical-center margins">
+        <center>
+            <div class="mb-5">
+                <h1>Death Scape</h1>
             </div>
-            {% endfor %}
-            {% endautoescape %}
-        </div>
-        <div id="choices">
-            {% for choice in data.room.choices %}
-            <div class="mb-2">
-                <button class="btn btn-light" type="submit" name="choice" value="{{choice.name}}">
-                    {{choice.name}}
-                </button>
+            <div class="mb-5">
+                <img src="{{ url_for('static', filename='img/trap_room.jpg')}}">
             </div>
-            {% endfor %}
-        </div>
+            <div class="mb-5">
+                <h2>{{data.room.name}}</h2>
+            </div>
+            <div>
+                <div class="mb-5">
+                    {% autoescape on %}
+                    <hr />
+                    {% for story in data.story %}
+                    <div class="mb-4">
+                        {{story}}
+                    </div>
+                    {% endfor %}
+                    <hr />
+                    {% endautoescape %}
+                </div>
+                <div>
+                    {% if not dead %}
+                    {% if not solved %}
+                    {% if not data.show_characters %}
+                    <div>
+                        <form action="/deathscape/trap_room?player={{data.player.name}}" method="post">
+                            {% for choice in data.choices %}
+                            <div class="mb-2">
+                                <button class="btn btn-light" type="submit" name="choice" value="{{choice.name}}">
+                                    {{choice.name}}
+                                </button>
+                            </div>
+                            {% endfor %}
+                        </form>
+                    </div>
+                    {% endif %}
+                    {% if data.show_characters %}
+                    <div>
+                        <form action="/deathscape/trap_room?player={{data.player.name}}" method="post">
+                            {% if not talk %}
+                            {% for character in data.characters %}
+                            <div class="mb-2">
+                                <button class="btn btn-light" type="submit" name="character" value="{{character}}">
+                                    Talk to {{character}}
+                                </button>
+                            </div>
+                            {% endfor %}
+                            <div class="mb-2">
+                                <button class="btn btn-light" type="submit" name="character" value="back">
+                                    Don't talk to anyone
+                                </button>
+                            </div>
+                            {% endif %}
+                            {% if talk %}
+                            {% if messages|length > 0 %}
+                            <div class="mb-5 overflow-auto scrollbox">
+                                {% for message in messages %}
+                                <div class="mb-2">
+                                    {{message.name}}: {{message.text}}
+                                </div>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                            <div class="mb-5 chat">
+                                <div>
+                                    <label for="messages">You:</label>
+                                </div>
+                                <div>
+                                    <textarea name="messages" rows="1" cols="50"></textarea>
+                                </div>
+                                <div>
+                                    <button class="btn btn-light" type="submit" name="character" value="talk">
+                                        Talk
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="mb-2">
+                                <button class="btn btn-light" type="submit" name="character" value="end_conversation">
+                                    End Conversation
+                                </button>
+                            </div>
+                            {% endif %}
+                        </form>
+                    </div>
+                    {% endif %}
+                    {% endif %}
+                    {% if solved %}
+                    <form action="/deathscape/trap_room?player={{data.player.name}}" method="post">
+                        <div>
+                            <button class="btn btn-light" type="submit" name="next">Next</button>
+                        </div>
+                    </form>
+                    {% endif %}
+                    {% endif %}
+                    {% if dead %}
+                    <div class="mb-5">
+                        <h2>Game Over</h2>
+                    </div>
+                    <div class="mb-5">
+                        <hr />
+                    </div>
+                    <form action="/deathscape/trap_room?player={{data.player.name}}" method="post">
+                        <div>
+                            <button class="btn btn-light" type="submit" name="restart">Start Over</button>
+                        </div>
+                    </form>
+                    {% endif %}
+                </div>
+            </div>
+        </center>
+    </div>
 </body>
 
 </html>

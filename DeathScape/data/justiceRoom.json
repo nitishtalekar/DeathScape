@@ -17,8 +17,8 @@
     },
     "choices": [
         {
-            "name": "Try the Justice Room puzzle",
-            "text": "Choose the one to place under the blade as the worthy sacrifice.",
+            "name": "Try the puzzle",
+            "text": "You decide to try the puzzle. Choose the one to place under the blade as the worthy sacrifice.",
             "next": [
                 {
                     "name": "Place the puppet with the lowest number under the blade.",
@@ -33,6 +33,10 @@
                             "text": "%DEAD% died after solving the Justice Room puzzle."
                         }
                     ]
+                },
+                {
+                    "name": "Try the puzzle later",
+                    "text": "You decide to try the puzzle later."
                 }
             ]
         },

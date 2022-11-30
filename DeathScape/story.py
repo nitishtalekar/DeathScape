@@ -278,8 +278,12 @@ class Story:
                     self.current["story"].append(replaced)
 
                     if "Try the puzzle" == current and self.current["player"]["clue"] not in self.current["story"]:
-                        self.current["story"].append(
-                            self.current["player"]["clue"])
+                        if self.current["player"]["clue"] != "":
+                            self.current["story"].append(
+                                self.current["player"]["clue"])
+                        elif "It seems like you have to find a way to dislocate the lock to successfully escape the room." not in self.current["story"]:
+                            self.current["story"].append(
+                                "It seems like you have to find a way to dislocate the lock to successfully escape the room.")
                     elif "golden button" in current:
                         if "Do not" in current:
                             self.current["story"].append(self.replace_placeholders(
@@ -299,9 +303,9 @@ class Story:
 
                 return
 
-    def add_character_to_story(self, new_character):
+    def add_character_to_story(self, character_to_add):
         for character in self.current["characters"]:
-            if character == new_character:
+            if character == character_to_add:
                 replaced = "You approach {}. {}".format(character, self.replace_placeholders(
                     self.current["room"]["actions"]["npc{}".format(self.current["characters"][character]["index"])]))
 
@@ -327,13 +331,13 @@ class Story:
         self.current["npc"] = npc_name
         self.current["bot"] = self.current["chatbots"][npc_name]
 
-    def add_messages(self, query, resp):
-        user_chat = {"name": "You", "text": query}
-        npc_chat = {"name": self.current["npc"], "text": resp}
+    def add_messages(self, player_message, character_message):
+        player = {"name": "You", "text": player_message}
+        character = {"name": self.current["npc"], "text": character_message}
 
-        if len(self.current["messages"]) == 0 or (self.current["messages"][len(self.current["messages"]) - 2] != user_chat and self.current["messages"][len(self.current["messages"]) - 1] != npc_chat):
-            self.current["messages"].append(user_chat)
-            self.current["messages"].append(npc_chat)
+        if len(self.current["messages"]) == 0 or (self.current["messages"][len(self.current["messages"]) - 2] != player and self.current["messages"][len(self.current["messages"]) - 1] != character):
+            self.current["messages"].append(player)
+            self.current["messages"].append(character)
 
     def dont_talk(self):
         self.current["show_characters"] = False

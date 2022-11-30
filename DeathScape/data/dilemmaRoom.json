@@ -14,8 +14,8 @@
     },
     "choices": [
         {
-            "name": "Try the Dilemma Room puzzle",
-            "text": "Build trust with each other, and agree to coordinate your actions.",
+            "name": "Try the puzzle",
+            "text": "You decide to try the puzzle. Build trust with each other, and agree to coordinate your actions.",
             "next": [
                 {
                     "name": "Save everyone.",
@@ -30,6 +30,10 @@
                             "text": "You hear a scream behind you as you watch %NPC1% take their final breath. Satisfied with your work, you walk out of the exit, only to find yourself at a dead end. You hear an automated voice before you lose consciousness forever. \"Betrayal is not the answer.\" %DEAD% died after solving the Dilemma Room puzzle."
                         }
                     ]
+                },
+                {
+                    "name": "Try the puzzle later",
+                    "text": "You decide to try the puzzle later."
                 }
             ]
         },

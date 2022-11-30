@@ -19,8 +19,8 @@
     },
     "choices": [
         {
-            "name": "Try the Lab Room puzzle",
-            "text": "Find a way to dislocate the lock to successfully escape the room.",
+            "name": "Try the puzzle",
+            "text": "You decide to try the puzzle.",
             "next": [
                 {
                     "name": "Mix the hydrochloric acid sample with water.",
@@ -35,6 +35,10 @@
                             "text": "%DEAD% died after solving the Lab Room puzzle."
                         }
                     ]
+                },
+                {
+                    "name": "Try the puzzle later",
+                    "text": "You decide to try the puzzle later."
                 }
             ]
         },
