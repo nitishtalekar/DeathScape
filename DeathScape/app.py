@@ -109,6 +109,8 @@ def lab_room():
         if story.current["level"] != 2:
             story.next()
 
+        dead = False
+        solved = False
         talk = False
 
         if request.method == "POST":
@@ -159,6 +161,8 @@ def justice_room():
         if story.current["level"] != 3:
             story.next()
 
+        dead = False
+        solved = False
         talk = False
 
         if request.method == "POST":
@@ -189,7 +193,7 @@ def justice_room():
             elif "restart" in request.form:
                 return redirect("/")
 
-        return render_template("justice_room.html", data=story.current, talk=talk, messages=story.current["messages"])
+        return render_template("justice_room.html", data=story.current, talk=talk, messages=story.current["messages"], solved=solved, dead=dead)
 
 
 @app.route("/deathscape/trap_room", methods=["GET", "POST"])
@@ -204,6 +208,8 @@ def trap_room():
         if story.current["level"] != 4:
             story.next()
 
+        dead = False
+        solved = False
         talk = False
 
         if request.method == "POST":
@@ -234,7 +240,7 @@ def trap_room():
             elif "restart" in request.form:
                 return redirect("/")
 
-        return render_template("trap_room.html", data=story.current, talk=talk, messages=story.current["messages"])
+        return render_template("trap_room.html", data=story.current, talk=talk, messages=story.current["messages"], solved=solved, dead=dead)
 
 
 @app.route("/deathscape/dilemma_room", methods=["GET", "POST"])
@@ -249,6 +255,8 @@ def dilemma_room():
         if story.current["level"] != 5:
             story.next()
 
+        dead = False
+        solved = False
         talk = False
 
         if request.method == "POST":
@@ -279,7 +287,7 @@ def dilemma_room():
             elif "restart" in request.form:
                 return redirect("/")
 
-        return render_template("dilemma_room.html", data=story.current, talk=talk, messages=story.current["messages"])
+        return render_template("dilemma_room.html", data=story.current, talk=talk, messages=story.current["messages"], solved=solved, dead=dead)
 
 
 if __name__ == "__main__":

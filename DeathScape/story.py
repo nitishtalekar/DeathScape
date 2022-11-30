@@ -217,8 +217,8 @@ class Story:
                         elif "It seems like you might be able to disintegrate the lock on the exit door." not in self.current["story"]:
                             self.current["story"].append(
                                 "It seems like you might be able to disintegrate the lock on the exit door.")
-                    elif "golden button" in current:
-                        if "Do not" in current:
+                    elif "golden button" in current or "Mix" in current:
+                        if "Do not" in current or "the hydrochloric acid sample with water" in current:
                             self.current["story"].append(self.replace_placeholders(
                                 self.current["room"]["deaths"]["npc"]))
 
