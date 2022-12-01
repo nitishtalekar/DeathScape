@@ -8,11 +8,9 @@ var data = {
     "show_characters": false,
     "chatbots": {},
     "npc": "",
-    "bot": None,
+    "bot": null,
     "messages": []
 }
-
-var pressed_buttons = ""
 
 function preprocess(player, level, room, characters, story, choices, show_characters, chatbots, npc, bot, messages) {
     window.scrollTo(0, document.body.scrollHeight);

@@ -42,11 +42,46 @@
                     {% if not data.show_characters %}
                     <div>
                         <form action="/deathscape/button_room?player={{data.player.name}}" method="post">
+                            <div class="d-flex justify-content-center align-items-center">
+                                {% for choice in data.choices %}
+                                <div class="mb-5 margin-right">
+                                    {% if choice.name == "Press the red button" %}
+                                    <img src="{{ url_for('static', filename='img/red_button.png')}}"
+                                        style="width: 100px">
+                                    <br /><br />
+                                    {% elif choice.name == "Press the yellow button" %}
+                                    <img src="{{ url_for('static', filename='img/yellow_button.png')}}"
+                                        style="width: 100px">
+                                    <br /><br />
+                                    {% elif choice.name == "Press the green button" %}
+                                    <img src="{{ url_for('static', filename='img/green_button.png')}}"
+                                        style="width: 100px">
+                                    <br /><br />
+                                    {% elif choice.name == "Press the blue button" %}
+                                    <img src="{{ url_for('static', filename='img/blue_button.png')}}"
+                                        style="width: 100px">
+                                    <br /><br />
+                                    {% elif choice.name == "Press the golden button" %}
+                                    <img src="{{ url_for('static', filename='img/yellow_button.png')}}"
+                                        style="width: 100px">
+                                    <br /><br />
+                                    {% endif %}
+                                    {% if choice.name != "Try the puzzle later" %}
+                                    <button class="btn btn-light text-nowrap" type="submit" name="choice"
+                                        value="{{choice.name}}">
+                                        {{choice.name}}
+                                    </button>
+                                    {% endif %}
+                                </div>
+                                {% endfor %}
+                            </div>
                             {% for choice in data.choices %}
-                            <div class="mb-2">
+                            <div>
+                                {% if choice.name == "Try the puzzle later" %}
                                 <button class="btn btn-light" type="submit" name="choice" value="{{choice.name}}">
                                     {{choice.name}}
                                 </button>
+                                {% endif %}
                             </div>
                             {% endfor %}
                         </form>
