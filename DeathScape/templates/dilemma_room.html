@@ -38,7 +38,6 @@
                 </div>
                 <div>
                     {% if not dead %}
-                    {% if not solved %}
                     {% if not data.show_characters %}
                     <div>
                         <form action="/deathscape/dilemma_room?player={{data.player.name}}" method="post">
@@ -102,17 +101,9 @@
                     </div>
                     {% endif %}
                     {% endif %}
-                    {% if solved %}
-                    <form action="/deathscape/dilemma_room?player={{data.player.name}}" method="post">
-                        <div>
-                            <button class="btn btn-light" type="submit" name="next" value="next">Next</button>
-                        </div>
-                    </form>
-                    {% endif %}
-                    {% endif %}
                     {% if dead %}
                     <div class="mb-5">
-                        <h2>Game Over</h2>
+                        <h2>The End</h2>
                     </div>
                     <div class="mb-5">
                         <hr />

@@ -1,35 +1,29 @@
 {
     "name": "The Dilemma Room",
-    "description": "The room is a gas chamber. There is a timer above the exit door with the remaining time left in the room until the gas releases. Once the gas is released, there will be another countdown for opening the door to the exit.",
+    "description": "The room is almost entirely bare. The walls are white the floors are white, and the ceilings are white. There's an exit door, but surprise surprise, it's locked. There's a countown timer on top of the exit door, showing just a little under 2 minutes left on the timer. There only other thing in the room is a table in the center of the room with two chests on top. Both of you hurriedly walk over to the table to see what's in the chests. Neither of the chests are locked, so you each open one. You find a gun with a single bullet in it in each chest. Your heart drops as you realize what this means.",
     "actions": {
         "npc1": "%NPC1% is eyeing you carefully."
     },
     "clues": {
-        "clue1": "Build trust in each other.",
-        "clue2": "Agree on a mutual option."
+        "clue1": "",
+        "clue2": ""
     },
     "deaths": {
-        "player": "Deciding to circumvent the trust system was a mistake on your part. You find yourself in an invisible chokehold and suspended midair, unable to breathe. Gas rapidly flows through the chamber, putting you through a slow and painful death.",
-        "npc": "%DEAD% had circumvented the trust system, having lied to you during the trust process. They are placed in an invisible chokehold and suspended midair, unable to breathe. Gas rapidly flows through the chamber, putting %DEAD% through a slow and painful death.<br /><br />You have survived the entire ordeal and made it out alive, even if it meant sacrificing people along the way. Congratulations on the difficult feat, and best of luck on the road ahead."
+        "player": "Deciding to trust %NPC1% was a mistake on your part. %NPC1% shoots you, prioritizing their safety over yours.",
+        "npc": "You shoot quickly %NPC1% before you have time to think about what you're doing. The door opens and you run towards it, relieved to finally be free of this nightmare."
     },
     "choices": [
         {
             "name": "Try the puzzle",
-            "text": "You decide to try the puzzle. Build trust with each other, and agree to coordinate your actions.",
+            "text": "You decide to try the puzzle.",
             "next": [
                 {
-                    "name": "Save everyone.",
-                    "text": "You place yourself at risk to get both you and %NPC1% out of the room."
+                    "name": "Don't shoot",
+                    "text": "You decide not to shoot. You can't bring yourself to take another life. You place yourself at risk to get both you and %NPC1% out of the room."
                 },
                 {
-                    "name": "Prioritize your safety.",
-                    "text": "You prioritize your safety to get yourself out, not caring about the consequences.",
-                    "next": [
-                        {
-                            "name": "Proceed to the exit...",
-                            "text": "You hear a scream behind you as you watch %NPC1% take their final breath. Satisfied with your work, you walk out of the exit, only to find yourself at a dead end. You hear an automated voice before you lose consciousness forever. \"Betrayal is not the answer.\" %DEAD% died after solving the Dilemma Room puzzle."
-                        }
-                    ]
+                    "name": "Shoot",
+                    "text": "You decide to shoot. You prioritize your safety above the safety of %NPC1%. You've made it this far and you're determined to survive until the end. You quickly bring your gun up and point it at %NPC1%, ready to shoot."
                 },
                 {
                     "name": "Try the puzzle later",

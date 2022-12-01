@@ -30,11 +30,11 @@ class Story:
             "bot": "",
             "messages": []
         }
-        
+
         with open("data/positive.txt") as file:
             pos = file.readlines()
         self.pos = [sub[: -1] for sub in pos]
-        
+
         with open("data/negative.txt") as file:
             neg = file.readlines()
         self.neg = [sub[: -1] for sub in neg]
@@ -245,11 +245,11 @@ class Story:
                     self.current["story"].append(replaced)
 
                     if "Try the puzzle" == current and self.current["player"]["clue"] not in self.current["story"]:
-                        if (self.current["level"] == 1 or self.current["level"] == 3) and self.current["player"]["clue"] != "":
+                        if (self.current["level"] == 1 or self.current["level"] == 3 or self.current["level"] == 5) and self.current["player"]["clue"] != "":
                             self.current["story"].append(
                                 self.current["player"]["clue"])
-                    elif "golden button" in current or "Mix" in current or "puppet under the guillotine's blade" in current or "puppet with your number" in current or "go first" in current.lower():
-                        if "Do not" in current or "the hydrochloric acid with water" in current or "puppet with your number" in current or "puppet under the guillotine's blade" in current or "Don't go" in current:
+                    elif "golden button" in current or "Mix" in current or "puppet under the guillotine's blade" in current or "puppet with your number" in current or "go first" in current.lower() or "shoot" in current.lower():
+                        if "Do not" in current or "the hydrochloric acid with water" in current or "puppet with your number" in current or "puppet under the guillotine's blade" in current or "Don't go" in current or "Don't" in current:
                             lowest = ""
                             if "puppet" in self.current["player"] and "puppet under the guillotine's blade" in current:
                                 if self.current["player"]["puppet"] == 1:
@@ -279,6 +279,16 @@ class Story:
                                             dead = character
 
                                     self.current["characters"][dead]["alive"] = False
+                            elif "shoot" in current:
+                                for character, info in self.current["characters"].items():
+                                    if info["doomsday"] >= 40:
+                                        self.current["story"].append(self.replace_placeholders(
+                                            self.current["room"]["deaths"]["player"]))
+                                        break
+                                    else:
+                                        self.current["story"].append(
+                                            "The timer runs out and the door opens. You were right to choose to trust in the end after all. You both run towards the exit, relieved to finally be free of this nightmare.")
+                                        break
                             else:
                                 self.current["story"].append(self.replace_placeholders(
                                     self.current["room"]["deaths"]["npc"]))
@@ -292,8 +302,14 @@ class Story:
 
                                 self.current["characters"][dead]["alive"] = False
                         else:
-                            self.current["story"].append(self.replace_placeholders(
-                                self.current["room"]["deaths"]["player"]))
+                            if "shoot" in current:
+                                for character, info in self.current["characters"].items():
+                                    if info["doomsday"] >= 40:
+                                        self.current["story"].append(
+                                            "Right as you pull the trigger, {} also pulls the trigger at that exact same moment.".format(character))
+                            else:
+                                self.current["story"].append(self.replace_placeholders(
+                                    self.current["room"]["deaths"]["player"]))
 
                 return
 
@@ -420,10 +436,11 @@ class Story:
             for character in self.current["characters"]:
                 self.current["characters"][character]["puppet"] = numbers[self.current["characters"]
                                                                           [character]["index"]]
-                                                                          
+
     def update_doomsday(self):
-        print(self.current["npc"],self.current["characters"][self.current["npc"]]["doomsday"])
-        print("YOU",self.current["player"]["doomsday"])
+        print(self.current["npc"], self.current["characters"]
+              [self.current["npc"]]["doomsday"])
+        print("YOU", self.current["player"]["doomsday"])
         player = []
         npc = []
         for msg in self.current["messages"]:
@@ -438,19 +455,21 @@ class Story:
             self.current["player"]["doomsday"] -= 5
         elif player_val == 1:
             self.current["player"]["doomsday"] += 5
-        
+
         # npc_val = self.get_sentences_value(npc)
         # if npc_val == -1:
         #     self.current["characters"][self.current["npc"]]["doomsday"] += 10
         # elif npc_val == 1:
-        #     self.current["characters"][self.current["npc"]]["doomsday"] -= 10  
-            
-        self.current["characters"][self.current["npc"]]["doomsday"] += self.get_sentences_value(npc)*10  
-        print(self.current["npc"],self.current["characters"][self.current["npc"]]["doomsday"]) 
-        print("YOU",self.current["player"]["doomsday"])
+        #     self.current["characters"][self.current["npc"]]["doomsday"] -= 10
+
+        self.current["characters"][self.current["npc"]
+                                   ]["doomsday"] += self.get_sentences_value(npc)*10
+        print(self.current["npc"], self.current["characters"]
+              [self.current["npc"]]["doomsday"])
+        print("YOU", self.current["player"]["doomsday"])
         # print(self.current["messages"])
-        
-    def get_sentences_value(self,sentences):
+
+    def get_sentences_value(self, sentences):
         count = 0
         for sentence in sentences:
             s_count = 0
@@ -469,4 +488,4 @@ class Story:
         elif count < 0:
             return -1
         else:
-            return 0                                                                 
+            return 0

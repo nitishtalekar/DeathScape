@@ -267,7 +267,6 @@ def dilemma_room():
             story.next()
 
         dead = False
-        solved = False
         talk = False
 
         if request.method == "POST":
@@ -275,10 +274,8 @@ def dilemma_room():
                 choice = request.form["choice"]
                 story.set_choices(choice)
 
-                if "water with the hydrochloric acid" in choice:
+                if "shoot" in choice:
                     dead = True
-                elif "the hydrochloric acid with water" in choice:
-                    solved = True
             elif "character" in request.form:
                 choice = request.form["character"]
                 talk = True
@@ -301,7 +298,7 @@ def dilemma_room():
             elif "restart" in request.form:
                 return redirect("/")
 
-        return render_template("dilemma_room.html", data=story.current, talk=talk, messages=story.current["messages"], solved=solved, dead=dead)
+        return render_template("dilemma_room.html", data=story.current, talk=talk, messages=story.current["messages"], dead=dead)
 
 
 if __name__ == "__main__":
