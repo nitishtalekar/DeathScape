@@ -41,7 +41,6 @@ class Story:
 
         self.intro = self.init_intro()
         self.init_choices()
-        # self.init_chat()
 
     def init_intro(self):
         with open("data/intro.json") as f:
@@ -102,9 +101,6 @@ class Story:
         for choice in self.current["choices"]:
             self.add_parent(choice, None)
 
-        # for choice in self.current["choices"]:
-        #     self.set_parent(choice)
-
     def init_chat(self):
         chars = ["Sarah Krista", "Natalia Jonathan",
                  "Arjun Manoj", "Taimo Yong", "Ester Yura"]
@@ -112,34 +108,10 @@ class Story:
         for character in chars:
             personality = "yml\personality"+str(self.characters[character]["friendliness"])+str(
                 self.characters[character]["anger"])+str(self.characters[character]["quietness"])
-            # print(personality)
             bot = ChatBot(character)
             bot_trainer = ChatterBotCorpusTrainer(bot)
             bot_trainer.train(personality)
             self.current["chatbots"][character] = bot
-        # sk = ChatBot("Sarah Krista", tie_breaking_method = "random response")
-        # nj = ChatBot("Natalia Jonathan")
-        # am = ChatBot("Arjun Manoj")
-        # ty = ChatBot("Taimo Yong")
-        # ey = ChatBot("Ester Yura")
-        #
-        # sk_trainer = ChatterBotCorpusTrainer(sk)
-        # nj_trainer = ChatterBotCorpusTrainer(nj)
-        # am_trainer = ChatterBotCorpusTrainer(am)
-        # ty_trainer = ChatterBotCorpusTrainer(ty)
-        # ey_trainer = ChatterBotCorpusTrainer(ey)
-        #
-        # sk_trainer.train("yml/personality000")
-        # nj_trainer.train("chatterbot.corpus.english.emotion")
-        # am_trainer.train("chatterbot.corpus.english.food")
-        # ty_trainer.train("chatterbot.corpus.english")
-        # ey_trainer.train("chatterbot.corpus.english")
-        #
-        # self.current["chatbots"]["Sarah Krista"] = sk
-        # self.current["chatbots"]["Natalia Jonathan"] = nj
-        # self.current["chatbots"]["Arjun Manoj"] = am
-        # self.current["chatbots"]["Taimo Yong"] = ty
-        # self.current["chatbots"]["Ester Yura"] = ey
 
     def add_parent(self, node, parent):
         node["parent"] = parent
@@ -338,8 +310,6 @@ class Story:
                 return
 
     def create_bot(self, name, room):
-        # print(name+room)
-        # print(self.characters[name]['personality'])
         npc = ChatBot(name+room)
         npc_trainer = ChatterBotCorpusTrainer(npc)
         npc_trainer.train("yml\common")
@@ -371,8 +341,6 @@ class Story:
     def end_conversation(self):
         self.current["show_characters"] = False
         self.current["bot"].storage.drop()
-        # print("__________________________________")
-        # print(self.current["characters"])
         self.update_doomsday()
 
         for message in self.current["messages"]:
@@ -438,9 +406,6 @@ class Story:
                                                                           [character]["index"]]
 
     def update_doomsday(self):
-        print(self.current["npc"], self.current["characters"]
-              [self.current["npc"]]["doomsday"])
-        print("YOU", self.current["player"]["doomsday"])
         player = []
         npc = []
         for msg in self.current["messages"]:
@@ -448,26 +413,14 @@ class Story:
                 player.append(msg["text"])
             else:
                 npc.append(msg["text"])
-        print(player)
-        print(npc)
         player_val = self.get_sentences_value(player)
         if player_val == -1:
             self.current["player"]["doomsday"] -= 5
         elif player_val == 1:
             self.current["player"]["doomsday"] += 5
 
-        # npc_val = self.get_sentences_value(npc)
-        # if npc_val == -1:
-        #     self.current["characters"][self.current["npc"]]["doomsday"] += 10
-        # elif npc_val == 1:
-        #     self.current["characters"][self.current["npc"]]["doomsday"] -= 10
-
         self.current["characters"][self.current["npc"]
                                    ]["doomsday"] += self.get_sentences_value(npc)*10
-        print(self.current["npc"], self.current["characters"]
-              [self.current["npc"]]["doomsday"])
-        print("YOU", self.current["player"]["doomsday"])
-        # print(self.current["messages"])
 
     def get_sentences_value(self, sentences):
         count = 0
