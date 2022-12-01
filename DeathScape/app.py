@@ -80,7 +80,6 @@ def button_room():
                     story.dont_talk()
                     talk = False
                 elif choice == "end_conversation":
-                    os.remove("db.sqlite3")
                     story.end_conversation()
                     talk = False
                 elif choice == "talk":

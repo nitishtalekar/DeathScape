@@ -3,6 +3,7 @@ import random
 from chatterbot import ChatBot
 from chatterbot.conversation import Statement
 from chatterbot.trainers import ChatterBotCorpusTrainer
+import os
 
 
 class Story:
@@ -307,6 +308,7 @@ class Story:
 
     def end_conversation(self):
         self.current["show_characters"] = False
+        self.current["bot"].storage.drop()
 
         for message in self.current["messages"]:
             self.current["story"].append(self.replace_placeholders("\n{}: {}".format(
