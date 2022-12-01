@@ -144,7 +144,8 @@ def lab_room():
                     story.add_messages(player_message, character_message)
                 else:
                     story.add_character_to_story(choice)
-                    story.set_bot(choice)
+                    # story.set_bot(choice)
+                    story.create_bot(choice,"labroom")
             elif "restart" in request.form:
                 return redirect("/")
 
@@ -196,7 +197,8 @@ def justice_room():
                     story.add_messages(player_message, character_message)
                 else:
                     story.add_character_to_story(choice)
-                    story.set_bot(choice)
+                    # story.set_bot(choice)
+                    story.create_bot(choice,"justiceroom")
             elif "restart" in request.form:
                 return redirect("/")
 
@@ -248,7 +250,8 @@ def trap_room():
                     story.add_messages(player_message, character_message)
                 else:
                     story.add_character_to_story(choice)
-                    story.set_bot(choice)
+                    # story.set_bot(choice)
+                    story.create_bot(choice,"traproom")
             elif "restart" in request.form:
                 return redirect("/")
 
@@ -298,7 +301,8 @@ def dilemma_room():
                     story.add_messages(player_message, character_message)
                 else:
                     story.add_character_to_story(choice)
-                    story.set_bot(choice)
+                    # story.set_bot(choice)
+                    story.create_bot(choice,"dilemmaroom")
             elif "restart" in request.form:
                 return redirect("/")
 
