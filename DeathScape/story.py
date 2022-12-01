@@ -76,7 +76,8 @@ class Story:
                         doomsday += 10
                         if characters[character]["friendliness"] == friendliness and characters[character]["anger"] == anger and characters[character]["quietness"] == quietness:
                             characters[character]["doomsday"] = doomsday
-                            characters[character]["personality"] = str(friendliness)+str(anger)+str(quietness)
+                            characters[character]["personality"] = str(
+                                friendliness)+str(anger)+str(quietness)
 
         return characters
 
@@ -102,7 +103,7 @@ class Story:
         for character in chars:
             personality = "yml\personality"+str(self.characters[character]["friendliness"])+str(
                 self.characters[character]["anger"])+str(self.characters[character]["quietness"])
-            print(personality)
+            # print(personality)
             bot = ChatBot(character)
             bot_trainer = ChatterBotCorpusTrainer(bot)
             bot_trainer.train(personality)
@@ -193,9 +194,10 @@ class Story:
                         next = self.rooms["{}".format(
                             self.current["level"])]["choices"][0]["next"]
                 else:
-                    if "red" in self.current["story"][len(self.current["story"]) - 4] and "blue" in self.current["story"][len(self.current["story"]) - 3] and "yellow" in self.current["story"][len(self.current["story"]) - 2] and "green" in self.current["story"][len(self.current["story"]) - 1]:
-                        self.current["story"].append(
-                            "A hidden compartment on the table pops open to reveal a golden button.")
+                    if ("red" in self.current["story"][len(self.current["story"]) - 4] and "blue" in self.current["story"][len(self.current["story"]) - 3] and "yellow" in self.current["story"][len(self.current["story"]) - 2] and "green" in self.current["story"][len(self.current["story"]) - 1]) or ("someone else's" in choice["name"]):
+                        if "red" in self.current["story"][len(self.current["story"]) - 4] and "blue" in self.current["story"][len(self.current["story"]) - 3] and "yellow" in self.current["story"][len(self.current["story"]) - 2] and "green" in self.current["story"][len(self.current["story"]) - 1]:
+                            self.current["story"].append(
+                                "A hidden compartment on the table pops open to reveal a golden button.")
                         next = choice["next"]
                     else:
                         next = self.rooms["{}".format(
@@ -223,7 +225,7 @@ class Story:
                 replaced = self.replace_placeholders(
                     "\n{}".format(choice["text"]))
 
-                if (replaced not in self.current["story"][len(self.current["story"]) - 1] or "pressed the" in replaced.lower()) and (replaced not in self.current["story"] or "You decide to talk to someone" in replaced or "You decide to try the puzzle" in replaced or "pressed the" in replaced.lower()):
+                if (replaced not in self.current["story"][len(self.current["story"]) - 1] or "pressed the" in replaced.lower()) and (replaced not in self.current["story"] or "You decide to talk to someone" in replaced or "You decide to try the puzzle" in replaced or "pressed the" in replaced.lower() or "not to place" in replaced):
                     self.current["story"].append(replaced)
 
                     if "Try the puzzle" == current and self.current["player"]["clue"] not in self.current["story"]:
@@ -233,19 +235,49 @@ class Story:
                         elif self.current["level"] == 2 and "It seems like you might be able to disintegrate the lock on the exit door." not in self.current["story"]:
                             self.current["story"].append(
                                 "It seems like you might be able to disintegrate the lock on the exit door.")
-                    elif "golden button" in current or "Mix" in current:
-                        if "Do not" in current or "the hydrochloric acid with water" in current:
-                            self.current["story"].append(self.replace_placeholders(
-                                self.current["room"]["deaths"]["npc"]))
+                    elif "golden button" in current or "Mix" in current or "puppet under the guillotine's blade" in current or "puppet with your number" in current:
+                        if "Do not" in current or "the hydrochloric acid with water" in current or "puppet with your number" in current or "puppet under the guillotine's blade" in current:
+                            lowest = ""
+                            if "puppet" in self.current["player"] and "puppet under the guillotine's blade" in current:
+                                if self.current["player"]["puppet"] == 1:
+                                    lowest = self.current["player"]["name"]
+                                else:
+                                    for character, info in self.current["characters"].items():
+                                        if info["puppet"] == 1:
+                                            lowest = character
+                                            break
 
-                            max_doomsday = 0
-                            dead = ""
-                            for character, info in self.current["characters"].items():
-                                if info["doomsday"] > max_doomsday:
-                                    max_doomsday = info["doomsday"]
-                                    dead = character
+                                character = " ".join(choice["name"].split("Place ")[
+                                    1].split()[:2])
+                                character = character[:len(character) - 2]
 
-                            self.current["characters"][dead]["alive"] = False
+                                if character != lowest:
+                                    self.current["story"].append(self.replace_placeholders(
+                                        self.current["room"]["deaths"]["player"]))
+                                else:
+                                    self.current["story"].append(self.replace_placeholders(
+                                        self.current["room"]["deaths"]["npc"]))
+
+                                    max_doomsday = 0
+                                    dead = ""
+                                    for character, info in self.current["characters"].items():
+                                        if info["doomsday"] > max_doomsday:
+                                            max_doomsday = info["doomsday"]
+                                            dead = character
+
+                                    self.current["characters"][dead]["alive"] = False
+                            else:
+                                self.current["story"].append(self.replace_placeholders(
+                                    self.current["room"]["deaths"]["npc"]))
+
+                                max_doomsday = 0
+                                dead = ""
+                                for character, info in self.current["characters"].items():
+                                    if info["doomsday"] > max_doomsday:
+                                        max_doomsday = info["doomsday"]
+                                        dead = character
+
+                                self.current["characters"][dead]["alive"] = False
                         else:
                             self.current["story"].append(self.replace_placeholders(
                                 self.current["room"]["deaths"]["player"]))
@@ -276,18 +308,19 @@ class Story:
 
                 return
 
-    def create_bot(self,name,room):
-        print(name+room)
-        print(self.characters[name]['personality'])
+    def create_bot(self, name, room):
+        # print(name+room)
+        # print(self.characters[name]['personality'])
         npc = ChatBot(name+room)
         npc_trainer = ChatterBotCorpusTrainer(npc)
         npc_trainer.train("yml\common")
-        npc_trainer.train("yml/personality" + self.characters[name]['personality'] + "/" + room +".yml")
-        npc_trainer.train("yml/personality" + self.characters[name]['personality'] + "/emotion.yml")
+        npc_trainer.train(
+            "yml/personality" + self.characters[name]['personality'] + "/" + room + ".yml")
+        npc_trainer.train("yml/personality" +
+                          self.characters[name]['personality'] + "/emotion.yml")
         self.current["npc"] = name
         self.current["bot"] = npc
-        
-        
+
     def set_bot(self, npc_name):
         self.current["npc"] = npc_name
         self.current["bot"] = self.current["chatbots"][npc_name]

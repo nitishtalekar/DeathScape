@@ -90,8 +90,8 @@ def button_room():
                     story.add_messages(player_message, character_message)
                 else:
                     story.add_character_to_story(choice)
-                    story.create_bot(choice,"buttonroom")
-                    
+                    story.create_bot(choice, "buttonroom")
+
             elif "restart" in request.form:
                 return redirect("/")
 
@@ -109,7 +109,6 @@ def lab_room():
 
         if story.current["level"] != 2:
             story.next()
-            print(story.current["characters"])
 
         dead = False
         solved = False
@@ -144,8 +143,7 @@ def lab_room():
                     story.add_messages(player_message, character_message)
                 else:
                     story.add_character_to_story(choice)
-                    # story.set_bot(choice)
-                    story.create_bot(choice,"labroom")
+                    story.create_bot(choice, "labroom")
             elif "restart" in request.form:
                 return redirect("/")
 
@@ -175,9 +173,9 @@ def justice_room():
                 choice = request.form["choice"]
                 story.set_choices(choice)
 
-                if "water with the hydrochloric acid" in choice:
+                if story.replace_placeholders(story.current["room"]["deaths"]["player"]) in story.current["story"]:
                     dead = True
-                elif "the hydrochloric acid with water" in choice:
+                elif story.replace_placeholders(story.current["room"]["deaths"]["npc"]) in story.current["story"]:
                     solved = True
             elif "character" in request.form:
                 choice = request.form["character"]
@@ -197,8 +195,7 @@ def justice_room():
                     story.add_messages(player_message, character_message)
                 else:
                     story.add_character_to_story(choice)
-                    # story.set_bot(choice)
-                    story.create_bot(choice,"justiceroom")
+                    story.create_bot(choice, "justiceroom")
             elif "restart" in request.form:
                 return redirect("/")
 
@@ -250,8 +247,7 @@ def trap_room():
                     story.add_messages(player_message, character_message)
                 else:
                     story.add_character_to_story(choice)
-                    # story.set_bot(choice)
-                    story.create_bot(choice,"traproom")
+                    story.create_bot(choice, "labroom")
             elif "restart" in request.form:
                 return redirect("/")
 
@@ -301,8 +297,7 @@ def dilemma_room():
                     story.add_messages(player_message, character_message)
                 else:
                     story.add_character_to_story(choice)
-                    # story.set_bot(choice)
-                    story.create_bot(choice,"dilemmaroom")
+                    story.create_bot(choice, "dilemmaroom")
             elif "restart" in request.form:
                 return redirect("/")
 

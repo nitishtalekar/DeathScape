@@ -13,8 +13,8 @@
         "clue4": "%NPC3% has puppet %PUPPET4%."
     },
     "deaths": {
-        "player": "As you are walking towards the door to the next room, you briefly hear something from the side before a blade slices the air from the side, chopping your neck clean off.",
-        "npc": "As everyone is walking towards the next room, you hear a noise from behind and you see the head of %DEAD% being sliced by a blade that flew out of nowhere.<br /><br />It seems like you were the only one who noticed, but maybe it is because everyone else is already traumatized and ignoring what happened. You all proceed into the next room."
+        "player": "The exit door opens. As you are walking towards the door to the next room, you briefly hear something from the side before a blade slices the air from the side, chopping your neck clean off.",
+        "npc": "The exit door opens. As everyone is walking towards the next room, you hear a noise from behind and you see the head of %DEAD% being sliced by a blade that flew out of nowhere.<br /><br />It seems like you were the only one who noticed, but maybe it's because everyone else is already traumatized and ignoring what happened. You all proceed into the next room."
     },
     "choices": [
         {
@@ -22,12 +22,12 @@
             "text": "You decide to try the puzzle.",
             "next": [
                 {
-                    "name": "Place the puppet with your number under the blade.",
+                    "name": "Place the puppet with your number under the guillotine's blade.",
                     "text": "You place the puppet with your number under the guillotine's blade."
                 },
                 {
-                    "name": "Place the puppet with someone else's number under the blade.",
-                    "text": "You place the puppet with someone else's number under the guillotine's blade.",
+                    "name": "Place the puppet with someone else's number under the guillotine's blade.",
+                    "text": "You decide to place the puppet with someone else's number under the guillotine's blade.",
                     "next": [
                         {
                             "name": "Place %NPC1%'s puppet under the guillotine's blade",
@@ -40,6 +40,10 @@
                         {
                             "name": "Place %NPC3%'s puppet under the guillotine's blade",
                             "text": "You forcibly take %NPC3%'s puppet and place it under the guillotine's blade. %NPC3%'s eyes widen, bewildered and angry at your betrayal."
+                        },
+                        {
+                            "name": "Don't place the puppet with someone else's number under the guillotine's blade",
+                            "text": "You decide not to place the puppet with someone else's number under the guillotine's blade."
                         }
                     ]
                 },
