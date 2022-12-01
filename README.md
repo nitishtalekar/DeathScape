@@ -7,8 +7,8 @@ DeathScape is a interactive narrative that is built upon the idea of uncertainty
 - Python 3.7
 - Flask
 - Chatterbot
-- Jinja Template
-- JSON datafiles
+- Jinja
+- JSON
 
 ## HOW TO INSTALL
 
@@ -21,7 +21,7 @@ DeathScape is a interactive narrative that is built upon the idea of uncertainty
 - Navigate to DeathScape directory
     
     ```xml
-    cd DeathScape/DeathScape
+    cd DeathScape
     ```
     
 - Install requirements
@@ -39,7 +39,7 @@ DeathScape is a interactive narrative that is built upon the idea of uncertainty
 - Open URL to start playing
     
     ```xml
-    http://localhost:5000/deathscape
+    http://localhost:5000
     ```
     
 
@@ -75,11 +75,6 @@ This data contains:
 - deaths
 - actions
 
-<aside>
-<img src="https://www.notion.so/icons/code_gray.svg" alt="https://www.notion.so/icons/code_gray.svg" width="40px" /> [JSON data directory](https://www.notion.so/DeathScape-64ea313b90ce41bf80865dc5a71796d7)
-
-</aside>
-
 ### RANDOMIZATION
 
 There are elements which are Randomized in DeathScape which make every turn a unique experience
@@ -90,7 +85,7 @@ Every time you play the game, the people in the room will change the actions the
 
 **NPC PERSONALITY TRAITS**
 
-Every time you play the game, each NPC will randomly be assigned one of the 8 personalities that we have defined. These personalities are based on 3 characteristics being positive (0)  or negative (1).
+Every time you play the game, each NPC will randomly be assigned one of the 8 personalities that we have defined. These personalities are based on 3 characteristics being positive (0) or negative (1).
 
 | Personality Number | Friendliness | Anger | Quietness |
 | --- | --- | --- | --- |
@@ -120,8 +115,3 @@ Each personality has a common set of knowledge from the common corpus.
 Each personality has a unique room based corpus 
 
 Each personality has a unique emotion based corpus
-
-<aside>
-<img src="https://www.notion.so/icons/code_gray.svg" alt="https://www.notion.so/icons/code_gray.svg" width="40px" /> [CORPUS directory](/DeathScape/Deathscape/yml)
-
-</aside>
