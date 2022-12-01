@@ -66,12 +66,12 @@ class Story:
 
             for character_feature in character_features:
                 characters[character][character_feature] = random.choice(
-                    [-1, 1])
+                    [0, 1])
 
             doomsday = 0
-            for friendliness in [1, -1]:
-                for anger in [1, -1]:
-                    for quietness in [1, -1]:
+            for friendliness in [0,1]:
+                for anger in [0,1]:
+                    for quietness in [0,1]:
                         doomsday += 10
 
                         if characters[character]["friendliness"] == friendliness and characters[character]["anger"] == anger and characters[character]["quietness"] == quietness:
@@ -95,29 +95,38 @@ class Story:
         #     self.set_parent(choice)
 
     def init_chat(self):
-        sk = ChatBot("Sarah Krista", tie_breaking_method = "random response")
-        nj = ChatBot("Natalia Jonathan")
-        am = ChatBot("Arjun Manoj")
-        ty = ChatBot("Taimo Yong")
-        ey = ChatBot("Ester Yura")
-
-        sk_trainer = ChatterBotCorpusTrainer(sk)
-        nj_trainer = ChatterBotCorpusTrainer(nj)
-        am_trainer = ChatterBotCorpusTrainer(am)
-        ty_trainer = ChatterBotCorpusTrainer(ty)
-        ey_trainer = ChatterBotCorpusTrainer(ey)
-
-        sk_trainer.train("yml/personality000")
-        nj_trainer.train("chatterbot.corpus.english.emotion")
-        am_trainer.train("chatterbot.corpus.english.food")
-        ty_trainer.train("chatterbot.corpus.english")
-        ey_trainer.train("chatterbot.corpus.english")
-
-        self.current["chatbots"]["Sarah Krista"] = sk
-        self.current["chatbots"]["Natalia Jonathan"] = nj
-        self.current["chatbots"]["Arjun Manoj"] = am
-        self.current["chatbots"]["Taimo Yong"] = ty
-        self.current["chatbots"]["Ester Yura"] = ey
+        chars = ["Sarah Krista","Natalia Jonathan","Arjun Manoj","Taimo Yong","Ester Yura"]
+        
+        for character in chars:
+            personality = "yml\personality"+str(self.characters[character]["friendliness"])+str(self.characters[character]["anger"])+str(self.characters[character]["quietness"])
+            print(personality)
+            bot = ChatBot(character)
+            bot_trainer = ChatterBotCorpusTrainer(bot)
+            bot_trainer.train(personality)
+            self.current["chatbots"][character] = bot
+        # sk = ChatBot("Sarah Krista", tie_breaking_method = "random response")
+        # nj = ChatBot("Natalia Jonathan")
+        # am = ChatBot("Arjun Manoj")
+        # ty = ChatBot("Taimo Yong")
+        # ey = ChatBot("Ester Yura")
+        # 
+        # sk_trainer = ChatterBotCorpusTrainer(sk)
+        # nj_trainer = ChatterBotCorpusTrainer(nj)
+        # am_trainer = ChatterBotCorpusTrainer(am)
+        # ty_trainer = ChatterBotCorpusTrainer(ty)
+        # ey_trainer = ChatterBotCorpusTrainer(ey)
+        # 
+        # sk_trainer.train("yml/personality000")
+        # nj_trainer.train("chatterbot.corpus.english.emotion")
+        # am_trainer.train("chatterbot.corpus.english.food")
+        # ty_trainer.train("chatterbot.corpus.english")
+        # ey_trainer.train("chatterbot.corpus.english")
+        # 
+        # self.current["chatbots"]["Sarah Krista"] = sk
+        # self.current["chatbots"]["Natalia Jonathan"] = nj
+        # self.current["chatbots"]["Arjun Manoj"] = am
+        # self.current["chatbots"]["Taimo Yong"] = ty
+        # self.current["chatbots"]["Ester Yura"] = ey
 
     def add_parent(self, node, parent):
         node["parent"] = parent
