@@ -1,36 +1,45 @@
 {
     "name": "The Room of Justice",
-    "description": "The room has worn-out walls and dimmed lighting. There is a guillotine in the center of the room along with a message scratched on the wall: Will justice be served? There is a box next to the guillotine saying to draw a slip with a number on it. There are four puppets in the room along the wall that mimic the appearances of the remaining people. Whoever is found guilty in the room has their puppet sent to the guillotine for their head to be chopped off. Lying is not allowed. At the end, whoever has lied the most gets killed by a hidden blade from the side that slices through their neck.",
+    "description": "The room has worn-out walls and dimmed lighting. The first thing you see is a message scratched in huge letters on the wall:<br /><br />\"Will justice be served? The lowest number must be sacrificed. Do not lie.\"<br /><br />You look around and see a guillotine in the room along 4 puppets to the right of it. Each of the puppets mimic the appearances of the people in the room and have a different number painted in red on them. There is a box to the left of the guillotine with a note saying that everyone has to draw a slip of paper from it. Everyone reaches into the box to grab a slip of paper from inside before going their separate ways.",
     "actions": {
         "npc1": "%NPC1% is inspecting the guillotine and stroking the side of the blade.",
         "npc2": "%NPC2% is drawing patterns on the floor with their finger.",
         "npc3": "%NPC3% is leaning against a wall with their arms crossed and eyes closed."
     },
     "clues": {
-        "clue1": "Whoever has the lowest number deserves to die.",
-        "clue2": "Send in the guilty one for execution.",
-        "clue3": "Be truthful or face judgement."
+        "clue1": "It seems like you need to choose which puppet to place under the guillotine's blade as the sacrifice. You read your piece of paper first and see that you have puppet %PUPPET1%.",
+        "clue2": "%NPC1% has puppet %PUPPET2%.",
+        "clue3": "%NPC2% has puppet %PUPPET3%.",
+        "clue4": "%NPC3% has puppet %PUPPET4%."
     },
     "deaths": {
-        "player": "As you are walking towards the door to the next room, you briefly hear something from the side before a blade slices the air from the side, chopping your neck off and effectively killing you.",
-        "npc": "As everyone is walking towards the next room, a scream is heard from behind and you see the head of %DEAD% being sliced by a blade that flew out from the side.<br /><br />It seemed that you were the only one who had noticed, or maybe it is because everyone else is ignoring what is happening, but you all proceed into the next room eventually."
+        "player": "As you are walking towards the door to the next room, you briefly hear something from the side before a blade slices the air from the side, chopping your neck clean off.",
+        "npc": "As everyone is walking towards the next room, you hear a noise from behind and you see the head of %DEAD% being sliced by a blade that flew out of nowhere.<br /><br />It seems like you were the only one who noticed, but maybe it is because everyone else is already traumatized and ignoring what happened. You all proceed into the next room."
     },
     "choices": [
         {
             "name": "Try the puzzle",
-            "text": "You decide to try the puzzle. Choose the one to place under the blade as the worthy sacrifice.",
+            "text": "You decide to try the puzzle.",
             "next": [
                 {
-                    "name": "Place the puppet with the lowest number under the blade.",
-                    "text": "You place the puppet with the lowest number under the guillotine's blade."
+                    "name": "Place the puppet with your number under the blade.",
+                    "text": "You place the puppet with your number under the guillotine's blade."
                 },
                 {
-                    "name": "Place the person with the lowest number under the blade.",
-                    "text": "You forcibly tie up the person with the lowest number and place them under the guillotine's blade. Their eyes are wide and bewildered, angry at your betrayal.",
+                    "name": "Place the puppet with someone else's number under the blade.",
+                    "text": "You place the puppet with someone else's number under the guillotine's blade.",
                     "next": [
                         {
-                            "name": "Proceed to jury result...",
-                            "text": "%DEAD% died after solving the Justice Room puzzle."
+                            "name": "Place %NPC1%'s puppet under the guillotine's blade",
+                            "text": "You forcibly take %NPC1%'s puppet and place it under the guillotine's blade. %NPC1%'s eyes widen, bewildered and angry at your betrayal."
+                        },
+                        {
+                            "name": "Place %NPC2%'s puppet under the guillotine's blade",
+                            "text": "You forcibly take %NPC2%'s puppet and place it under the guillotine's blade. %NPC2%'s eyes widen, bewildered and angry at your betrayal."
+                        },
+                        {
+                            "name": "Place %NPC3%'s puppet under the guillotine's blade",
+                            "text": "You forcibly take %NPC3%'s puppet and place it under the guillotine's blade. %NPC3%'s eyes widen, bewildered and angry at your betrayal."
                         }
                     ]
                 },

@@ -1,6 +1,6 @@
 {
     "name": "The Lab",
-    "description": "The room mimics a science lab with random samples of unknown liquids stored in vials and beakers littered around the room. There are four rows of lab tables, and cabinets are aligned on all four walls in the room. Typical lab tools such as Bunsen burners, testing tubes, tweezers, etc. are present as well. The room is lit with artificial white light.",
+    "description": "The room mimics a science lab with random samples of unknown liquids stored in vials and beakers littered around the room. There are rows of lab tables and cabinets on all four walls of the room. Typical lab tools such as Bunsen burners, beakers, test tubes, tweezers, etc. are present as well. The room is lit with artificial white light.",
     "actions": {
         "npc1": "%NPC1% is smiling and excited.",
         "npc2": "%NPC2% is examining liquids in the room.",
@@ -8,10 +8,10 @@
         "npc4": "%NPC4% is crying in a corner."
     },
     "clues": {
-        "clue1": "Always add acid to water and never water to acid.",
-        "clue2": "A sample of distilled water is stored in a cabinet.",
-        "clue3": "The key to the cabinet can be fished out from a sample of sulfuric acid.",
-        "clue4": "Hydrochloric acid is your best friend."
+        "clue1": "\"There's hydrochloric acid in a cabinet somewhere.\"",
+        "clue2": "\"Distilled water is in a large beaker.\"",
+        "clue3": "\"The key to the cabinet can be fished out from a vial of sulfuric acid.\"",
+        "clue4": "\"Always add acid to water and never water to acid.\""
     },
     "deaths": {
         "player": "The lock fizzles a bit, but then you suddenly feel an unknown liquid raining down on you from above. You look up and a burst of fire spews out from the ceiling. You scream as you feel your body burning and realize that your body has been set on fire.",
@@ -23,12 +23,12 @@
             "text": "You decide to try the puzzle.",
             "next": [
                 {
-                    "name": "Mix the hydrochloric acid sample with water.",
-                    "text": "You mix the hydrochloric acid sample with water and pour it on the lock."
+                    "name": "Mix the hydrochloric acid with water.",
+                    "text": "You mix the hydrochloric acid with water and pour it on the lock."
                 },
                 {
-                    "name": "Mix water with the hydrochloric acid sample.",
-                    "text": "You mix water with the hydrochloric acid sample and pour it on the lock."
+                    "name": "Mix water with the hydrochloric acid.",
+                    "text": "You mix water with the hydrochloric acid and pour it on the lock."
                 },
                 {
                     "name": "Try the puzzle later",

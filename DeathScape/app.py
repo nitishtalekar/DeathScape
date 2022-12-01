@@ -108,6 +108,7 @@ def lab_room():
 
         if story.current["level"] != 2:
             story.next()
+            print(story.current["characters"])
 
         dead = False
         solved = False
@@ -120,9 +121,9 @@ def lab_room():
                 choice = request.form["choice"]
                 story.set_choices(choice)
 
-                if "water with the hydrochloric acid sample" in choice:
+                if "water with the hydrochloric acid" in choice:
                     dead = True
-                elif "the hydrochloric acid sample with water" in choice:
+                elif "the hydrochloric acid with water" in choice:
                     solved = True
             elif "character" in request.form:
                 choice = request.form["character"]
@@ -172,9 +173,9 @@ def justice_room():
                 choice = request.form["choice"]
                 story.set_choices(choice)
 
-                if "water with the hydrochloric acid sample" in choice:
+                if "water with the hydrochloric acid" in choice:
                     dead = True
-                elif "the hydrochloric acid sample with water" in choice:
+                elif "the hydrochloric acid with water" in choice:
                     solved = True
             elif "character" in request.form:
                 choice = request.form["character"]
@@ -224,9 +225,9 @@ def trap_room():
                 choice = request.form["choice"]
                 story.set_choices(choice)
 
-                if "water with the hydrochloric acid sample" in choice:
+                if "water with the hydrochloric acid" in choice:
                     dead = True
-                elif "the hydrochloric acid sample with water" in choice:
+                elif "the hydrochloric acid with water" in choice:
                     solved = True
             elif "character" in request.form:
                 choice = request.form["character"]
@@ -274,9 +275,9 @@ def dilemma_room():
                 choice = request.form["choice"]
                 story.set_choices(choice)
 
-                if "water with the hydrochloric acid sample" in choice:
+                if "water with the hydrochloric acid" in choice:
                     dead = True
-                elif "the hydrochloric acid sample with water" in choice:
+                elif "the hydrochloric acid with water" in choice:
                     solved = True
             elif "character" in request.form:
                 choice = request.form["character"]

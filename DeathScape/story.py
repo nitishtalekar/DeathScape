@@ -69,9 +69,9 @@ class Story:
                     [0, 1])
 
             doomsday = 0
-            for friendliness in [0,1]:
-                for anger in [0,1]:
-                    for quietness in [0,1]:
+            for friendliness in [0, 1]:
+                for anger in [0, 1]:
+                    for quietness in [0, 1]:
                         doomsday += 10
 
                         if characters[character]["friendliness"] == friendliness and characters[character]["anger"] == anger and characters[character]["quietness"] == quietness:
@@ -95,10 +95,12 @@ class Story:
         #     self.set_parent(choice)
 
     def init_chat(self):
-        chars = ["Sarah Krista","Natalia Jonathan","Arjun Manoj","Taimo Yong","Ester Yura"]
-        
+        chars = ["Sarah Krista", "Natalia Jonathan",
+                 "Arjun Manoj", "Taimo Yong", "Ester Yura"]
+
         for character in chars:
-            personality = "yml\personality"+str(self.characters[character]["friendliness"])+str(self.characters[character]["anger"])+str(self.characters[character]["quietness"])
+            personality = "yml\personality"+str(self.characters[character]["friendliness"])+str(
+                self.characters[character]["anger"])+str(self.characters[character]["quietness"])
             print(personality)
             bot = ChatBot(character)
             bot_trainer = ChatterBotCorpusTrainer(bot)
@@ -109,19 +111,19 @@ class Story:
         # am = ChatBot("Arjun Manoj")
         # ty = ChatBot("Taimo Yong")
         # ey = ChatBot("Ester Yura")
-        # 
+        #
         # sk_trainer = ChatterBotCorpusTrainer(sk)
         # nj_trainer = ChatterBotCorpusTrainer(nj)
         # am_trainer = ChatterBotCorpusTrainer(am)
         # ty_trainer = ChatterBotCorpusTrainer(ty)
         # ey_trainer = ChatterBotCorpusTrainer(ey)
-        # 
+        #
         # sk_trainer.train("yml/personality000")
         # nj_trainer.train("chatterbot.corpus.english.emotion")
         # am_trainer.train("chatterbot.corpus.english.food")
         # ty_trainer.train("chatterbot.corpus.english")
         # ey_trainer.train("chatterbot.corpus.english")
-        # 
+        #
         # self.current["chatbots"]["Sarah Krista"] = sk
         # self.current["chatbots"]["Natalia Jonathan"] = nj
         # self.current["chatbots"]["Arjun Manoj"] = am
@@ -159,6 +161,10 @@ class Story:
             replaced = replaced.replace(
                 "%NPC{}%".format(info["index"]), character).replace(
                 "%CLUE{}%".format(info["index"]), info["clue"])
+
+            if "puppet" in info:
+                replaced = replaced.replace(
+                    "%PUPPET{}%".format(info["index"] + 1), "{}".format(info["puppet"]))
 
             if info["doomsday"] > max_doomsday:
                 max_doomsday = info["doomsday"]
@@ -220,14 +226,14 @@ class Story:
                     self.current["story"].append(replaced)
 
                     if "Try the puzzle" == current and self.current["player"]["clue"] not in self.current["story"]:
-                        if self.current["player"]["clue"] != "":
+                        if (self.current["level"] == 1 or self.current["level"] == 3) and self.current["player"]["clue"] != "":
                             self.current["story"].append(
                                 self.current["player"]["clue"])
-                        elif "It seems like you might be able to disintegrate the lock on the exit door." not in self.current["story"]:
+                        elif self.current["level"] == 2 and "It seems like you might be able to disintegrate the lock on the exit door." not in self.current["story"]:
                             self.current["story"].append(
                                 "It seems like you might be able to disintegrate the lock on the exit door.")
                     elif "golden button" in current or "Mix" in current:
-                        if "Do not" in current or "the hydrochloric acid sample with water" in current:
+                        if "Do not" in current or "the hydrochloric acid with water" in current:
                             self.current["story"].append(self.replace_placeholders(
                                 self.current["room"]["deaths"]["npc"]))
 
@@ -270,7 +276,6 @@ class Story:
                 return
 
     def set_bot(self, npc_name):
-        print(self.current["chatbots"])
         self.current["npc"] = npc_name
         self.current["bot"] = self.current["chatbots"][npc_name]
 
@@ -335,13 +340,19 @@ class Story:
 
         self.init_choices()
 
-        print("NEXT:")
-        print("--------------------------------------------------------------------------------------")
-        print(self.current["player"])
-        print("\n\n\n")
-        print(self.current["characters"])
-
         for index, character in zip(range(len(self.current["characters"])), self.current["characters"]):
             self.current["characters"][character]["index"] = index + 1
-            self.current["characters"][character]["clue"] = self.current["room"]["clues"]["clue{}".format(
-                self.current["characters"][character]["index"] if self.current["player"]["clue"] == "" else self.current["characters"][character]["index"] + 1)]
+            self.current["characters"][character]["clue"] = self.replace_placeholders(self.current["room"]["clues"]["clue{}".format(
+                self.current["characters"][character]["index"] if self.current["player"]["clue"] == "" else self.current["characters"][character]["index"] + 1)])
+
+        if self.current["level"] == 3:
+            numbers = [1, 2, 3, 4]
+            random.shuffle(numbers)
+
+            self.current["player"]["puppet"] = numbers[0]
+            self.current["player"]["clue"] = self.current["player"]["clue"].replace(
+                "%PUPPET1%", "{}".format(self.current["player"]["puppet"]))
+
+            for character in self.current["characters"]:
+                self.current["characters"][character]["puppet"] = numbers[self.current["characters"]
+                                                                          [character]["index"]]
