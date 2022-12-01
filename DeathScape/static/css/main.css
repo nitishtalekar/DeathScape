@@ -25,21 +25,6 @@ textarea {
   width: 80%;
 }
 
-/* .title {
-  background-image: url("/static/img/door.jpg");
-  background-repeat: no-repeat;
-  background-position: center;
-  min-height: 60vh;
-  background-size: 60vw;
-  position: relative;
-}
-
-.card {
-  min-height: 40vh;
-  background-color: rgba(0, 0, 0, .5);
-  position: absolute;
-} */
-
 .chat {
   width: 100%;
   display: flex;
