@@ -1,7 +1,7 @@
 from chatterbot.conversation import Statement
 from flask import Flask, redirect, request, render_template
 from story import Story
-
+import os
 
 app = Flask(__name__)
 story = None
@@ -80,6 +80,7 @@ def button_room():
                     story.dont_talk()
                     talk = False
                 elif choice == "end_conversation":
+                    os.remove("db.sqlite3")
                     story.end_conversation()
                     talk = False
                 elif choice == "talk":
@@ -90,7 +91,8 @@ def button_room():
                     story.add_messages(player_message, character_message)
                 else:
                     story.add_character_to_story(choice)
-                    story.set_bot(choice)
+                    story.create_bot(choice,"buttonroom")
+                    
             elif "restart" in request.form:
                 return redirect("/")
 

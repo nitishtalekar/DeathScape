@@ -31,7 +31,7 @@ class Story:
 
         self.intro = self.init_intro()
         self.init_choices()
-        self.init_chat()
+        # self.init_chat()
 
     def init_intro(self):
         with open("data/intro.json") as f:
@@ -73,9 +73,9 @@ class Story:
                 for anger in [0, 1]:
                     for quietness in [0, 1]:
                         doomsday += 10
-
                         if characters[character]["friendliness"] == friendliness and characters[character]["anger"] == anger and characters[character]["quietness"] == quietness:
                             characters[character]["doomsday"] = doomsday
+                            characters[character]["personality"] = str(friendliness)+str(anger)+str(quietness)
 
         return characters
 
@@ -275,6 +275,18 @@ class Story:
 
                 return
 
+    def create_bot(self,name,room):
+        print(name+room)
+        print(self.characters[name]['personality'])
+        npc = ChatBot(name+room)
+        npc_trainer = ChatterBotCorpusTrainer(npc)
+        npc_trainer.train("yml\common")
+        npc_trainer.train("yml/personality" + self.characters[name]['personality'] + "/" + room +".yml")
+        npc_trainer.train("yml/personality" + self.characters[name]['personality'] + "/emotion.yml")
+        self.current["npc"] = name
+        self.current["bot"] = npc
+        
+        
     def set_bot(self, npc_name):
         self.current["npc"] = npc_name
         self.current["bot"] = self.current["chatbots"][npc_name]
