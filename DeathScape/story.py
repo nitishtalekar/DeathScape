@@ -123,12 +123,21 @@ class Story:
         # am_trainer.train("chatterbot.corpus.english.food")
         # ty_trainer.train("chatterbot.corpus.english")
         # ey_trainer.train("chatterbot.corpus.english")
+<<<<<<< Updated upstream
         #
         # self.current["chatbots"]["Sarah Krista"] = sk
         # self.current["chatbots"]["Natalia Jonathan"] = nj
         # self.current["chatbots"]["Arjun Manoj"] = am
         # self.current["chatbots"]["Taimo Yong"] = ty
         # self.current["chatbots"]["Ester Yura"] = ey
+=======
+
+        self.current["chatbots"]["Sarah Krista"] = sk
+        self.current["chatbots"]["Natalia Jonathan"] = nj
+        self.current["chatbots"]["Arjun Manoj"] = am
+        self.current["chatbots"]["Taimo Yong"] = ty
+        self.current["chatbots"]["Ester Yura"] = ey
+>>>>>>> Stashed changes
 
     def add_parent(self, node, parent):
         node["parent"] = parent
