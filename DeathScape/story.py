@@ -1,8 +1,8 @@
 import json
 import random
 from chatterbot import ChatBot
-# from chatterbot.conversation import Statement
-# from chatterbot.trainers import ChatterBotCorpusTrainer
+from chatterbot.conversation import Statement
+from chatterbot.trainers import ChatterBotCorpusTrainer
 
 
 class Story:
@@ -95,23 +95,23 @@ class Story:
         #     self.set_parent(choice)
 
     def init_chat(self):
-        sk = ChatBot("Sarah Krista")
+        sk = ChatBot("Sarah Krista", tie_breaking_method = "random response")
         nj = ChatBot("Natalia Jonathan")
         am = ChatBot("Arjun Manoj")
         ty = ChatBot("Taimo Yong")
         ey = ChatBot("Ester Yura")
 
-        # sk_trainer = ChatterBotCorpusTrainer(sk)
-        # nj_trainer = ChatterBotCorpusTrainer(nj)
-        # am_trainer = ChatterBotCorpusTrainer(am)
-        # ty_trainer = ChatterBotCorpusTrainer(ty)
-        # ey_trainer = ChatterBotCorpusTrainer(ey)
+        sk_trainer = ChatterBotCorpusTrainer(sk)
+        nj_trainer = ChatterBotCorpusTrainer(nj)
+        am_trainer = ChatterBotCorpusTrainer(am)
+        ty_trainer = ChatterBotCorpusTrainer(ty)
+        ey_trainer = ChatterBotCorpusTrainer(ey)
 
-        # sk_trainer.train("chatterbot.corpus.english.greetings")
-        # nj_trainer.train("chatterbot.corpus.english.emotion")
-        # am_trainer.train("chatterbot.corpus.english.food")
-        # ty_trainer.train("chatterbot.corpus.english")
-        # ey_trainer.train("chatterbot.corpus.english")
+        sk_trainer.train("yml/personality000")
+        nj_trainer.train("chatterbot.corpus.english.emotion")
+        am_trainer.train("chatterbot.corpus.english.food")
+        ty_trainer.train("chatterbot.corpus.english")
+        ey_trainer.train("chatterbot.corpus.english")
 
         self.current["chatbots"]["Sarah Krista"] = sk
         self.current["chatbots"]["Natalia Jonathan"] = nj
