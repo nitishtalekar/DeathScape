@@ -5,10 +5,12 @@ DeathScape is a interactive narrative that is built upon the idea of uncertainty
 ## TECH STACK
 
 - Python 3.7
+- HTML
+- CSS
 - Flask
 - Chatterbot
 - Jinja
-- JSON
+- Bootstrap
 
 ## HOW TO INSTALL
 
