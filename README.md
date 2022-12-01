@@ -1,6 +1,4 @@
-# README
-
-## DEATHSCAPE
+# DeathScape
 
 DeathScape is a interactive narrative that is built upon the idea of uncertainty. It starts with the player stuck in an escape room with 5 other NPC. The NPC are autonomous and can be interacted with freely (within limits). The goal of the game is to survive a series of rooms, each room is lethal and can cause either the player or an NPC to die. The player need to make smart decisions while also interacting with the NPC. 
 
