@@ -225,9 +225,9 @@ def trap_room():
                 choice = request.form["choice"]
                 story.set_choices(choice)
 
-                if "water with the hydrochloric acid" in choice:
+                if "Go first" in choice:
                     dead = True
-                elif "the hydrochloric acid with water" in choice:
+                elif "Don't go first" in choice:
                     solved = True
             elif "character" in request.form:
                 choice = request.form["character"]

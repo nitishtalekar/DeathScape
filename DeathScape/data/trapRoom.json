@@ -1,37 +1,31 @@
 {
     "name": "The Trap Room",
-    "description": "The room is a trap room. Spikes align the walls, and the floor is tiled. Each tile on the floor can be lifted in some way if some condition is fulfilled. One misstep could mean instant death for all, as some tiles can potentially drop at any time. A message says you need to activate three traps to proceed. If you are lucky, you live, and if not, you die.",
+    "description": "Spikes line the walls of this room and the floor of the room is tiled in giant tiles. The door is on the opposite side of the room. There's a single tile a few feet in front of you that's marked the start. A voice comes out from an intercom somewhere. It's obvious that the speaker's voice has been changed with a voice changer of some sort.<br /><br />\"Watch your step, it's a trap. Most of the tiles in front of you will drop with the slightest bit of pressure. One misstep could mean instant death.\" Everyone looks at each other, scared to be the first to go.",
     "actions": {
         "npc1": "%NPC1% is examining the spikes on the wall.",
         "npc2": "%NPC2% is muttering something incomprehensible while intensely eyeing the tiles on the floor."
     },
     "clues": {
-        "clue1": "Reveal the path and you shall be free.",
-        "clue2": "A noble sacrifice shall be chosen.",
-        "clue3": "Choose wisely."
+        "clue1": "",
+        "clue2": "",
+        "clue3": ""
     },
     "deaths": {
-        "player": "You have been chosen to be the noble sacrifice. The ground beneath you disappears, and you feel yourself fallin grapidly into an endless pit of darkness.",
-        "npc": "%DEAD% is seen falling and screaming as they fall through one of the tiles into an endless pit of darkness.<br /><br />There is no turning back as only two people remain, including you. The next room will most likely end things once and for all."
+        "player": "You walk towards the start tile to get ready to take your first step. Your heart is beating out of your chest, but you take your first step. Left step. Safe. Whew! Left step again. Safe. Lucky guess. Right step. Safe. Geez, you must really be lucky! Only two steps remain. Forward step. Safe. One more step! Forward? You take the step and almost make it to the door on the other side before the ground beneath you disappears. You scream as you fall into an endless pit of darkness.",
+        "npc": "You watch as %DEAD% goes first. Your heart is pounding out of fear for their life. Left step. Safe. Left step again. Safe?? Right step. Safe! Only two steps remain. Forward step. Safe. Only one more step to the door! Just as you start to think that you guys might make it after all, %DEAD% takes a final step to the right and the floor gives away underneath them. %DEAD% screams as they fall into an endless pit of darkness.<br /><br />While you stand in fear of meeting the same fate as %DEAD%, %REMAINING% wastes no time. They copy %DEAD%'s safe steps: left, left, right, and forward. At the final hurdle, they have a 50/50 chance of surviving. You hold your breath as %REMAINING% goes for it and takes a final step to the left...<br /><br />%REMAINING% is SAFE! You quickly follow their steps to make it to the other side: left, left, right, forward, left. Finally! There's no turning back now, as the floor disappears behind you. The next room will probably end things once and for all. You've made it this far. You're determined to survive until the end. You walk through the door."
     },
     "choices": [
         {
             "name": "Try the puzzle",
-            "text": "You decide to try the puzzle. Find the designated path to freedom.",
+            "text": "You decide to try the puzzle.",
             "next": [
                 {
-                    "name": "Use your knowledge combined with what you observed to find the path.",
-                    "text": "You decide to follow your gut and use the knowledge that you've compiled to your advantage."
+                    "name": "Go first.",
+                    "text": "You decide to follow your gut and go first."
                 },
                 {
-                    "name": "Follow the advice from the other participants and combine it with your knowledge to find the path.",
-                    "text": "You decide to trust in your fellow participants and use what they have told you to help solve the puzzle.",
-                    "next": [
-                        {
-                            "name": "Proceed to the path...",
-                            "text": "You volunteer to go first, but as you are midway through the room, you feel the file below you drop, and you feel yourself falling into an endless pit of darkness. %DEAD% died after solving the Trap Room puzzle."
-                        }
-                    ]
+                    "name": "Don't go first.",
+                    "text": "You're too scared to go first, you wait for someone else to be the first to go."
                 },
                 {
                     "name": "Try the puzzle later",

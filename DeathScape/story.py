@@ -174,6 +174,13 @@ class Story:
 
         replaced = replaced.replace("%DEAD%", dead)
 
+        if len(self.current["characters"].items()) == 2:
+            for character, info in self.current["characters"].items():
+                if character.split(" ")[0] != dead:
+                    replaced = replaced.replace(
+                        "%REMAINING%", character.split(" ")[0])
+                    break
+
         return replaced
 
     def set_choices(self, current):
@@ -232,11 +239,8 @@ class Story:
                         if (self.current["level"] == 1 or self.current["level"] == 3) and self.current["player"]["clue"] != "":
                             self.current["story"].append(
                                 self.current["player"]["clue"])
-                        elif self.current["level"] == 2 and "It seems like you might be able to disintegrate the lock on the exit door." not in self.current["story"]:
-                            self.current["story"].append(
-                                "It seems like you might be able to disintegrate the lock on the exit door.")
-                    elif "golden button" in current or "Mix" in current or "puppet under the guillotine's blade" in current or "puppet with your number" in current:
-                        if "Do not" in current or "the hydrochloric acid with water" in current or "puppet with your number" in current or "puppet under the guillotine's blade" in current:
+                    elif "golden button" in current or "Mix" in current or "puppet under the guillotine's blade" in current or "puppet with your number" in current or "go first" in current.lower():
+                        if "Do not" in current or "the hydrochloric acid with water" in current or "puppet with your number" in current or "puppet under the guillotine's blade" in current or "Don't go" in current:
                             lowest = ""
                             if "puppet" in self.current["player"] and "puppet under the guillotine's blade" in current:
                                 if self.current["player"]["puppet"] == 1:
@@ -350,11 +354,12 @@ class Story:
         if self.current["npc"] != "":
             for character in self.current["characters"]:
                 if character == self.current["npc"]:
-                    replaced = self.replace_placeholders(
-                        self.current["characters"][character]["clue"])
+                    if self.current["characters"][character]["clue"] != "":
+                        replaced = self.replace_placeholders(
+                            self.current["characters"][character]["clue"])
 
-                    if replaced not in self.current["story"]:
-                        self.current["story"].append(replaced)
+                        if replaced not in self.current["story"]:
+                            self.current["story"].append(replaced)
 
                     if "You walk away." not in self.current["story"][len(self.current["story"]) - 1]:
                         self.current["story"].append(

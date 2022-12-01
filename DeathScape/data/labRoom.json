@@ -1,6 +1,6 @@
 {
     "name": "The Lab",
-    "description": "The room mimics a science lab with random samples of unknown liquids stored in vials and beakers littered around the room. There are rows of lab tables and cabinets on all four walls of the room. Typical lab tools such as Bunsen burners, beakers, test tubes, tweezers, etc. are present as well. The room is lit with artificial white light.",
+    "description": "The room is lit with artificial white light. The exit door in this room is locked tight, but the lock seems a little old and rusted. There are rows of lab tables and cabinets on all four walls of the room. The room seems to be a science lab with scientific machinery and beakers of unknown liquids littered around the room. Typical lab tools such as Bunsen burners, test tubes, tweezers, etc. are present as well. Everyone goes off on their own to explore.",
     "actions": {
         "npc1": "%NPC1% is smiling and excited.",
         "npc2": "%NPC2% is examining liquids in the room.",
@@ -8,10 +8,10 @@
         "npc4": "%NPC4% is crying in a corner."
     },
     "clues": {
-        "clue1": "\"There's hydrochloric acid in a cabinet somewhere.\"",
-        "clue2": "\"Distilled water is in a large beaker.\"",
-        "clue3": "\"The key to the cabinet can be fished out from a vial of sulfuric acid.\"",
-        "clue4": "\"Always add acid to water and never water to acid.\""
+        "clue1": "%NPC1%: \"I found this vial of hydrochloric acid in one of the cabinets. It might be useful.\"<br /><br />You: \"Sweet, thanks! It might be.\"",
+        "clue2": "%NPC2%: \"Are you thirsty? I found some distilled water in this huge beaker.\"<br /><br />You: \"I am, thanks!\"<br /><br />You take a couple sips, but then place the beaker back down.<br /><br />You: \"Let's save this. It'll be useful later on.\"<br /><br />%NPC2%: \"You're right.\"",
+        "clue3": "You: \"Find anything useful?\"<br /><br />%NPC3%: \"Not yet. I'm trying to find some hydrochloric acid and distilled water. We can mix them and try to burn through the lock on the door.\"<br /><br />You: \"Really? I'll try to find some and get back to you.\"",
+        "clue4": "%NPC4%: \"Don't forget that you always add acid to water and never water to acid!\"<br /><br />You: \"Isn't that the same thing?\"%NPC4%: \"No, they're very different!\"<br /><br />You: \"Okay...\""
     },
     "deaths": {
         "player": "The lock fizzles a bit, but then you suddenly feel an unknown liquid raining down on you from above. You look up and a burst of fire spews out from the ceiling. You scream as you feel your body burning and realize that your body has been set on fire.",
