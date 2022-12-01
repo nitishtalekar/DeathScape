@@ -4,6 +4,7 @@ from chatterbot import ChatBot
 from chatterbot.conversation import Statement
 from chatterbot.trainers import ChatterBotCorpusTrainer
 import os
+import re
 
 
 class Story:
@@ -29,6 +30,14 @@ class Story:
             "bot": "",
             "messages": []
         }
+        
+        with open("data/positive.txt") as file:
+            pos = file.readlines()
+        self.pos = [sub[: -1] for sub in pos]
+        
+        with open("data/negative.txt") as file:
+            neg = file.readlines()
+        self.neg = [sub[: -1] for sub in neg]
 
         self.intro = self.init_intro()
         self.init_choices()
@@ -346,6 +355,9 @@ class Story:
     def end_conversation(self):
         self.current["show_characters"] = False
         self.current["bot"].storage.drop()
+        # print("__________________________________")
+        # print(self.current["characters"])
+        self.update_doomsday()
 
         for message in self.current["messages"]:
             self.current["story"].append(self.replace_placeholders("\n{}: {}".format(
@@ -408,3 +420,53 @@ class Story:
             for character in self.current["characters"]:
                 self.current["characters"][character]["puppet"] = numbers[self.current["characters"]
                                                                           [character]["index"]]
+                                                                          
+    def update_doomsday(self):
+        print(self.current["npc"],self.current["characters"][self.current["npc"]]["doomsday"])
+        print("YOU",self.current["player"]["doomsday"])
+        player = []
+        npc = []
+        for msg in self.current["messages"]:
+            if msg["name"] == "You":
+                player.append(msg["text"])
+            else:
+                npc.append(msg["text"])
+        print(player)
+        print(npc)
+        player_val = self.get_sentences_value(player)
+        if player_val == -1:
+            self.current["player"]["doomsday"] -= 5
+        elif player_val == 1:
+            self.current["player"]["doomsday"] += 5
+        
+        # npc_val = self.get_sentences_value(npc)
+        # if npc_val == -1:
+        #     self.current["characters"][self.current["npc"]]["doomsday"] += 10
+        # elif npc_val == 1:
+        #     self.current["characters"][self.current["npc"]]["doomsday"] -= 10  
+            
+        self.current["characters"][self.current["npc"]]["doomsday"] += self.get_sentences_value(npc)*10  
+        print(self.current["npc"],self.current["characters"][self.current["npc"]]["doomsday"]) 
+        print("YOU",self.current["player"]["doomsday"])
+        # print(self.current["messages"])
+        
+    def get_sentences_value(self,sentences):
+        count = 0
+        for sentence in sentences:
+            s_count = 0
+            new_sentence = re.sub(r'[^\w\s]', '', sentence)
+            for word in new_sentence.split(" "):
+                if word in self.pos:
+                    s_count += 1
+                if word in self.neg:
+                    s_count -= 1
+            if s_count > 0:
+                count += 1
+            elif s_count < 0:
+                count -= 1
+        if count > 0:
+            return 1
+        elif count < 0:
+            return -1
+        else:
+            return 0                                                                 
