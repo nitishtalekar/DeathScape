@@ -22,11 +22,11 @@
             "text": "You decide to try the puzzle.",
             "next": [
                 {
-                    "name": "Place the puppet with your number under the guillotine's blade.",
+                    "name": "Place the puppet with your number under the guillotine's blade",
                     "text": "You place the puppet with your number under the guillotine's blade."
                 },
                 {
-                    "name": "Place the puppet with someone else's number under the guillotine's blade.",
+                    "name": "Place the puppet with someone else's number under the guillotine's blade",
                     "text": "You decide to place the puppet with someone else's number under the guillotine's blade.",
                     "next": [
                         {

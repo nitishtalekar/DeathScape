@@ -44,9 +44,24 @@
                         <form action="/deathscape/justice_room?player={{data.player.name}}" method="post">
                             {% for choice in data.choices %}
                             <div class="mb-2">
-                                <button class="btn btn-light" type="submit" name="choice" value="{{choice.name}}">
+                                {% if choice.name == "Don't place the puppet with someone else's number under the
+                                guillotine's blade" %}
+                                <img src="{{ url_for('static', filename='img/puppet.png')}}" style="width: 200px">
+                                {% endif %}
+                            </div>
+                            {% endfor %}
+                            {% for choice in data.choices %}
+                            <div class="mb-2">
+                                {% if choice.name == "Place the puppet with your number under the guillotine's blade" %}
+                                <img src="{{ url_for('static', filename='img/puppet.png')}}" style="width: 200px">
+                                <br /><br />
+                                {% endif %}
+                                {% if choice.name != "Try the puzzle later" %}
+                                <button class="btn btn-light text-nowrap" type="submit" name="choice"
+                                    value="{{choice.name}}">
                                     {{choice.name}}
                                 </button>
+                                {% endif %}
                             </div>
                             {% endfor %}
                         </form>
