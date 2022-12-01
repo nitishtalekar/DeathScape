@@ -42,11 +42,32 @@
                     {% if not data.show_characters %}
                     <div>
                         <form action="/deathscape/lab_room?player={{data.player.name}}" method="post">
+                            <div class="d-flex justify-content-center align-items-center">
+                                {% for choice in data.choices %}
+                                <div class="mb-5 margin-right">
+                                    {% if choice.name == "Mix the hydrochloric acid with water" %}
+                                    <img src="{{ url_for('static', filename='img/vial.png')}}" style="width: 55px">
+                                    <br /><br /><br /><br /><br />
+                                    {% elif choice.name == "Mix water with the hydrochloric acid" %}
+                                    <img src="{{ url_for('static', filename='img/beaker.png')}}" style="width: 100px">
+                                    <br /><br />
+                                    {% endif %}
+                                    {% if choice.name != "Try the puzzle later" %}
+                                    <button class="btn btn-light text-nowrap" type="submit" name="choice"
+                                        value="{{choice.name}}">
+                                        {{choice.name}}
+                                    </button>
+                                    {% endif %}
+                                </div>
+                                {% endfor %}
+                            </div>
                             {% for choice in data.choices %}
-                            <div class="mb-2">
+                            <div>
+                                {% if choice.name == "Try the puzzle later" %}
                                 <button class="btn btn-light" type="submit" name="choice" value="{{choice.name}}">
                                     {{choice.name}}
                                 </button>
+                                {% endif %}
                             </div>
                             {% endfor %}
                         </form>
