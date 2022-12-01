@@ -42,11 +42,16 @@
                     <div>
                         <form action="/deathscape/dilemma_room?player={{data.player.name}}" method="post">
                             {% for choice in data.choices %}
-                            <div class="mb-2">
-                                <button class="btn btn-light" type="submit" name="choice" value="{{choice.name}}">
-                                    {{choice.name}}
-                                </button>
-                            </div>
+                            {% if choice.name == "Shoot" %}
+                            <img src="{{ url_for('static', filename='img/gun.png')}}" style="width: 200px">
+                            <br /><br />
+                            {% endif %}
+                            {% if choice.name != "Try the puzzle later" %}
+                            <button class="btn btn-light text-nowrap" type="submit" name="choice"
+                                value="{{choice.name}}">
+                                {{choice.name}}
+                            </button>
+                            {% endif %}
                             {% endfor %}
                         </form>
                     </div>
